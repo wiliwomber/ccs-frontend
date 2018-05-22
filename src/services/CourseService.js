@@ -2,12 +2,12 @@
 
 import HttpService from './HttpService';
 
-export default class ModuleService {
+export default class CourseService {
 
     constructor(){
     }
 
-    static baseURL() {return "http://localhost:3000/modules" }
+    static baseURL() {return "http://localhost:3000/courses" }
 
     static getMovies(){
         return new Promise((resolve, reject) => {
@@ -59,10 +59,10 @@ export default class ModuleService {
         });
     }
 
-    static createModule(module) {
-        module.id = Math.floor((Math.random() * 100000000) + 1).toString();
+    static createCourse(course) {
+        course.id = Math.floor((Math.random() * 100000000) + 1).toString();
         return new Promise((resolve, reject) => {
-            HttpService.post(ModuleService.baseURL(), module, function(data) {
+            HttpService.post(CourseService.baseURL(), course, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);

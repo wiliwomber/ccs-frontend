@@ -6,16 +6,16 @@ import {withRouter} from "react-router-dom";
 
 
 
-class AddModule extends React.Component{
+class AddCourse extends React.Component{
 
 
     constructor(props) {
         super(props);
-        if(this.props.module != undefined) {
+        if(this.props.course != undefined) {
             this.state = {
-                title : props.module.title,
-                credits : props.module.credits,
-                description : props.module.description,
+                title : props.course.title,
+                credits : props.course.credits,
+                description : props.course.description,
                 open : false
 
             };
@@ -54,17 +54,17 @@ class AddModule extends React.Component{
     handleSubmit(event) {
         event.preventDefault();
 
-        let module = this.props.module;
-        if(module == undefined) {
-            module = {};
+        let course = this.props.course;
+        if(course == undefined) {
+            course = {};
         }
 
-        module.title = this.state.title;
-        module.credits = this.state.credits;
-        module.description = this.state.description;
+        course.title = this.state.title;
+        course.credits = this.state.credits;
+        course.description = this.state.description;
 
 
-        this.props.onSubmit(module);
+        this.props.onSubmit(course);
     }
 
 
@@ -87,11 +87,11 @@ class AddModule extends React.Component{
 
         return (
             <div>
-                <Button raised onClick={this.openForm}>AddModule</Button>
+                <Button raised onClick={this.openForm}>AddCourse</Button>
                 <DialogContainer
-                    id="add-module"
+                    id="add-course"
                     visible={this.state.open}
-                    title= {<span>Add custom module<Button style = {styles} icon primary onClick={this.closeForm}>close</Button></span>}
+                    title= {<span>Add custom course<Button style = {styles} icon primary onClick={this.closeForm}>close</Button></span>}
                     onHide={this.openForm}
                     width={1700}
                 >
@@ -143,4 +143,4 @@ let styles = {
     float: 'right'
 };
 
-export default withRouter(AddModule);
+export default withRouter(AddCourse);

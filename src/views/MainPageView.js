@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Page from '../components/Page';
-import {AddModuleView} from './../views/AddModuleView';
+import {AddCourseView} from './../views/AddCourseView';
 import {MovieListView} from "./MovieListView";
 
 
@@ -30,7 +30,7 @@ export class MainPageView extends React.Component {
         return (
             <Page>
                 <h1>Success</h1>
-                <AddModuleView/>
+                <AddCourseView/>
             </Page>
         );
     }
