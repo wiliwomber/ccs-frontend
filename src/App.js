@@ -9,7 +9,9 @@ import { MovieFormView }   from './views/MovieFormView';
 import { UserLoginView } from "./views/UserLoginView";
 import { UserSignupView } from "./views/UserSignupView";
 
+
 import UserService from "./services/UserService";
+import {MainPageView} from "./views/MainPageView";
 
 
 export default class App extends React.Component {
@@ -20,24 +22,20 @@ export default class App extends React.Component {
         this.state = {
             title: 'CampusCourseScheduler',
             routes: [
-                { component: MovieListView , path: '/', exact: true},
-                { component: MovieDetailView , path: '/show/:id'},
-                { render: (props) => {
-                        if(UserService.isAuthenticated()) {
-                            return (<MovieFormView {... props} />)
-                        }
-                        else {
-                            return (<Redirect to={'/login'}/>)
-                        }} , path: '/edit/:id'},
-                { render: (props) => {
-                        if(UserService.isAuthenticated()) {
-                            return (<MovieFormView {... props} />)
-                        }
-                        else {
-                            return (<Redirect to={'/login'}/>)
-                        }}, path: '/add',},
                 { component: UserLoginView, path: '/login'},
-                { component: UserSignupView, path: '/register'}
+                //{component: MainPageView, path: '/', exact: true},
+                //{ component: MovieListView , path: '/', exact: true},
+                //{ component: MovieDetailView , path: '/show/:id'},
+                { component: UserSignupView, path: '/register'},
+                { render: (props) => {
+                        if(UserService.isAuthenticated()) {
+                            return (<MainPageView {... props} />)
+                        }
+                        else {
+                            return (<Redirect to={'/login'}/>)
+                        }} , path: '/'},
+                { component: UserLoginView, path: '/login'}
+
 
             ]
         };

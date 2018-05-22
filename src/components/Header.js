@@ -2,9 +2,22 @@
 
 import React from 'react';
 import { Toolbar, Button } from 'react-md';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
+import UserSettings from './UserSettings';
 
-import KebabMenu from './KebabMenu';
+const Title = styled.h1`
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    background-color: #f3f3f3;">Full Center ON Page
+`;
 
 
 class Header extends React.Component {
@@ -15,12 +28,18 @@ class Header extends React.Component {
 
     render() {
         return (
+            <div>
+
+
             <Toolbar
-                colored
                 nav={<Button onClick={() => this.props.history.push('/')} icon>home</Button>}
                 title={this.props.title}
-                actions={<KebabMenu id="toolbar-colored-kebab-menu" />}>
+                actions={<UserSettings id="toolbar-colored-kebab-menu" />}>
+
             </Toolbar>
+                <Title>CampusCourseScheduler</Title>
+
+            </div>
         );
     }
 };
