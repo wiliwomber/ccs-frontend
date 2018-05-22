@@ -1,38 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="685ee167-a280-494f-bb84-2962e912fcee" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/AddModule.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/AlertMessage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/Footer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/Header.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/MovieDetail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/MovieForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/MovieList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/MovieListRow.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/Page.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/SimpleLink.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/UserLogin.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/UserSettings.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/components/UserSignup.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/img/CCS_logo.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/img/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/services/HttpService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/services/ModuleService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/services/MovieService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/services/UserService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/views/AddModuleView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/views/MainPageView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/views/MovieDetailView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/views/MovieFormView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/views/MovieListView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/views/UserLoginView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src copy/views/UserSignupView.js" beforeDir="false" />
-    </list>
+    <list default="true" id="685ee167-a280-494f-bb84-2962e912fcee" name="Default" comment="" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,12 +257,12 @@
       <option name="presentableId" value="Default" />
       <updated>1526907745405</updated>
       <workItem from="1526907749439" duration="18925000" />
-      <workItem from="1526983709486" duration="9236000" />
+      <workItem from="1526983709486" duration="9693000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28161000" />
+    <option name="totallyTimeSpent" value="28618000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
