@@ -1,3 +1,5 @@
 # User-specific stuff:
-.idea/
+idea/*
+.idea/workspace.xml
+
 # This is a MF comment von Johannes
