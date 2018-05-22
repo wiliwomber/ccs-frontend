@@ -10,13 +10,13 @@ export default class MovieService {
     static baseURL() {return "http://localhost:3000/movies" }
 
     static getMovies(){
-        return new Promise((resolve, reject) => {
-            HttpService.get(this.baseURL(), function(data) {
-                resolve(data);
-            }, function(textStatus) {
-                reject(textStatus);
-            });
-        });
+       return new Promise((resolve, reject) => {
+           HttpService.get(this.baseURL(), function(data) {
+               resolve(data);
+           }, function(textStatus) {
+               reject(textStatus);
+           });
+       });
     }
 
     static getMovie(id) {
@@ -54,7 +54,7 @@ export default class MovieService {
             HttpService.put(`${this.baseURL()}/${movie._id}`, movie, function(data) {
                 resolve(data);
             }, function(textStatus) {
-                reject(textStatus);
+               reject(textStatus);
             });
         });
     }
