@@ -3,7 +3,7 @@
 import React from 'react';
 
 import AddModule from './../components/AddModule';
-import MovieService from "../services/MovieService";
+import ModuleService from "../services/ModuleService";
 
 
 export class AddModuleView extends React.Component {
@@ -15,26 +15,19 @@ export class AddModuleView extends React.Component {
         };
     }
 
-    updateModule(module) {
-        if(this.state.module == undefined) {
-            ModuleService.createMovie(movie).then((data) => {
+    createModule(module) {
+
+            ModuleService.createModule(module).then((data) => {
                 this.props.history.push('/');
             }).catch((e) => {
                 console.error(e);
-                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
-            });
-        } else {
-            MovieService.updateMovie(movie).then((data) => {
-                this.props.history.goBack();
-            }).catch((e) => {
-                console.error(e);
-                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
+                this.setState(Object.assign({}, this.state, {error: 'Error while creating module'}));
             });
         }
-    }
+
 
     render() {
 
-        return (<AddModule module={this.state.module} onSubmit={(module) => this.updateModule(module)} error={this.state.error} />);
+        return (<AddModule module={this.state.module} onSubmit={(module) => this.createModule(module)} error={this.state.error} />);
     }
 }
