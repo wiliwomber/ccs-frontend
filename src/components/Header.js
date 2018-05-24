@@ -9,7 +9,6 @@ import UserSettings from './UserSettings';
 
 const Title = styled.h1`
     display: inline-block;
-    position: fixed;
     top: 10px;
     bottom: 0;
     left: 35%;
