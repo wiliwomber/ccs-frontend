@@ -3,7 +3,7 @@
 import React from 'react';
 import Page from '../components/Page';
 import {AddCourseView} from './../views/AddCourseView';
-import {MovieListView} from "./MovieListView";
+import ScheduleView from './ScheduleView';
 
 
 
@@ -29,7 +29,6 @@ export class MainPageView extends React.Component {
 
         return (
             <Page>
-                <h1>Success</h1>
                 <AddCourseView/>
             </Page>
         );
