@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import UserSettings from './UserSettings';
 
+
 const Title = styled.h1`
     display: inline-block;
     position: fixed;
