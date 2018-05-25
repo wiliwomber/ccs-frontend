@@ -5,7 +5,6 @@ import Page from '../components/Page';
 import {AddCourseView} from './../views/AddCourseView';
 import {ScheduleView} from './ScheduleView';
 import { Card, CardTitle, CardText } from 'react-md';
-import styled from 'styled-components';
 
 
 
@@ -35,12 +34,12 @@ export class MainPageView extends React.Component {
             <Page>
                 <div className="md-grid">
 
-                <Card className="md-cell md-cell--12 md-cell--8-tablet">
+                <Card className="md-cell md-cell--6 md-cell--8-tablet">
                     <CardTitle title="Schedule" subtitle="With Calender" />
                     <CardText>
-                        TBD
+                        <ScheduleView/>
 
-                    <ScheduleView/>
+
                     </CardText>
 
                 </Card>
