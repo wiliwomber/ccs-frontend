@@ -1,7 +1,8 @@
 # User-specific stuff:
+<<<<<<< HEAD
 .idea/*
 .idea/workspace.xml
-node_modules
+node_modules/
 
 # Logs
 logs
@@ -75,3 +76,6 @@ package-lock.json
 dist/
 
 
+=======
+**/.idea/workspace.xml
+>>>>>>> fdc8d0fc41b99bfba78760765cfff33a937a1cc2

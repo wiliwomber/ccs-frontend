@@ -22,7 +22,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.17",
-    "css-loader": "^0.28.7",
+    "css-loader": "^0.28.11",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.11",
     "html-loader": "^0.4.5",
@@ -35,12 +35,13 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "fullcalendar": "^3.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2",
     "react-md": "^1.2.11",
-    "webfontloader": "^1.6.28",
-    "styled-components": "^3.1.6"
+    "react-router-dom": "^4.2.2",
+    "styled-components": "^3.1.6",
+    "webfontloader": "^1.6.28"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
