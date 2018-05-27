@@ -8,10 +8,12 @@ import { MovieDetailView }   from './views/MovieDetailView';
 import { MovieFormView }   from './views/MovieFormView';
 import { UserLoginView } from "./views/UserLoginView";
 import { UserSignupView } from "./views/UserSignupView";
+import { AddCourseView } from "./views/AddCourseView";
 
 
 import UserService from "./services/UserService";
 import {MainPageView} from "./views/MainPageView";
+import AddCourse from "./components/AddCourse";
 
 
 export default class App extends React.Component {
@@ -34,7 +36,8 @@ export default class App extends React.Component {
                         else {
                             return (<Redirect to={'/login'}/>)
                         }} , path: '/'},
-                { component: UserLoginView, path: '/login'}
+                { component: UserLoginView, path: '/login'},
+                { component: AddCourseView, path: '/add'}
 
 
             ]

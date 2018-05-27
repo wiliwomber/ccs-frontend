@@ -2,8 +2,11 @@
 
 import React from 'react';
 import Page from '../components/Page';
-import {AddModule} from '../components/AddModule';
-import {MovieListView} from "./MovieListView";
+import {AddCourseView} from './../views/AddCourseView';
+import {ScheduleView} from './ScheduleView';
+import { Card, CardTitle, CardText } from 'react-md';
+
+
 
 
 
@@ -29,8 +32,26 @@ export class MainPageView extends React.Component {
 
         return (
             <Page>
-                <h1>Success</h1>
-                <AddModule/>
+                <div className="md-grid">
+
+                <Card className="md-cell md-cell--6 md-cell--8-tablet">
+                    <CardTitle title="Schedule" subtitle="With Calender" />
+                    <CardText>
+                        <ScheduleView/>
+
+
+                    </CardText>
+
+                </Card>
+                <Card className="md-cell md-cell--6 md-cell--8-tablet">
+                <CardTitle title="Modules" subtitle="With Courses" />
+                <CardText>
+                    TBD
+                    <AddCourseView/>
+                </CardText>
+            </Card>
+                </div>
+
             </Page>
         );
     }
