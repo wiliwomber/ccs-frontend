@@ -9,7 +9,7 @@ export default class CourseService {
 
     static baseURL() {return "http://localhost:3000/courses" }
 
-    static getMovies(){
+    static getCourses(){
         return new Promise((resolve, reject) => {
             HttpService.get(this.baseURL(), function(data) {
                 resolve(data);

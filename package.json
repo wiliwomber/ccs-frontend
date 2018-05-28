@@ -31,9 +31,10 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "fullcalendar": "^3.9.0",
     "css-loader": "^0.28.11",
+    "fullcalendar": "^3.9.0",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-md": "^1.2.11",
     "react-router-dom": "^4.2.2",

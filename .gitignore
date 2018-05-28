@@ -1,10 +1,11 @@
 # User-specific stuff:
-<<<<<<< HEAD
+
 **/.idea/workspace.xml
 node_modules/
-=======
+
 
 .idea/*
 .idea/workspace.xml
 
->>>>>>> 03ab7bfb6cdd5b7b5e9c6b955ab529b026fc63dd
+
+package-lock.json

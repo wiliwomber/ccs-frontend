@@ -4,6 +4,7 @@ import React from 'react';
 
 import AddCourse from './../components/AddCourse';
 import CourseService from "../services/CourseService";
+import {CourseList} from "../components/CourseList";
 
 
 export class AddCourseView extends React.Component {
@@ -18,7 +19,7 @@ export class AddCourseView extends React.Component {
     createCourse(course) {
 
             CourseService.createCourse(course).then((data) => {
-                this.props.history.push('/');
+               // this.props.history.push('/');
             }).catch((e) => {
                 console.error(e);
                 this.setState(Object.assign({}, this.state, {error: 'Error while creating course'}));
@@ -28,6 +29,8 @@ export class AddCourseView extends React.Component {
 
     render() {
 
-        return (<AddCourse course={this.state.course} onSubmit={(course) => this.createCourse(course)} error={this.state.error} />);
+        return (<div>
+            <AddCourse course={this.state.course} onSubmit={(course) => this.createCourse(course)} error={this.state.error} />
+        </div>);
     }
 }
