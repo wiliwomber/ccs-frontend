@@ -1,10 +1,11 @@
 "use strict";
-
+import Popup from 'react-popup';
 import React from 'react';
 import Page from '../components/Page';
 import {AddCourseView} from './../views/AddCourseView';
 import {ScheduleView} from './ScheduleView';
 import { Card, CardTitle, CardText } from 'react-md';
+import {CourseListView} from "./CourseListView";
 
 
 
@@ -32,6 +33,7 @@ export class MainPageView extends React.Component {
 
         return (
             <Page>
+
                 <div className="md-grid">
 
                 <Card className="md-cell md-cell--6 md-cell--8-tablet">
@@ -46,8 +48,8 @@ export class MainPageView extends React.Component {
                 <Card className="md-cell md-cell--6 md-cell--8-tablet">
                 <CardTitle title="Modules" subtitle="With Courses" />
                 <CardText>
-                    TBD
                     <AddCourseView/>
+                    <CourseListView/>
                 </CardText>
             </Card>
                 </div>
