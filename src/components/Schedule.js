@@ -3540,6 +3540,13 @@ var View = /** @class */ (function (_super) {
         // legacy
         if (_this['initialize']) {
             _this['initialize']();
+
+
+
+
+
+
+
         }
         return _this;
     }
