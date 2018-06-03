@@ -4,15 +4,12 @@ import React from 'react';
 import $ from 'jquery';
 import './../components/Schedule';
 import './../components/Schedule.css';
-import {CalendarPopUp} from './../components/CalendarPopUp';
 import Popup from 'react-popup';
 import './../components/Popup.css';
+import {Snackbar} from 'react-md';
 
-const dialogStyle = {
-    color: 'blue',
-    top: '0',
-    right: '0px'
-};
+
+
 
 
 export class ScheduleView extends React.Component {
@@ -27,7 +24,7 @@ export class ScheduleView extends React.Component {
                 visible : false,
                 xPosition : 0,
                 yPosition : 0
-            }
+            },
         }
 
         this.setPopUp = this.setPopUp.bind(this);
@@ -35,6 +32,7 @@ export class ScheduleView extends React.Component {
 
         this.loadCalendar = this.loadCalendar.bind(this);
     }
+
 
     setPopUp(data,target,position){
         Popup.registerPlugin('popover', function (content, target) {
@@ -54,6 +52,8 @@ export class ScheduleView extends React.Component {
                         text: 'Remove',
                         className: 'remove',
                         action: function () {
+
+
                             Popup.alert('You removed the course from your schedule.');
 
                             /** Close this popup. Close will always close the current visible one, if one is visible */
@@ -158,8 +158,6 @@ export class ScheduleView extends React.Component {
         return(
             <div>
                     <div id='calendar'></div>
-                    <Popup/>
-                    <CalendarPopUp  popup={this.state.popup} onClosingPopUp={this.closePopUp}/>
             </div>
 
         )
