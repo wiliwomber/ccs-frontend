@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "fullcalendar": "^3.9.0",
+    "mdbreact": "^4.4.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-md": "^1.2.11",

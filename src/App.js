@@ -4,7 +4,7 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import { MovieListView } from './views/MovieListView';
-import { MovieDetailView }   from './views/MovieDetailView';
+import { CourseDetailView }   from './views/CourseDetailView';
 import { MovieFormView }   from './views/MovieFormView';
 import { UserLoginView } from "./views/UserLoginView";
 import { UserSignupView } from "./views/UserSignupView";
@@ -14,6 +14,7 @@ import { AddCourseView } from "./views/AddCourseView";
 import UserService from "./services/UserService";
 import {MainPageView} from "./views/MainPageView";
 import AddCourse from "./components/AddCourse";
+import {ImprintView} from "./views/ImprintView";
 
 
 export default class App extends React.Component {
@@ -27,7 +28,7 @@ export default class App extends React.Component {
                 { component: UserLoginView, path: '/login'},
                 //{component: MainPageView, path: '/', exact: true},
                 //{ component: MovieListView , path: '/', exact: true},
-                //{ component: MovieDetailView , path: '/show/:id'},
+                { component: CourseDetailView, path: '/details'},
                 { component: UserSignupView, path: '/register'},
                 { render: (props) => {
                         if(UserService.isAuthenticated()) {
@@ -37,7 +38,8 @@ export default class App extends React.Component {
                             return (<Redirect to={'/login'}/>)
                         }} , path: '/'},
                 { component: UserLoginView, path: '/login'},
-                { component: AddCourseView, path: '/add'}
+                { component: AddCourseView, path: '/add'},
+                { component: ImprintView, path: '/imprint'}
 
 
             ]
