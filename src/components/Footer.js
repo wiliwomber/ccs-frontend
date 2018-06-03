@@ -1,17 +1,17 @@
 "use strict";
 
 import React from 'react';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {SimpleLink} from "./SimpleLink";
 import { withRouter } from 'react-router-dom';
 
 
-const VertList = Styled.ul`
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-`;
+// const VertList = styled.ul`
+//     list-style-type: none;
+//     margin: 0;
+//     padding: 0;
+// `;
 class PlainFooter extends React.Component {
 
     constructor(props) {
@@ -20,12 +20,10 @@ class PlainFooter extends React.Component {
     render() {
         return (
             <div className={this.props.className}>
+                <hr/>
                 <ul>
                     <li><p>© {new Date().getFullYear()} CampusCourseScheduler All rights reserved.</p></li>
-                    <li><Link to="/imprint">Impressum</Link></li>
-                    <li>Datenschutz</li>
-                    <li>AGB</li>
-                    <li>Kontakt</li>
+                    <li><Link to={`/imprint`}>Impressum</Link> </li>
                 </ul>
             </div>
         );
@@ -33,20 +31,23 @@ class PlainFooter extends React.Component {
 }
 
 
-export const Footer = Styled(PlainFooter)`
+export const Footer = styled(PlainFooter)`
     max-height: 35px;
-    bottom: 0;
+    bottom: 50;
     left: 0;
     right: 0;
-    position: fixed;
-    background: black;
-    > p {
-        text-align: center;
-        margin-top: 4px;
-        margin-bottom: 4px;
+    position: relative;
+    background: #ffffff;
+    p {
+        text-align: left;
+        margin-top: 10px;
     }
     ul {
        list-style-type: none;
-       color: red;
+       margin: 0;
+       padding 0;
+    }
+    li [
+     display: block;
     }
 `;

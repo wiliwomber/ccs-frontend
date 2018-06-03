@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Page from '../components/Page';
+import Imprint from '../components/Imprint'
 
 
 export class ImprintView extends React.Component {
@@ -12,7 +13,11 @@ export class ImprintView extends React.Component {
 
     render() {
         return (
-            <Page/>
+            <Page>
+                <div>
+                    <Imprint/>
+                </div>
+            </Page>
         );
     }
 }

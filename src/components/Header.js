@@ -8,18 +8,6 @@ import UserSettings from './UserSettings';
 import logo from './../img/logo.png';
 
 
-const Title = styled.h1`
-    display: inline-block;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 200px;
-    height: 50px;
-    margin: auto;
-    background-color: #f3f3f3;">Full Center ON Page
-`;
-
 
 class Header extends React.Component {
 
@@ -35,8 +23,6 @@ class Header extends React.Component {
                 title={<img src={logo} height={50} width={200} mode="fit"/>}
                 actions={<UserSettings id="toolbar-colored-kebab-menu" />}>
             </Toolbar>
-                <Title>CampusCourseScheduler</Title>
-
             </div>
         );
     }

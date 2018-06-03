@@ -41,7 +41,8 @@
     "react-dom": "^16.2.0",
     "react-md": "^1.2.11",
     "react-router-dom": "^4.2.2",
-    "styled-components": "^3.1.6",
+    "styled-components": "^3.3.0",
+    "web-dev-server": "^1.1.1",
     "webfontloader": "^1.6.28"
   },
   "scripts": {
