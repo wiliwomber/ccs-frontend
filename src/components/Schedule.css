@@ -862,6 +862,9 @@ NOTE: use percentage font sizes or else old IE chokes
 /* BasicView
 --------------------------------------------------------------------------------------------------*/
 /* day row structure */
+
+.fc-time-grid-event:hover{background: #006ECC;cursor: pointer;}
+
 .fc-basicWeek-view .fc-content-skeleton,
 .fc-basicDay-view .fc-content-skeleton {
   /* there may be week numbers in these views, so no padding-top */

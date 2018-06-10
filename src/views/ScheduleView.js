@@ -4,7 +4,12 @@ import React from 'react';
 import $ from 'jquery';
 import './../components/Schedule';
 import './../components/Schedule.css';
-import {CalendarPopUp} from './../components/CalendarPopUp';
+import Popup from 'react-popup';
+import './../components/Popup.css';
+import {Snackbar} from 'react-md';
+
+
+
 
 
 export class ScheduleView extends React.Component {
@@ -17,25 +22,82 @@ export class ScheduleView extends React.Component {
                 credits : '',
                 description : '',
                 visible : false,
-                xPosition : '',
-                yPosition : ''
-            }
+                xPosition : 0,
+                yPosition : 0
+            },
         }
 
         this.setPopUp = this.setPopUp.bind(this);
+        this.closePopUp = this.closePopUp.bind(this);
+
         this.loadCalendar = this.loadCalendar.bind(this);
     }
 
-    setPopUp(data){
+
+    setPopUp(data,target,position){
+        Popup.registerPlugin('popover', function (content, target) {
+            this.create({
+                title: data.title,
+                content: content,
+                className: 'popover',
+                noOverlay: true,
+                position: function (box) {
+                    box.style.top  = (position.top - box.offsetHeight + 10) + 'px';
+                    box.style.left = (position.left + target.offsetWidth - 10) + 'px';
+                    box.style.margin = 0;
+                    box.style.opacity = 1;
+                },
+                buttons: {
+                    left: [{
+                        text: 'Remove',
+                        className: 'remove',
+                        action: function () {
+
+
+                            Popup.alert('You removed the course from your schedule.');
+
+                            /** Close this popup. Close will always close the current visible one, if one is visible */
+                            Popup.close();
+                        }
+                    }],
+                    right: [{
+                        text: 'View Details',
+                        className: 'details',
+                        action: function () {
+                            Popup.alert('Now the detail view should open up');
+
+                            /** Close this popup. Close will always close the current visible one, if one is visible */
+                            Popup.close();
+                        }
+                    }]
+                }
+            });
+        });
+
+        Popup.plugins().popover('Content to be defined.', target);
+
+
         this.setState({
             popup : {
                 title : data.title,
-                visible: true,
-                xPosition : '',
-                yPosition : ''
+                visible : true,
+                xPosition : 0,
+                yPosition : 0
             }
         });
-        console.log(this.state.popup.visible);
+    }
+
+    closePopUp(){
+        this.setState({
+            popup : {
+                title : 'test',
+                credits : '',
+                description : '',
+                visible : false,
+                xPosition : 0,
+                yPosition : 0
+            }
+        });
     }
 
     loadCalendar(){
@@ -56,8 +118,15 @@ export class ScheduleView extends React.Component {
                 footer: false,
                 columnHeaderFormat: 'dddd',
                 allDaySlot: false,
-                eventMouseover: function(data, event, view) {
-                    _this.setPopUp(data);
+                eventClick: function(data, event, view) {
+                    var elm = $(this);
+                    var xPos = event.pageX - elm.offset().left;
+                    var yPos = event.pageY - elm.offset().top;
+                    var button = elm.get(0);
+                    var rect = button.getBoundingClientRect();
+                    var position = {top: rect.top, left: rect.left};
+                    let target = event.target;
+                    _this.setPopUp(data,target,position);
                 },
                 events: [
                     {   title: 'EIDI',
@@ -89,8 +158,8 @@ export class ScheduleView extends React.Component {
         return(
             <div>
                     <div id='calendar'></div>
-                    <CalendarPopUp popup={this.state.popup}/>
             </div>
+
         )
     }
 
