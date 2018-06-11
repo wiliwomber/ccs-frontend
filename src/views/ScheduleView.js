@@ -38,7 +38,7 @@ export class ScheduleView extends React.Component {
         Popup.registerPlugin('popover', function (content, target) {
             this.create({
                 title: data.title,
-                content: content,
+                content: data.test,
                 className: 'popover',
                 noOverlay: true,
                 position: function (box) {
@@ -105,7 +105,7 @@ export class ScheduleView extends React.Component {
         $(function() {
 
             // page is now ready, initialize the calendar...
-            let height = ($(window).height())*0.6
+            let height = ($(window).height())*0.53
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
                 defaultView: 'agendaWeek',
@@ -131,17 +131,20 @@ export class ScheduleView extends React.Component {
                 events: [
                     {   title: 'EIDI',
                         start: '10:00', // a start time (10am in this example)
+                        test: 'Das ist ein Test2',
                         end: '12:00', // an end time (2pm in this example)
                         dow: [1, 4] // Repeat monday and thursday
                     },
                     {
                         title: 'C4CIO',
+                        test: 'Das ist ein Test',
                         start: '11:00', // a start time (10am in this example)
                         end: '14:00', // an end time (2pm in this example)
                         dow: [1] // Repeat monday and thursday
                     },
                     {
                         title: 'SEBA',
+                        test: 'Das ist ein Test',
                         start: '09:00', // a start time (10am in this example)
                         end: '10:15', // an end time (2pm in this example)
                         dow: [3] // Repeat monday and thursday

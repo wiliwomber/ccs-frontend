@@ -4,10 +4,14 @@ import React from 'react';
 import Styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {SimpleLink} from "./SimpleLink";
+import { withRouter } from 'react-router-dom';
+import {Button} from 'react-md';
 
-const VertList = Styled.ul`
+
+const StyleFooter = Styled.div`
     list-style-type: none;
     margin: 0;
+    background-color: red;
     padding: 0;
 `;
 
@@ -19,32 +23,25 @@ class PlainFooter extends React.Component {
     render() {
         return (
             <div className={this.props.className}>
-                <ul>
-                    <li><p>© {new Date().getFullYear()} CampusCourseScheduler All rights reserved.</p></li>
-                    <li><SimpleLink to="./views/ImprintView">Impressum</SimpleLink></li>
-                    <li>Datenschutz</li>
-                    <li>AGB</li>
-                    <li>Kontakt</li>
-                </ul>
+                <StyleFooter>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>© {new Date().getFullYear()} CampusCourseScheduler All rights reserved.</td>
+                            <td><Button onClick={() => this.props.history.push('/test')} icon>Test</Button></td>
+
+                            <td>Datenschutz</td>
+
+                            <td>AGB</td>
+                            <td>Kontakt</td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </StyleFooter>
             </div>
         );
     }
 }
 
-
-export const Footer = Styled(PlainFooter)`
-    max-height: 35px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    > p {
-        text-align: center;
-        margin-top: 4px;
-        margin-bottom: 4px;
-    }
-    ul {
-       list-style-type: none;
-       color: red
-    }
-`;
+export default withRouter(PlainFooter);

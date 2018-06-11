@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import {SemesterProgressBlock} from "../components/SemesterProgressBlock";
 
 const Semester = styled.div`
     width: 100px;
@@ -16,12 +15,12 @@ const Semester = styled.div`
 `;
 
 
-export class CurriculumView extends React.Component {
+export class SemesterProgressBlock extends React.Component {
 
     constructor(props) {
         super(props);
 
-        }
+    }
 
 
 
@@ -29,7 +28,20 @@ export class CurriculumView extends React.Component {
         return(
             <div className="md-grid">
                 <div className="md-cell md-cell--4 md-cell--8-tablet">
-                    <SemesterProgressBlock/>
+                    <Semester>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div>1</div>
+                                </td>
+                                <td>
+                                    <div>28 CP</div>
+                                    <div>Progres Bar</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </Semester>
+
                 </div>
                 <div className="md-cell md-cell--8 md-cell--8-tablet">
 

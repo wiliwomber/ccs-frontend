@@ -18,16 +18,16 @@ export default class HttpService {
             headers: header
         }).then((resp) => {
             if(resp.ok) {
-                return resp.json();
-            }
-            else if(this.checkIfUnauthorized(resp)) {
-                window.location = "/#login";
-            }
-            else {
-                resp.json().then((json) => {
-                    onError(json.error);
-                });
-            }
+            return resp.json();
+        }
+        else if(this.checkIfUnauthorized(resp)) {
+            window.location = "/#login";
+        }
+        else {
+            resp.json().then((json) => {
+                onError(json.error);
+            });
+        }
         }).then((resp) => {
             if(resp.hasOwnProperty('token')) {
                 window.localStorage['jwtToken'] = resp.token;
