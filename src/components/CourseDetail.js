@@ -11,25 +11,23 @@ class AddCourse extends React.Component{
 
     constructor(props) {
         super(props);
-        if(this.props.course != undefined) {
+        if (this.props.course != undefined) {
             this.state = {
-                title : props.course.title,
-                credits : props.course.credits,
-                description : props.course.description,
-                open : false
+                title: props.course.title,
+                credits: props.course.credits,
+                description: props.course.description,
+                open: false
 
             };
         } else {
             this.state = {
-                title : '',
-                credits : '',
-                description : '',
-                open : false
+                title: '',
+                credits: '',
+                description: '',
+                open: false
 
             };
         }
-
-
 
 
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
@@ -41,6 +39,14 @@ class AddCourse extends React.Component{
         this.closeForm = this.closeForm.bind(this);
 
     }
+  getTitle(value) {
+      this.getState(Object.get({}, this.state, {title: value}));
+  }
+  getTitle(value) {
+        this.getState(Object.get({}, this.state, {title: value}));
+    }
+
+
     handleChangeTitle(value) {
         this.setState(Object.assign({}, this.state, {title: value}));
     }
@@ -55,7 +61,7 @@ class AddCourse extends React.Component{
         event.preventDefault();
 
         let course = this.props.course;
-        if(course == undefined) {
+        if(course = undefined) {
             course = {};
         }
 
