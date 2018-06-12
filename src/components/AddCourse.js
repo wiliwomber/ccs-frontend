@@ -96,7 +96,7 @@ class AddCourse extends React.Component{
         this.handleChangeEvaluation = this.handleChangeEvaluation.bind(this);
         this.handleChangeComment = this.handleChangeComment.bind(this);
         this.handleChangeTag = this.handleChangeTag.bind(this);
-
+        this.handleChangePublic = this.handleChangePublic.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -186,7 +186,7 @@ class AddCourse extends React.Component{
         course.title = this.state.title;
         course.credits = this.state.credits;
         course.description = this.state.description;
-        course.titlelong = this.state.titlelong
+        course.titlelong = this.state.titlelong;
         course.semester = this.state.semester;
         course.lecturer = this.state.lecturer;
         course.chair = this.state.chair;
