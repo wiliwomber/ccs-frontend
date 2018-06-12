@@ -19,14 +19,14 @@ export default class CourseService {
         });
     }
 
-    static getMovie(id) {
+    static getCourse(id) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${MovieService.baseURL()}/${id}`, function(data) {
+            HttpService.get(`${CourseService.baseURL()}/${id}`, function(data) {
                 if(data != undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
                 else {
-                    reject('Error while retrieving movie');
+                    reject('Error while retrieving Course');
                 }
             }, function(textStatus) {
                 reject(textStatus);
@@ -34,9 +34,9 @@ export default class CourseService {
         });
     }
 
-    static deleteMovie(id) {
+    static deleteCourse(id) {
         return new Promise((resolve, reject) => {
-            HttpService.remove(`${MovieService.baseURL()}/${id}`, function(data) {
+            HttpService.remove(`${CourseService.baseURL()}/${id}`, function(data) {
                 if(data.message != undefined) {
                     resolve(data.message);
                 }
@@ -49,9 +49,9 @@ export default class CourseService {
         });
     }
 
-    static updateMovie(movie) {
+    static updateCourse(course) {
         return new Promise((resolve, reject) => {
-            HttpService.put(`${this.baseURL()}/${movie._id}`, movie, function(data) {
+            HttpService.put(`${this.baseURL()}/${course._id}`, course, function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);

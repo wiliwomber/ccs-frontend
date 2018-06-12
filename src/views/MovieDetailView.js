@@ -41,7 +41,7 @@ export class MovieDetailView extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return (<h2>Loading...</h2>);
+            return (<h2>Loading ...</h2>);
         }
 
         return (
