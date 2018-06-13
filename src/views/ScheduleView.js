@@ -2,8 +2,9 @@
 
 import React from 'react';
 import $ from 'jquery';
-import './../components/Schedule';
-import './../components/Schedule.css';
+import 'fullcalendar';
+// import './../components/Schedule';
+// import './../components/Schedule.css';
 import Popup from 'react-popup';
 import './../components/Popup.css';
 import {Snackbar} from 'react-md';
