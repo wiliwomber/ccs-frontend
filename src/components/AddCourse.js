@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
-import { TextField,  Button, DialogContainer } from 'react-md';
+import { TextField, DatePicker, TimePicker, Button, DialogContainer } from 'react-md';
+// import { DatePicker } from 'react-md/lib/Pickers';
+// import {TimePicker} from 'react-md/lib/Pickers';
 import { AlertMessage } from './AlertMessage';
 import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
@@ -32,7 +34,7 @@ class AddCourse extends React.Component{
                 dow : props.course.dow,
                 roomnumber : props.course.roomnumber,
                 participatorrestriction: props.course.participatorrestriction,
-                evaluation : props.course.evaluate,
+                evaluation : props.course.evaluation,
                 comment : props.course.comment,
                 tag : props.course.tag,
 
@@ -152,8 +154,8 @@ class AddCourse extends React.Component{
     handleChangeEnd(value) {
         this.setState(Object.assign({}, this.state, {end: value}));
     }
-    handleChangeDow(value) {
-        this.setState(Object.assign({}, this.state, {dow: value}));
+    handleChangeDow(Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) {
+        this.setState(Object.assign({}, this.state, {dow: Monday,Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }));
     }
     handleChangeRoomnumber(value) {
         this.setState(Object.assign({}, this.state, {roomnumber: value}));
@@ -208,9 +210,7 @@ class AddCourse extends React.Component{
         course.tag = this.state.tag;
         course.public = this.state.public;
 
-
-
-           this.props.onSubmit(course);
+        this.props.onSubmit(course);
     }
 
 
@@ -265,7 +265,7 @@ class AddCourse extends React.Component{
                     <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.closeForm()}>
                         <TextField
                         label="Title"
-                        id="TitleField"
+                        id="TextField"
                         type="text"
                         className="md-row"
                         required={true}
@@ -274,7 +274,7 @@ class AddCourse extends React.Component{
                         errorText="Title is required"/>
                         <TextField
                             label="Title Long"
-                            id="TitlelongField"
+                            id="TextField"
                             type="text"
                             className="md-row"
                             required={true}
@@ -283,7 +283,7 @@ class AddCourse extends React.Component{
                             errorText="Title long is required"/>
                         <TextField
                             label="Credits"
-                            id="CreditsField"
+                            id="TextField"
                             type="number"
                             className="md-row"
                             required={true}
@@ -293,7 +293,7 @@ class AddCourse extends React.Component{
                             maxLength={1}/>
                         <TextField
                             label="Description"
-                            id="DescriptionField"
+                            id="TextField"
                             type="text"
                             className="md-row"
                             rows={5}
@@ -303,7 +303,7 @@ class AddCourse extends React.Component{
                             errorText="Synopsis is required"/>
                         <TextField
                             label="Semester"
-                            id="SemesterField"
+                            id="TextField"
                             type="text"
                             className="md-row"
                             required={true}
@@ -313,135 +313,142 @@ class AddCourse extends React.Component{
                             maxLength={14}/>
                         <TextField
                             label="Lecturer"
-                            id="LecturerField"
+                            id="TextField"
                             type="text"
                             className="md-row"
                             required={true}
                             value={this.state.lecturer}
                             onChange={this.handleChangeLecturer}
                             errorText="Lecturer is required"/>
-
                         <TextField
                             label="Chair"
-                            id="ChairField"
+                            id="TextField"
                             type="text"
                             className="md-row"
                             required={true}
                             value={this.state.chair}
                             onChange={this.handleChangeChair}
                             errorText="Chair is required"/>
-                        <TextField
-                            label="Registrationstart"
-                            id="RegistrationstartField"
-                            type="Date"
-                            className="md-row"
+                        <DatePicker
+                            label="Registration Start"
+                            id="registrationstart"
+                            className="md-cell"
+                            displayMode="Registration Start"
                             required={true}
                             value={this.state.registrationstart}
                             onChange={this.handleChangeRegistrationstart}
                             errorText="Registrationstart is required"/>
-                        <TextField
-                            label="Registrationend"
-                            id="RegistrationendField"
-                            type="Date"
-                            className="md-row"
+                        <DatePicker
+                            label="Registration End"
+                            id="registrationend"
+                            className="md-cell"
+                            displayMode="portrait"
                             required={true}
                             value={this.state.registrationend}
                             onChange={this.handleChangeRegistrationend}
                             errorText="Registrationend is required"/>
-                        <TextField
+                        <DatePicker
                             label="Exam"
-                            id="ExamField"
-                            type="Date"
+                            id="exam"
+                            className="md-cell"
+                            displayMode="portrait"
+                            required={true}
+                            value={this.state.exam}
+                            onChange={this.handleChangeExam}
+                            errorText="Exam is required"/>
+                        <TextField
+                            label="Repeatexamatendofsemester"
+                            id="BooleanField"
+                            type="boolean"
                             className="md-row"
-                                    required={true}
-                                    value={this.state.exam}
-                                    onChange={this.handleChangeExam}
-                                    errorText="Exam is required"/>
-                                        <TextField
-                                            label="Repeatexamatendofsemester"
-                                            id="RepeatexamatendofsemesterField"
-                                            type="Boolean"
-                                            className="md-row"
-                                            required={true}
-                                            value={this.state.repeatexamatendofsemester}
-                                            onChange={this.handleChangeRepeatexamatendofsemester}
-                                            errorText="Repeatexamatendofsemester is required"/>
-                                                <TextField
-                                                    label="Repeatexamatnextsemester"
-                                                    id="RepeatexamatnextsemesterField"
-                                                    type="Boolean"
-                                                    className="md-row"
-                                                    required={true}
-                                                    value={this.state.repeatexamatnextsemester}
-                                                    onChange={this.handleChangeRepeatexamatnextsemester}
-                                                    errorText="Repeatexamatnextsemester is required"/>
-                                                        <TextField
-                                                            label="Practicecourse"
-                                                            id="PracticecourseField"
-                                                            type="Boolean"
-                                                            className="md-row"
-                                                            required={true}
-                                                            value={this.state.practicecourse}
-                                                            onChange={this.handleChangePracticecourse}
-                                                            errorText="Practicecourse is required"/>
-                                                                <TextField
-                                                                    label="Semesterperiodsperweek"
-                                                                    id="SemesterperiodsperweekField"
-                                                                    type="Number"
-                                                                    className="md-row"
-                                                                    required={true}
-                                                                    value={this.state.semesterperiodsperweek}
-                                                                    onChange={this.handleChangeSemesterperiodsperweek}
-                                                                    errorText="Semesterperiodsperweek is required"/>
-                                                                        <TextField
-                                                                            label="start"
-                                                                            id="StartField"
-                                                                            type="Date"
-                                                                            className="md-row"
-                                                                            required={true}
-                                                                            value={this.state.start}
-                                                                            onChange={this.handleChangeStart}
-                                                                            errorText="Start is required"/>
-                                                                            <TextField
-                                                                            label="end"
-                                                                            id="EndField"
-                                                                            type="Date"
-                                                                            className="md-row"
-                                                                            required={true}
-                                                                            value={this.state.end}
-                                                                            onChange={this.handleChangeEnd}
-                                                                            errorText="End is required"/>
-                                                                            <TextField
-                                                                            label="Day of Course"
-                                                                            id="dowField"
-                                                                            type="Date"
-                                                                            className="md-row"
-                                                                            required={true}
-                                                                            value={this.state.dow}
-                                                                            onChange={this.handleChangeDow}
-                                                                            errorText="Day of course is required"/>
-                                                                                <TextField
-                                                                                    label="Room number"
-                                                                                    id="RoomnumberField"
-                                                                                    type="Number"
-                                                                                    className="md-row"
-                                                                                    required={true}
-                                                                                    value={this.state.roomnumber}
-                                                                                    onChange={this.handleChangeRoomnumber}
-                                                                                    errorText="Roomnumber is required"/>
-                                                                                        <TextField
-                                                                                            label="Participator Restriction"
-                                                                                            id="ParticipatorrestrictionField"
-                                                                                            type="Number"
-                                                                                            className="md-row"
-                                                                                            required={true}
-                                                                                            value={this.state.participatorrestriction}
-                                                                                            onChange={this.handleChangeParticipatorrestriction}
-                                                                                            errorText="Participator Restriction is required"/>
+                            required={true}
+                            value={this.state.repeatexamatendofsemester}
+                            onChange={this.handleChangeRepeatexamatendofsemester}
+                            errorText="Repeatexamatendofsemester is required"/>
+                        <TextField
+                            label="Repeatexamatnextsemester"
+                            id="BooleanField"
+                            type="boolean"
+                            className="md-row"
+                            required={true}
+                            value={this.state.repeatexamatnextsemester}
+                            onChange={this.handleChangeRepeatexamatnextsemester}
+                            errorText="Repeatexamatnextsemester is required"/>
+                        <TextField
+                            label="Practicecourse"
+                            id="BooleanField"
+                            type="boolean"
+                            className="md-row"
+                            required={true}
+                            value={this.state.practicecourse}
+                            onChange={this.handleChangePracticecourse}
+                            errorText="Practicecourse is required"/>
+                        <TextField
+                            label="Semesterperiodsperweek"
+                            id="TextField"
+                            type="number"
+                            className="md-row"
+                            required={true}
+                            value={this.state.semesterperiodsperweek}
+                            onChange={this.handleChangeSemesterperiodsperweek}
+                            errorText="Semesterperiodsperweek is required"/>
+                        <TimePicker
+                            label="start"
+                            id="start"
+                            className="md-cell"
+                            displayMode="start"
+                            required={true}
+                            value={this.state.start}
+                            onChange={this.handleChangeStart}
+                            errorText="Start is required"/>
+                        <TimePicker
+                            label="end"
+                            id="end"
+                            className="md-cell"
+                            displayMode="end"
+                            required={true}
+                            value={this.state.end}
+                            onChange={this.handleChangeEnd}/>
+                        <TextField
+                            label="Day of Course"
+                            id="dowField"
+                            type="dow"
+                            className="md-row"
+                            errorText="End is required"/>
+                        <label>
+                            Pick the day of course:
+                        </label>
+                        <select value={this.state.dow} onChange={this.handleChangeDow}>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option selected value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                        <TextField
+                            label="Room number"
+                            id="TextField"
+                            type="number"
+                            className="md-row"
+                            required={true}
+                            value={this.state.roomnumber}
+                            onChange={this.handleChangeRoomnumber}
+                            errorText="Roomnumber is required"/>
+                        <TextField
+                            label="Participator Restriction"
+                            id="TextField"
+                            type="number"
+                            className="md-row"
+                            required={true}
+                            value={this.state.participatorrestriction}
+                            onChange={this.handleChangeParticipatorrestriction}
+                            errorText="Participator Restriction is required"/>
                         <TextField
                             label="Evaluation"
-                            id="EvaluationField"
-                            type="String"
+                            id="TextField"
+                            type="text"
                             className="md-row"
                             required={true}
                             value={this.state.evaluation}
@@ -449,8 +456,8 @@ class AddCourse extends React.Component{
                             errorText="Evaluation is required"/>
                         <TextField
                             label="Comment"
-                            id="CommentField"
-                            type="String"
+                            id="TextField"
+                            type="text"
                             className="md-row"
                             required={true}
                             value={this.state.comment}
@@ -458,21 +465,23 @@ class AddCourse extends React.Component{
                             errorText="Comment is required"/>
                         <TextField
                             label="Tag"
-                            id="TagField"
-                            type="String"
+                            id="TextField"
+                            type="text"
                             className="md-row"
                             required={true}
                             value={this.state.tag}
                             onChange={this.handleChangeTag}
                             errorText="Tag is required"/>
 
-
                         <Button id="submit" type="submit"
-                                disabled={this.state.credits.toString().length != 1 || this.state.title == undefined || this.state.title == '' || this.state.credits == undefined || this.state.credits == '' || this.state.description == undefined || this.state.description == ''}
+                                disabled={this.state.credits.toString().length != 1 ||
+                                this.state.title == undefined || this.state.title == '' ||
+                                this.state.credits == undefined || this.state.credits == '' ||
+                                this.state.description == undefined || this.state.description == ''}
                                 raised primary className="md-cell md-cell--2">Save</Button>
                         <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
-                        <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
-                    </form>
+                        <AlertMessage className="md-row md-full-width">{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
+                        </form>
                 </DialogContainer>
             </div>
         );
