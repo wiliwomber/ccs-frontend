@@ -1,7 +1,13 @@
 # User-specific stuff:
+
+**/.idea/workspace.xml
+node_modules/
+.idea/workspace.xml
+idea/workspace.xml
+/.idea/workspace.xml
+/idea/workspace.xml
 .idea/*
 .idea/workspace.xml
-node_modules/
 
 # dependencies
 /node_modules
@@ -25,10 +31,3 @@ yarn-error.log*
 
 #json-lock
 package-lock.json
-
-.DS_Store
-
-# Distribution files
-dist/
-
-**/.idea/workspace.xml

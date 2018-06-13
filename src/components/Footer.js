@@ -16,11 +16,6 @@ const StyleFooter = Styled.div`
     padding: 0;
 `;
 
-// const VertList = styled.ul`
-//     list-style-type: none;
-//     margin: 0;
-//     padding: 0;
-// `;
 class PlainFooter extends React.Component {
 
     constructor(props) {

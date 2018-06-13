@@ -10,10 +10,11 @@ import { UserLoginView } from "./views/UserLoginView";
 import { UserSignupView } from "./views/UserSignupView";
 import { AddCourseView } from "./views/AddCourseView";
 import { TestView } from './views/TestView';
+
+
 import UserService from "./services/UserService";
 import {MainPageView} from "./views/MainPageView";
 import AddCourse from "./components/AddCourse";
-import {ImprintView} from "./views/ImprintView";
 
 
 export default class App extends React.Component {
@@ -39,6 +40,9 @@ export default class App extends React.Component {
                 { component: UserLoginView, path: '/login'},
                 { component: ImprintView, path: '/imprint'},
                 { component: AddCourseView, path: '/add'},
+                { component: UserLoginView, path: '/test'}
+
+
             ]
         };
     }
