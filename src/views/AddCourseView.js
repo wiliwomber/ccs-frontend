@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import AddCourse from './../components/AddCourse';
+import AddCourse from '../components/AddCourse';
 import CourseService from "../services/CourseService";
 import {CourseList} from "../components/CourseList";
 
