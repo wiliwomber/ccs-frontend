@@ -37,7 +37,7 @@ class PlainFooter extends React.Component {
                             <td><Link to="/imprint">Impressum</Link></td>
                             <td>Datenschutz</td>
                             <td>AGB</td>
-                            <td> <Route path='/imprint' component={ImprintView}/></td>
+                            {/*<td> <Route path='/imprint' component={ImprintView}/></td>*/}
 
                         </tr>
                         </tbody>
