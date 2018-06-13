@@ -42,10 +42,6 @@ class AddCourse extends React.Component{
   getTitle(value) {
       this.getState(Object.get({}, this.state, {title: value}));
   }
-  getTitle(value) {
-        this.getState(Object.get({}, this.state, {title: value}));
-    }
-
 
     handleChangeTitle(value) {
         this.setState(Object.assign({}, this.state, {title: value}));

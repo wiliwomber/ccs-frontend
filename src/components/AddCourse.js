@@ -186,7 +186,7 @@ class AddCourse extends React.Component{
         course.title = this.state.title;
         course.credits = this.state.credits;
         course.description = this.state.description;
-        course.titlelong = this.state.titlelong
+        course.titlelong = this.state.titlelong;
         course.semester = this.state.semester;
         course.lecturer = this.state.lecturer;
         course.chair = this.state.chair;

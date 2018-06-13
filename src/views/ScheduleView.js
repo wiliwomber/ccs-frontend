@@ -25,7 +25,7 @@ export class ScheduleView extends React.Component {
                 xPosition : 0,
                 yPosition : 0
             },
-        }
+        };
 
         this.setPopUp = this.setPopUp.bind(this);
         this.closePopUp = this.closePopUp.bind(this);
@@ -105,7 +105,11 @@ export class ScheduleView extends React.Component {
         $(function() {
 
             // page is now ready, initialize the calendar...
+<<<<<<< HEAD
             let height = ($(window).height())*0.53
+=======
+            let height = ($(window).height())*0.6;
+>>>>>>> b0145e016e392855c8b3aebaf4116758d64a5f45
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
                 defaultView: 'agendaWeek',
@@ -151,7 +155,7 @@ export class ScheduleView extends React.Component {
                     }
                 ]
 
-            })
+            });
             $('#calendar').fullCalendar('render');
         });
 
