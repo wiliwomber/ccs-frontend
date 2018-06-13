@@ -5,7 +5,7 @@ import { Toolbar, Button } from 'react-md';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import UserSettings from './UserSettings';
-import logo from './../img/logo.png';
+import logo from './../img/Logo.png';
 
 
 

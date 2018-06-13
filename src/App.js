@@ -37,7 +37,7 @@ export default class App extends React.Component {
                             return (<Redirect to={'/login'}/>)
                         }} , path: '/'},
                 { component: UserLoginView, path: '/login'},
-                { component: ImprintView, path: '/imprint'}
+                { component: ImprintView, path: '/imprint'},
                 { component: AddCourseView, path: '/add'},
             ]
         };

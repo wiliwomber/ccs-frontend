@@ -1,17 +1,18 @@
 "use strict";
 
 import React from 'react';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {SimpleLink} from "./SimpleLink";
 import { withRouter } from 'react-router-dom';
 import {Button} from 'react-md';
-
+import {ImprintView} from "../views/ImprintView";
+import Route from 'react-router-dom';
 
 const StyleFooter = Styled.div`
     list-style-type: none;
     margin: 0;
-    background-color: red;
+    background-color: white;
     padding: 0;
 `;
 
@@ -33,12 +34,11 @@ class PlainFooter extends React.Component {
                         <tbody>
                         <tr>
                             <td>© {new Date().getFullYear()} CampusCourseScheduler All rights reserved.</td>
-                            <td><Button onClick={() => this.props.history.push('/test')} icon>Test</Button></td>
-
+                            <td><Link to="/imprint">Impressum</Link></td>
                             <td>Datenschutz</td>
-
                             <td>AGB</td>
-                            <td>Kontakt</td>
+                            <td> <Route path='/imprint' component={ImprintView}/></td>
+
                         </tr>
                         </tbody>
 
