@@ -60,7 +60,7 @@ export default class CourseService {
     }
 
     static createCourse(course) {
-        course.courseid = Math.floor((Math.random() * 100000000) + 1).toString();
+        course.id = Math.floor((Math.random() * 100000000) + 1).toString();
         return new Promise((resolve, reject) => {
             HttpService.post(CourseService.baseURL(), course, function(data) {
                 resolve(data);
@@ -69,54 +69,4 @@ export default class CourseService {
             });
         });
     }
-
-    static getSelectedCoursesByIDMat (matriculation) {
-        return new Promise((resolve, reject) => {
-            HttpService.get(`${CourseService.baseURL()}/${matriculation}`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
-                    resolve(data);
-                }
-                else {
-                    reject('Error while retrieving course');
-                }
-            }, function(textStatus) {
-                reject(textStatus);
-            });
-        });
-    }
-
-    static postSelectedCoursesByID (id, matriculation) {
-        return new Promise((resolve, reject) => {
-            HttpService.post(`${CourseService.baseURL()}/${id}/${matriculation}`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
-                    resolve(data);
-                }
-                else {
-                    reject('Error while retrieving course');
-                }
-            }, function(textStatus) {
-                reject(textStatus);
-            });
-        });
-    }
-
-    static deleteSelectedCoursesByID (id, matriculation) {
-        return new Promise((resolve, reject) => {
-            HttpService.delete(`${CourseService.baseURL()}/${id},/${matriculation}`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
-                    resolve(data);
-                }
-                else {
-                    reject('Error while retrieving course');
-                }
-            }, function(textStatus) {
-                reject(textStatus);
-            });
-        });
-    }
-
-
-
-
-
 }
