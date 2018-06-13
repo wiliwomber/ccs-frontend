@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import Styled from 'styled-components';
+import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {SimpleLink} from "./SimpleLink";
 import { withRouter } from 'react-router-dom';
@@ -15,6 +15,11 @@ const StyleFooter = Styled.div`
     padding: 0;
 `;
 
+// const VertList = styled.ul`
+//     list-style-type: none;
+//     margin: 0;
+//     padding: 0;
+// `;
 class PlainFooter extends React.Component {
 
     constructor(props) {

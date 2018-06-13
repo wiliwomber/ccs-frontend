@@ -5,17 +5,8 @@ import { Toolbar, Button } from 'react-md';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import UserSettings from './UserSettings';
+import logo from './../img/logo.png';
 
-
-const Title = styled.h1`
-    display: inline-block;
-    top: 10px;
-    bottom: 0;
-    left: 35%;
-    right: 0;
-    width: 200px;
-    height: 100px;
-`;
 
 
 class Header extends React.Component {
@@ -27,19 +18,14 @@ class Header extends React.Component {
     render() {
         return (
             <div>
-
-
             <Toolbar
-                nav={<Button onClick={() => this.props.history.push('/test')} icon>home</Button>}
-                title={this.props.title}
+                nav={<Button onClick={() => this.props.history.push('/')} icon>home</Button>}
+                title={<img src={logo} height={50} width={200} mode="fit"/>}
                 actions={<UserSettings id="toolbar-colored-kebab-menu" />}>
-                <Title>CampusCourseScheduler</Title>
             </Toolbar>
-
-
             </div>
         );
     }
-};
+}
 
 export default withRouter(Header);
