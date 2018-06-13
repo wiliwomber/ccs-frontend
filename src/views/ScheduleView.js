@@ -105,11 +105,10 @@ export class ScheduleView extends React.Component {
         $(function() {
 
             // page is now ready, initialize the calendar...
-<<<<<<< HEAD
-            let height = ($(window).height())*0.53
-=======
-            let height = ($(window).height())*0.6;
->>>>>>> b0145e016e392855c8b3aebaf4116758d64a5f45
+
+            let height = ($(window).height())*0.53;
+
+
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
                 defaultView: 'agendaWeek',
