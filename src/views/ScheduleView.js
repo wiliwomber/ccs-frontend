@@ -4,7 +4,7 @@ import React from 'react';
 import $ from 'jquery';
 import 'fullcalendar';
 // import './../components/Schedule';
-// import './../components/Schedule.css';
+import './../components/Schedule.css';
 import Popup from 'react-popup';
 import './../components/Popup.css';
 import {Snackbar} from 'react-md';
