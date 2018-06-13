@@ -62,7 +62,7 @@ export class CourseListView extends React.Component {
 
     render() {
         if (this.state.loading) {
-            return (<h2>Loading...</h2>);
+            return (<h2>State: Loading ...</h2>);
         }
 
         return (
