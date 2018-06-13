@@ -2,6 +2,7 @@
 
 import React from 'react';
 import $ from 'jquery';
+import 'fullcalendar';
 import './../components/Schedule';
 import './../components/Schedule.css';
 import Popup from 'react-popup';
