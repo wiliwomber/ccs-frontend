@@ -18,11 +18,15 @@ class UserSignup extends React.Component {
 
         this.state = {
             username : '',
-            password : ''
+            password : '',
+            matriculation : '',
+            studentsemester : '',
         };
 
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleChangeMatriculation = this.handleChangeMatriculation.bind(this);
+        this.handleChangeStudentsemester = this.handleChangeStudentsemester.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -35,12 +39,22 @@ class UserSignup extends React.Component {
         this.setState(Object.assign({}, this.state, {password: value}));
     }
 
+    handleChangeMatriculation(value) {
+        this.setState(Object.assign({}, this.state, {matriculation: value}));
+    }
+
+    handleChangeStudentsemester(value) {
+        this.setState(Object.assign({}, this.state, {studentsemester: value}));
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
         let user = {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            matriculation: this.state.matriculation,
+            studentsemester: this.state.studentsemester
         };
 
         this.props.onSubmit(user);
@@ -69,6 +83,25 @@ class UserSignup extends React.Component {
                             value={this.state.password}
                             onChange={this.handleChangePassword}
                             errorText="Password is required"/>
+                        <TextField
+                            label="Matriculation Number"
+                            id="MatriculationField"
+                            type="Number"
+                            className="md-row"
+                            required={true}
+                            value={this.state.matriculation}
+                            onChange={this.handleChangeMatriculation}
+                            errorText="Matriculation Number is required"/>
+                        <TextField
+                            label="Semester"
+                            id="StudentSemesterField"
+                            type="Number"
+                            className="md-row"
+                            required={true}
+                            value={this.state.studentsemester}
+                            onChange={this.handleChangeStudentsemester}
+                            errorText="Semester is required"/>
+
 
                         <Button id="submit" type="submit"
                                 disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
@@ -80,6 +113,6 @@ class UserSignup extends React.Component {
             </Page>
         );
     }
-};
+}
 
-export default withRouter(UserSignup);
+export default withRouter(UserSignup)

@@ -24,6 +24,7 @@ class UserLogin extends React.Component {
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
 
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -35,12 +36,15 @@ class UserLogin extends React.Component {
         this.setState(Object.assign({}, this.state, {password: value}));
     }
 
+
+
     handleSubmit(event) {
         event.preventDefault();
 
         let user = {
             username: this.state.username,
             password: this.state.password
+
         };
 
         this.props.onSubmit(user);
@@ -70,6 +74,7 @@ class UserLogin extends React.Component {
                             onChange={this.handleChangePassword}
                             errorText="Password is required"/>
 
+
                         <Button id="submit" type="submit"
                                 disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
                                 raised primary className="md-cell md-cell--2">Login</Button>
@@ -81,6 +86,6 @@ class UserLogin extends React.Component {
             </Page>
         );
     }
-};
+}
 
-export default withRouter(UserLogin);
+export default withRouter(UserLogin)
