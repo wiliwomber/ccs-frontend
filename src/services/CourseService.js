@@ -7,7 +7,7 @@ export default class CourseService {
     constructor(){
     }
 
-    static baseURL() {return "http://localhost:3000/course" }
+    static baseURL() {return "http://localhost:3000/courses" }
 
     static getCourses(){
         return new Promise((resolve, reject) => {
