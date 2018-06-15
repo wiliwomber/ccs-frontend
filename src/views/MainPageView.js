@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Page from '../components/Page';
-import {AddCourseView} from './../views/AddCourseView';
+import {AddCourseView} from './AddCourseView';
 import {ScheduleView} from './ScheduleView';
 import {Card, CardTitle, CardText,TabsContainer, Tabs, Tab} from 'react-md';
 import {CourseListView} from "./CourseListView";

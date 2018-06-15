@@ -17,7 +17,7 @@ export class AddCourseView extends React.Component {
     }
 
     createCourse(course) {
-
+            console.log(course);
             CourseService.createCourse(course).then((data) => {
                // this.props.history.push('/');
             }).catch((e) => {
