@@ -5,6 +5,9 @@ import React from 'react';
 import { CourseList } from '../components/CourseList';
 
 import CourseService from '../services/CourseService';
+import UserService from "../services/UserService";
+import MovieService from "../services/MovieService";
+import HttpService from "../services/HttpService";
 
 
 export class CourseListView extends React.Component {
@@ -54,19 +57,34 @@ export class CourseListView extends React.Component {
     }
 
     chooseCourse(id) {
-        this.setState({
-            data: [...this.state.data]
+        console.log("ich bin richtig");
+        if (this.state.user == undefined) {
+            UserService.updateUser(id).then((data) => {
+                this.props.history.push('/');
+            }).catch((e) => {
+                console.error(e);
+                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
+            });
+        } else {
+            UserService.updateUser(id).then((data) => {
+                this.props.history.goBack();
+            }).catch((e) => {
+                console.error(e);
+                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
+            });
+            console.log("choose course Frontend CourselistView2");
         });
-        console.log("choose course");
-    }
-
-    render() {
-        if (this.state.loading) {
-            return (<h2>Loading...</h2>);
-        }
-
-        return (
-            <CourseList data={this.state.data} onAdd={(id) => this.chooseCourse(id)}/>
-        );
-    }
 }
+
+render() {
+    if (this.state.loading) {
+        return (<h2>Loading...</h2>);
+    }
+
+    return (
+        <MovieList data={this.state.data} onAdd={(id) => this.chooseCourse(id)}/>
+    );
+
+}
+
+

@@ -62,7 +62,7 @@ export default class CourseService {
     static createCourse(course) {
         course.id = Math.floor((Math.random() * 100000000) + 1).toString();
         return new Promise((resolve, reject) => {
-            HttpService.post(CourseService.baseURL(), course, function(data) {
+            HttpService.post(CourseService.baseURL(), function(data) {
                 resolve(data);
             }, function(textStatus) {
                 reject(textStatus);
