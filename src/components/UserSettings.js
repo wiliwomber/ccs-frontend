@@ -41,7 +41,7 @@ class UserSettings extends React.Component {
                     <ListItem key={3} primaryText="Logout" onClick={() => this.logout()}/>
                 ]: [<ListItem key={1} primaryText="Login" onClick={() => this.props.history.push('/login')}/>]}
             >
-                more_vert
+                account_circle
             </MenuButton>
         );
     }

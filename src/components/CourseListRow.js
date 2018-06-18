@@ -14,6 +14,7 @@ export class CourseListRow extends React.Component {
 
     constructor(props) {
         super(props);
+
     }
 
     render() {
@@ -21,7 +22,7 @@ export class CourseListRow extends React.Component {
             <TableRow key={this.props.key}>
                 <TableColumn>{this.props.course.title}</TableColumn>
                 {UserService.isAuthenticated() ?
-                    <TableColumn><CourseDetailView/></TableColumn>
+                    <TableColumn><CourseDetailView course={this.props.course} /></TableColumn>
                     : <TableColumn><Link to={'/login'}><FontIcon>mode_edit</FontIcon></Link></TableColumn>
                 }
                 {UserService.isAuthenticated() ?
