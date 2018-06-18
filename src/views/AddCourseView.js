@@ -5,6 +5,9 @@ import React from 'react';
 import AddCourse from '../components/AddCourse';
 import CourseService from "../services/CourseService";
 import {CourseList} from "../components/CourseList";
+import {MDCSnackbar} from '@material/snackbar';
+
+const Snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 
 
 export class AddCourseView extends React.Component {

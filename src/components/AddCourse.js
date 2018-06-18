@@ -5,11 +5,11 @@ import { AlertMessage } from './AlertMessage';
 import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
 import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
+import {MDCSnackbar} from '@material/snackbar';
 
-
+const Snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 
 class AddCourse extends React.Component{
-
 
     constructor(props) {
         super(props);
@@ -196,6 +196,12 @@ class AddCourse extends React.Component{
         course.public = this.state.public;
 
         this.props.onSubmit(course);
+
+        // Snackbar.show(
+        //     {
+        //         message: "Lol",
+        //     }
+        // );
     }
 
 
@@ -430,22 +436,6 @@ class AddCourse extends React.Component{
 
                             </Grid>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <TextField
                             label="Lecturer"
                             id="TextField"
@@ -464,7 +454,6 @@ class AddCourse extends React.Component{
                             value={this.state.chair}
                             onChange={this.handleChangeChair}
                             errorText="Chair is required"/>
-
 
                         <Checkbox
                             label="Practicecourse"
@@ -538,16 +527,19 @@ class AddCourse extends React.Component{
                         <AlertMessage className="md-row md-full-width">{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
                 </DialogContainer>
+                <div className = "mdc-snackbar"
+                     aria-live = "assertive"
+                     aria-atomic = "true"
+                     aria-hidden = "true">
+                    <div className = "mdc-snackbar__text" > </div>
+                    <div className="mdc-snackbar__action-wrapper">
+                        <button type="button" className="mdc-snackbar__action-button"></button>
+                    </div>
+                </div>
             </div>
         );
     }
-
-
-
 }
-
-
-
 
 export default withRouter(AddCourse);
 
