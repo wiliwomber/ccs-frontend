@@ -16,8 +16,8 @@ export class CourseListRow extends React.Component {
         super(props);
 
     }
-
     render() {
+
         return (
             <TableRow key={this.props.key}>
                 <TableColumn>{this.props.course.title}</TableColumn>
