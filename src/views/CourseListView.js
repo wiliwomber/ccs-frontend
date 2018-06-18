@@ -22,7 +22,7 @@ export class CourseListView extends React.Component {
         };
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.setState({
             loading: true
         });
@@ -57,7 +57,9 @@ export class CourseListView extends React.Component {
     }
 
     chooseCourse(id) {
-        console.log("ich bin richtig");
+        console.log("Select course frontend");
+        UserService.selectCourse(id);
+        /*
         if (this.state.user == undefined) {
             UserService.updateUser(id).then((data) => {
                 this.props.history.push('/');
@@ -73,17 +75,20 @@ export class CourseListView extends React.Component {
                 this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
             });
             console.log("choose course Frontend CourselistView2");
-        });
-}
+        }*/
 
-render() {
-    if (this.state.loading) {
-        return (<h2>Loading...</h2>);
     }
 
-    return (
-        <MovieList data={this.state.data} onAdd={(id) => this.chooseCourse(id)}/>
-    );
+    render() {
+        if (this.state.loading) {
+            return (<h2>Loading...</h2>);
+        }
+
+        return (
+            <CourseList data={this.state.data} onAdd={(id) => this.chooseCourse(id)}/>
+        );
+
+    }
 
 }
 
