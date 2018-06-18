@@ -23,8 +23,6 @@ export class CurriculumView extends React.Component {
 
     constructor(props) {
         super(props);
-        let user = this.updateUserSemester();
-        console.log(user)
     }
 
 
@@ -42,14 +40,6 @@ export class CurriculumView extends React.Component {
         )
     }
 
-    updateUserSemester() {
-            UserService.updateUser().then((data) => {
-                this.props.history.goBack();
-            }).catch((e) => {
-                console.error(e);
-                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
-            });
-        }
 }
 
 

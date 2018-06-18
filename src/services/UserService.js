@@ -2,11 +2,14 @@
 
 import HttpService from "./HttpService";
 import MovieService from "./MovieService";
+import CourseService from "./CourseService";
 
 export default class UserService {
 
     constructor() {
+
     }
+
 
     static baseURL() {
         return "http://localhost:3000/auth";
@@ -64,8 +67,9 @@ export default class UserService {
 
 
     static update(user) {
+        let userId = this.getCurrentUser().id;
         return new Promise((resolve, reject) => {
-            HttpService.put(`${this.baseURL()}/update`, user, function (data) {
+            HttpService.put(`${this.baseURL()}/${userId}`, user, function (data) {
                 resolve(data);
             }, function (textStatus) {
                 reject(textStatus);
@@ -73,16 +77,43 @@ export default class UserService {
         });
     }
 
-    static updateUser() {
-        console.log('updateUser im frontend vor getCurrentUser');
+    static selectCourse(id){
         let user = this.getCurrentUser();
-        console.log(user);
+        let promise = CourseService.getCourse(id);
+            promise.then(function(result) {
+            console.log("kurs");
+            console.log(result);
+            console.log('vor push');
+            console.log(user);
+            user.selectedCourses.push(result);
+            console.log('nach push');
+            console.log(user);
+        })
+        console.log("Hallloooooooooooooo")
+ 
+    }
+
+
+    static getUser(id) {
+        console.log('versuche get User');
         return new Promise((resolve, reject) => {
-            HttpService.post(`${this.baseURL()}/select`, user, function (data) {
-                resolve(data);
-            }, function (textStatus) {
+            HttpService.get(`${UserService.baseURL()}/${id}`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving User');
+                }
+            }, function(textStatus) {
                 reject(textStatus);
             });
         });
+    }
+
+    static updateUser() {
+        let userId = this.getCurrentUser().id;
+        //let user = this.getUser(userId);
+        let user = this.getCurrentUser();
+        this.update(user);
     }
 }

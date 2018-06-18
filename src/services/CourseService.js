@@ -19,21 +19,21 @@ export default class CourseService {
         });
     }
 
-    // static getMovie(id) {
-    //     return new Promise((resolve, reject) => {
-    //         HttpService.get(`${MovieService.baseURL()}/${id}`, function(data) {
-    //             if(data != undefined || Object.keys(data).length !== 0) {
-    //                 resolve(data);
-    //             }
-    //             else {
-    //                 reject('Error while retrieving movie');
-    //             }
-    //         }, function(textStatus) {
-    //             reject(textStatus);
-    //         });
-    //     });
-    // }
-    //
+    static getCourse(id) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${CourseService.baseURL()}/${id}`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving movie');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     // static deleteMovie(id) {
     //     return new Promise((resolve, reject) => {
     //         HttpService.remove(`${MovieService.baseURL()}/${id}`, function(data) {
