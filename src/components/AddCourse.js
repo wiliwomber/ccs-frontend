@@ -13,56 +13,32 @@ class AddCourse extends React.Component{
 
     constructor(props) {
         super(props);
-        if(this.props.course != undefined) {
-            this.state = {
-                title : props.course.title,
-                credits : props.course.credits,
-                description : props.course.description,
-                titlelong: props.course.titlelong,
-                semester : props.course.semester,
-                lecturer : props.course.lecturer,
-                chair : props.course.chair,
-                registrationstart : props.course.registrationstart,
-                registrationend: props.course.registrationend,
-                exam : props.course.exam,
-                repeatexam : props.course.repeatexam,
-                practicecourse : props.course.practicecourse,
-                semesterperiodsperweek: props.course.semesterperiodsperweek,
-                start : props.course.start,
-                end : props.course.end,
-                dow : props.course.dow,
-                roomnumber : props.course.roomnumber,
-                comment : props.course.comment,
-                tag : props.course.tag,
-                open : false
 
-            };
-        } else {
             this.state = {
                 title :'test',
-                titlelong : undefined,
+                titlelong : 'Auch ein Teste',
                 credits :6,
                 description : 'test',
-                semester : undefined,
-                lecturer : undefined,
-                chair : undefined,
-                registrationstart :undefined,
-                registrationend : undefined,
-                exam : undefined,
-                repeatexam : undefined,
-                practicecourse :undefined,
-                semesterperiodsperweek:undefined,
-                start: undefined,
-                end: undefined,
-                dow:undefined,
-                roomnumber:undefined,
-                comment:undefined,
-                tag:undefined,
-                public:undefined,
+                semester : '',
+                lecturer : '',
+                chair : '',
+                registrationstart :'',
+                registrationend : '',
+                exam : '',
+                repeatexam : '',
+                practicecourse :'',
+                semesterperiodsperweek:'',
+                start: '',
+                end: '',
+                dow:'',
+                roomnumber:'',
+                comment:'',
+                tag:'',
+                public:'',
                 open : false
 
             };
-        }
+
 
 
 
@@ -139,17 +115,30 @@ class AddCourse extends React.Component{
     }
     handleChangeEnd(value) {
         this.setState(Object.assign({}, this.state, {end: value}));
+        console.log(this.state);
     }
     handleChangeDow(value) {
-        let day = 0;
-        if(value == 'Monday'){day = 1}
-        if(value == 'Tuesday'){day = 2}
-        if(value == 'Wednesday'){day = 3}
-        if(value == 'Thursday'){day = 4}
-        if(value == 'Friday'){day = 5}
-        console.log(day)
-        this.setState(Object.assign({}, this.state, {dow: day }));
+        console.log(value);
+        if(value === 'Monday'){
+            this.setState(Object.assign({}, this.state, {dow: 1 }));
+        }
+        if(value === 'Tuesday'){
+            this.setState(Object.assign({}, this.state, {dow: 2 }));
+        }
+        if(value === 'Wednesday'){
+            this.setState(Object.assign({}, this.state, {dow: 3 }));
+        }
+        if(value === 'Thursday'){
+            this.setState(Object.assign({}, this.state, {dow: 4 }));
+        }
+        if(value === 'Friday'){
+            this.setState(Object.assign({}, this.state, {dow: 5 }));
+        }
+
         this.setState(Object.assign({}, this.state, {day: value}));
+        console.log(this.state.dow);
+        console.log(this.state);
+
     }
     handleChangeRoomnumber(value) {
         this.setState(Object.assign({}, this.state, {roomnumber: value}));
@@ -194,7 +183,8 @@ class AddCourse extends React.Component{
         course.credits = this.state.credits;
         course.tag = this.state.tag;
         course.public = this.state.public;
-
+        console.log('test');
+        console.log(course.dow);
         this.props.onSubmit(course);
 
         // Snackbar.show(

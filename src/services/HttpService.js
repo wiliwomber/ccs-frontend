@@ -6,6 +6,17 @@ export default class HttpService {
 
     static apiURL() {return "http://localhost:3000"; }
 
+    static header() {
+        let token = 'Bearer ' + window.localStorage['jwtToken'];
+
+        let header = new Headers();
+        if (token) {
+            header.append('authorization', token);
+        }
+        header.append('Content-Type', 'application/json');
+        return header;
+    }
+
     static get(url, onSuccess, onError) {
         let token = window.localStorage['jwtToken'];
         let header = new Headers();
@@ -39,15 +50,11 @@ export default class HttpService {
     }
     static put(url, data, onSuccess, onError) {
         let token = window.localStorage['jwtToken'];
-        let header = new Headers();
-        if(token) {
-            header.append('Authorization', `JWT ${token}`);
-        }
-        header.append('Content-Type', 'application/json');
+
 
         fetch(url, {
             method: 'PUT',
-            headers: header,
+            headers: HttpService.header(),
             body: JSON.stringify(data)
         }).then((resp) => {
             if(resp.ok) {

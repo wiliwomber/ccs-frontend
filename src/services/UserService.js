@@ -6,6 +6,7 @@ import CourseService from "./CourseService";
 
 export default class UserService {
 
+    static listeners ={};
     constructor() {
 
     }
@@ -13,6 +14,19 @@ export default class UserService {
 
     static baseURL() {
         return "http://localhost:3000/auth";
+    }
+
+    static registerListener(event, fn) {
+        if (!UserService.listeners.hasOwnProperty(event)) {
+            UserService.listeners[event] = [];
+        }
+        UserService.listeners[event].push(fn);
+    }
+
+    static notifyListeners(event) {
+        if (UserService.listeners.hasOwnProperty(event)) {
+            UserService.listeners[event].forEach(fn => fn());
+        }
     }
 
     static register(user, pass, sem) {
@@ -78,26 +92,60 @@ export default class UserService {
     }
 
     static selectCourse(id){
-        let user = this.getCurrentUser();
-        let promise = CourseService.getCourse(id);
-            promise.then(function(result) {
-            console.log("kurs");
-            console.log(result);
-            console.log('vor push');
-            console.log(user);
-            user.selectedCourses.push(result);
-            console.log('nach push');
-            console.log(user);
-        })
-        console.log("Hallloooooooooooooo")
- 
+        let tempUser = undefined;
+      UserService.getUser().
+        then(user => {
+          tempUser = user;
+        let courseNotExisting = true;
+          for (var key in tempUser.selectedCourses) {
+              if (tempUser.selectedCourses.hasOwnProperty(key)) {
+                  if(tempUser.selectedCourses[key] == id){
+                      console.log("Course already existing");
+                      courseNotExisting = false;
+                  }
+              }
+          }
+      if(courseNotExisting) {
+              return new Promise((resolve, reject) => {
+                  HttpService.put(`${UserService.baseURL()}/selectCourse`, {
+                      courseId: id,
+                  }, function (data) {
+                      resolve(data);
+                      UserService.notifyListeners("courseSelected");
+                  }, function (textStatus) {
+                      reject(textStatus);
+                  });
+              });
+          }
+
+         })
+          .catch( error => {
+              console.log(error);
+          })
+
+
+
     }
 
 
-    static getUser(id) {
-        console.log('versuche get User');
+    static deSelectCourse(id){
+        console.log('select course');
+        console.log(id);
         return new Promise((resolve, reject) => {
-            HttpService.get(`${UserService.baseURL()}/${id}`, function(data) {
+            HttpService.put(`${UserService.baseURL()}/selectCourse`, {
+                courseId: id,
+            }, function (data) {
+                resolve(data);
+            }, function (textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
+
+    static getUser() {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${UserService.baseURL()}/me`, function(data) {
                 if(data != undefined || Object.keys(data).length !== 0) {
                     resolve(data);
                 }
@@ -110,10 +158,4 @@ export default class UserService {
         });
     }
 
-    static updateUser() {
-        let userId = this.getCurrentUser().id;
-        //let user = this.getUser(userId);
-        let user = this.getCurrentUser();
-        this.update(user);
-    }
 }
