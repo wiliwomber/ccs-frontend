@@ -57,27 +57,9 @@ export class CourseListView extends React.Component {
     }
 
     chooseCourse(id) {
-        console.log("Select course frontend");
         UserService.selectCourse(id);
-        /*
-        if (this.state.user == undefined) {
-            UserService.updateUser(id).then((data) => {
-                this.props.history.push('/');
-            }).catch((e) => {
-                console.error(e);
-                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
-            });
-        } else {
-            UserService.updateUser(id).then((data) => {
-                this.props.history.goBack();
-            }).catch((e) => {
-                console.error(e);
-                this.setState(Object.assign({}, this.state, {error: 'Error while creating movie'}));
-            });
-            console.log("choose course Frontend CourselistView2");
-        }*/
-
     }
+
 
     render() {
         if (this.state.loading) {

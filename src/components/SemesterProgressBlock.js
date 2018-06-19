@@ -30,6 +30,7 @@ export class SemesterProgressBlock extends React.Component {
                 <div className="md-cell md-cell--4 md-cell--8-tablet">
                     <Semester>
                         <table>
+                            <tbody>
                             <tr>
                                 <td>
                                     <div>1</div>
@@ -39,6 +40,7 @@ export class SemesterProgressBlock extends React.Component {
                                     <div>Progres Bar</div>
                                 </td>
                             </tr>
+                            </tbody>
                         </table>
                     </Semester>
 
