@@ -36,7 +36,41 @@ let test = [
 ];
 
 
+let test2 = {
 
+    title: 'C4CIO',
+    start: '11:00', // a start time (10am in this example)
+    end: '14:00', // an end time (2pm in this example)
+    dow: [1] // Repeat monday and thursday
+
+};
+
+
+let test3 = {
+
+
+    start: '09:00', // a start time (10am in this example)
+
+    dow: '1, 2', // Repeat monday and thursday
+    credits :6,
+    description : 'test',
+    semester : undefined,
+    lecturer : undefined,
+    title: 'SEBA',
+    chair : undefined,
+    registrationstart :undefined,
+    registrationend : undefined,
+    exam : undefined,
+    repeatexam : undefined,
+    practicecourse :undefined,
+    semesterperiodsperweek:undefined,
+    roomnumber:undefined,
+    end: '10:15', // an end time (2pm in this example)
+    comment:undefined,
+    public:undefined,
+    open : false,
+
+};
 
 
 
@@ -55,38 +89,30 @@ export class ScheduleView extends React.Component {
                 yPosition : 0
             }
         };
-        console.log(test[2]);
-        this.renderCalender();
 
         this.setPopUp = this.setPopUp.bind(this);
         this.closePopUp = this.closePopUp.bind(this);
 
-        this.loadCalendar = this.loadCalendar.bind(this);
     }
 
     componentDidMount = () => {
-        UserService.registerListener("courseSelected", this.renderCalender.bind(this));
+        UserService.registerListener("courseChanged", this.renderCalender.bind(this));
+        this.loadCalendar();
+        this.renderCalender();
     }
 
     renderCalender(){
-        let selectedCourses = new Array();
+        $('#calendar').fullCalendar('removeEvents');
         UserService.getUser()
             .then(user => {
                 for (var key in user.selectedCourses) {
                     if (user.selectedCourses.hasOwnProperty(key)) {
                         CourseService.getCourse(user.selectedCourses[key])
                             .then(course => {
-                                    selectedCourses.push(course); // Repeat monday and thursday
-                                this.setState({
-                                   selectedCourses : JSON.parse(JSON.stringify(selectedCourses))
-                                });
-                                this.loadCalendar();
+                                $('#calendar').fullCalendar('renderEvent', course);
                             })
-                            // Repeat monday and thursday]
-
-
                             .catch(error => {
-                            console.log(error);
+                                console.log(error);
                             });
                     }
                 }
@@ -115,8 +141,9 @@ export class ScheduleView extends React.Component {
                         text: 'Remove',
                         className: 'remove',
                         action: function () {
+                            UserService.deSelectCourse(data._id);
 
-
+                            //an dieser stelle snackbar meldung
                             Popup.alert('You removed the course from your schedule.');
 
                             /** Close this popup. Close will always close the current visible one, if one is visible */
@@ -170,11 +197,7 @@ export class ScheduleView extends React.Component {
             // page is now ready, initialize the calendar...
 
             let height = ($(window).height())*0.53;
-            let events;
-            if(_this.state.selectedCourses) {
 
-                events = JSON.parse(JSON.stringify(_this.state.selectedCourses));
-            }
 
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
@@ -199,7 +222,7 @@ export class ScheduleView extends React.Component {
                     _this.setPopUp(data,target,position);
                 },
                 //events: _this.state.selectedCourses,
-                events: events,
+                events: _this.state.selectedCourses,
 
             });
             $('#calendar').fullCalendar('render');

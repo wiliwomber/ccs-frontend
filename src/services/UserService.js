@@ -80,15 +80,40 @@ export default class UserService {
     }
 
 
-    static update(user) {
-        let userId = this.getCurrentUser().id;
+    static updateSelectedCourses(user) {
         return new Promise((resolve, reject) => {
-            HttpService.put(`${this.baseURL()}/${userId}`, user, function (data) {
+            HttpService.put(`${this.baseURL()}/deSelectCourse`, user, function (data) {
                 resolve(data);
             }, function (textStatus) {
                 reject(textStatus);
             });
         });
+    }
+
+
+
+    static deSelectCourse(id){
+        let currentUser = undefined;
+        UserService.getUser()
+            .then(user => {
+                currentUser = user;
+                //index of course to deselect
+                let index = currentUser.selectedCourses.indexOf(id);
+                currentUser.selectedCourses.splice(index, 1);
+                UserService.updateSelectedCourses(currentUser)
+                    .then( user => {
+                        UserService.notifyListeners("courseChanged");
+                        console.log('calendar should be updated');
+                    })
+                    .catch(error =>
+                    {
+                        console.log(error);
+                    });
+
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     static selectCourse(id){
@@ -101,7 +126,7 @@ export default class UserService {
               if (tempUser.selectedCourses.hasOwnProperty(key)) {
                   if(tempUser.selectedCourses[key] == id){
                       console.log("Course already existing");
-                      courseNotExisting = false;
+                      courseNotExisting = true;
                   }
               }
           }
@@ -111,7 +136,7 @@ export default class UserService {
                       courseId: id,
                   }, function (data) {
                       resolve(data);
-                      UserService.notifyListeners("courseSelected");
+                      UserService.notifyListeners("courseChanged");
                   }, function (textStatus) {
                       reject(textStatus);
                   });
@@ -122,25 +147,9 @@ export default class UserService {
           .catch( error => {
               console.log(error);
           })
-
-
-
     }
 
 
-    static deSelectCourse(id){
-        console.log('select course');
-        console.log(id);
-        return new Promise((resolve, reject) => {
-            HttpService.put(`${UserService.baseURL()}/selectCourse`, {
-                courseId: id,
-            }, function (data) {
-                resolve(data);
-            }, function (textStatus) {
-                reject(textStatus);
-            });
-        });
-    }
 
 
     static getUser() {
