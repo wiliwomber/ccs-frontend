@@ -13,32 +13,56 @@ class AddCourse extends React.Component{
 
     constructor(props) {
         super(props);
+        /*if(this.props.course != undefined) {
 
             this.state = {
-                title :'test',
-                titlelong : 'Auch ein Teste',
-                credits :6,
-                description : 'test',
-                semester : '',
-                lecturer : '',
-                chair : '',
-                registrationstart :'',
-                registrationend : '',
-                exam : '',
-                repeatexam : '',
-                practicecourse :'',
-                semesterperiodsperweek:'',
-                start: '',
-                end: '',
-                dow:'',
-                roomnumber:'',
-                comment:'',
-                tag:'',
-                public:'',
+                title : props.course.title,
+                credits : props.course.credits,
+                description : props.course.description,
+                titlelong: props.course.titlelong,
+                semester : props.course.semester,
+                lecturer : props.course.lecturer,
+                chair : props.course.chair,
+                registrationstart : props.course.registrationstart,
+                registrationend: props.course.registrationend,
+                exam : props.course.exam,
+                repeatexam : props.course.repeatexam,
+                practicecourse : props.course.practicecourse,
+                semesterperiodsperweek: props.course.semesterperiodsperweek,
+                start : props.course.start,
+                end : props.course.end,
+                dow : props.course.dow,
+                roomnumber : props.course.roomnumber,
+                comment : props.course.comment,
+                tag : props.course.tag,
                 open : false
 
             };
+        } else {*/
+            this.state = {
+                title :'test',
+                titlelong : undefined,
+                credits :6,
+                description : 'test',
+                semester : undefined,
+                lecturer : undefined,
+                chair : undefined,
+                registrationstart :undefined,
+                registrationend : undefined,
+                exam : undefined,
+                repeatexam : undefined,
+                practicecourse :undefined,
+                semesterperiodsperweek:undefined,
+                start: undefined,
+                end: undefined,
+                roomnumber:undefined,
+                comment:undefined,
+                public:undefined,
+                open : false,
+                dow : undefined,
 
+            };
+        //}
 
 
 
@@ -57,12 +81,11 @@ class AddCourse extends React.Component{
         this.handleChangePracticecourse = this.handleChangePracticecourse.bind(this);
         this.handleChangeStart = this.handleChangeStart.bind(this);
         this.handleChangeEnd = this.handleChangeEnd.bind(this);
-        this.handleChangeDow = this.handleChangeDow.bind(this);
         this.handleChangeRoomnumber = this.handleChangeRoomnumber.bind(this);
         this.handleChangeSemesterperiodsperweek = this.handleChangeSemesterperiodsperweek.bind(this);
         this.handleChangeComment = this.handleChangeComment.bind(this);
         this.handleChangeTag = this.handleChangeTag.bind(this);
-
+        this.handleChangeDow = this.handleChangeDow.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -72,6 +95,7 @@ class AddCourse extends React.Component{
     }
     handleChangeTitle(value) {
         this.setState(Object.assign({}, this.state, {title: value}));
+        console.log(this.state.title);
     }
     handleChangeCredits(value) {
         this.setState(Object.assign({}, this.state, {credits: value}));
@@ -115,31 +139,8 @@ class AddCourse extends React.Component{
     }
     handleChangeEnd(value) {
         this.setState(Object.assign({}, this.state, {end: value}));
-        console.log(this.state);
     }
-    handleChangeDow(value) {
-        console.log(value);
-        if(value === 'Monday'){
-            this.setState(Object.assign({}, this.state, {dow: 1 }));
-        }
-        if(value === 'Tuesday'){
-            this.setState(Object.assign({}, this.state, {dow: 2 }));
-        }
-        if(value === 'Wednesday'){
-            this.setState(Object.assign({}, this.state, {dow: 3 }));
-        }
-        if(value === 'Thursday'){
-            this.setState(Object.assign({}, this.state, {dow: 4 }));
-        }
-        if(value === 'Friday'){
-            this.setState(Object.assign({}, this.state, {dow: 5 }));
-        }
 
-        this.setState(Object.assign({}, this.state, {day: value}));
-        console.log(this.state.dow);
-        console.log(this.state);
-
-    }
     handleChangeRoomnumber(value) {
         this.setState(Object.assign({}, this.state, {roomnumber: value}));
     }
@@ -152,10 +153,32 @@ class AddCourse extends React.Component{
     handleChangePublic(value) {
         this.setState(Object.assign({}, this.state, {public: value}));
     }
+    handleChangeDow(value) {
+        this.setState({day: value});
+        
+        if(value === 'Monday') {
+            this.setState(Object.assign({}, this.state, {dow: 1 }));
+        }
+
+        if(value === 'Tuesday'){
+            this.setState(Object.assign({}, this.state, {dow: 2 }));
+        }
+        if(value === 'Wednesday'){
+            this.setState(Object.assign({}, this.state, {dow: 3 }));
+        }
+        if(value === 'Thursday'){
+            this.setState(Object.assign({}, this.state, {dow: 4 }));
+        }
+        if(value === 'Friday'){
+            this.setState(Object.assign({}, this.state, {dow: 5 }));
+        }
+    }
 
 
     handleSubmit(event) {
         event.preventDefault();
+
+        console.log(this.state.dow);
 
         let course = this.props.course;
         if(course == undefined) {
@@ -183,8 +206,7 @@ class AddCourse extends React.Component{
         course.credits = this.state.credits;
         course.tag = this.state.tag;
         course.public = this.state.public;
-        console.log('test');
-        console.log(course.dow);
+
         this.props.onSubmit(course);
 
         // Snackbar.show(
@@ -242,11 +264,11 @@ class AddCourse extends React.Component{
                 >
 
                     <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.closeForm()}>
-                       <div style={styles.row}>
-                        <Grid>
-                            <Cell style={styles.element}>
+                        <div style={styles.row}>
+                            <Grid>
+                                <Cell style={styles.element}>
 
-                                        <TextField
+                                    <TextField
                                         label="Title"
                                         id="TextField"
                                         type="text"
@@ -256,18 +278,18 @@ class AddCourse extends React.Component{
                                         onChange={this.handleChangeTitle}
                                         errorText="Title is required"/>
 
-                                        <TextField
-                                            label="Title Long"
-                                            id="TextField"
-                                            type="text"
-                                            className="md-row"
-                                            required={false}
-                                            value={this.state.titlelong}
-                                            onChange={this.handleChangeTitlelong}
-                                            errorText="Title long is required"/>
+                                    <TextField
+                                        label="Title Long"
+                                        id="TextField"
+                                        type="text"
+                                        className="md-row"
+                                        required={false}
+                                        value={this.state.titlelong}
+                                        onChange={this.handleChangeTitlelong}
+                                        errorText="Title long is required"/>
 
-                            </Cell>
-                            <Cell style={styles.element}>
+                                </Cell>
+                                <Cell style={styles.element}>
 
                                     <TextField
                                         label="Description"
@@ -279,9 +301,9 @@ class AddCourse extends React.Component{
                                         value={this.state.description}
                                         onChange={this.handleChangeDescription}
                                         errorText="Synopsis is required"/>
-                            </Cell>
-                        </Grid>
-                       </div>
+                                </Cell>
+                            </Grid>
+                        </div>
                         <div style={styles.row}>
                             <Grid>
 
@@ -365,47 +387,47 @@ class AddCourse extends React.Component{
 
                                 </Cell>
                                 <Cell size={4}>
-                                <SelectField
-                                    id="select-field-1"
-                                    lable="Repeat Exam"
-                                    placeholder="Repeat Exam"
-                                    className="md-cell"
-                                    menuItems={['Winterterm','Summerterm']}
-                                    required={false}
-                                    value={this.state.repeatexam}
-                                    onChange={this.handleChangeRepeatexam}
-                                    simplifiedMenu = {true}
-                                    errorText="Please choose a term"
-                                    position={SelectField.Positions.BELOW}/>
+                                    <SelectField
+                                        id="select-field-1"
+                                        lable="Repeat Exam"
+                                        placeholder="Repeat Exam"
+                                        className="md-cell"
+                                        menuItems={['Winterterm','Summerterm']}
+                                        required={false}
+                                        value={this.state.repeatexam}
+                                        onChange={this.handleChangeRepeatexam}
+                                        simplifiedMenu = {true}
+                                        errorText="Please choose a term"
+                                        position={SelectField.Positions.BELOW}/>
                                 </Cell>
                                 <Cell size={4}>
-                                <TimePicker
-                                    label="start"
-                                    id="start"
-                                    className="md-cell"
-                                    portal
-                                    lastChild
-                                    renderNode={null}
-                                    disableScrollLocking
-                                    displayMode="portrait"
-                                    required={false}
-                                    //value={this.state.start}
-                                    onChange={this.handleChangeStart}
-                                    errorText="Start is required" />
+                                    <TimePicker
+                                        label="start"
+                                        id="start"
+                                        className="md-cell"
+                                        portal
+                                        lastChild
+                                        renderNode={null}
+                                        disableScrollLocking
+                                        displayMode="portrait"
+                                        required={false}
+                                        //value={this.state.start}
+                                        onChange={this.handleChangeStart}
+                                        errorText="Start is required" />
                                 </Cell>
                                 <Cell size={4}>
-                                <TimePicker
-                                    label="end"
-                                    id="end"
-                                    className="md-cell"
-                                    portal
-                                    lastChild
-                                    renderNode={null}
-                                    disableScrollLocking
-                                    displayMode="portrait"
-                                    required={false}
-                                    //value={this.state.end}
-                                    onChange={this.handleChangeEnd}/>
+                                    <TimePicker
+                                        label="end"
+                                        id="end"
+                                        className="md-cell"
+                                        portal
+                                        lastChild
+                                        renderNode={null}
+                                        disableScrollLocking
+                                        displayMode="portrait"
+                                        required={false}
+                                        //value={this.state.end}
+                                        onChange={this.handleChangeEnd}/>
                                 </Cell>
                                 <Cell size={4}>
 
@@ -417,10 +439,10 @@ class AddCourse extends React.Component{
                                         menuItems={['Monday','Tuesday','Wednesday','Thursday','Friday']}
                                         required={false}
                                         value={this.state.day}
-                                        onChange={this.handleChangeDow}
                                         simplifiedMenu = {true}
                                         errorText="Please choose a term"
-                                        position={SelectField.Positions.BELOW}/>
+                                        position={SelectField.Positions.BELOW}
+                                        onChange={this.handleChangeDow}/>
 
                                 </Cell>
 
@@ -454,7 +476,7 @@ class AddCourse extends React.Component{
                             required={false}
                             value={this.state.practicecourse}
                             onChange={this.handleChangePracticecourse}
-                            />
+                        />
                         <TextField
                             label="Semesterperiodsperweek"
                             id="TextField"
