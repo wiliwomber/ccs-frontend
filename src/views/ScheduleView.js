@@ -242,5 +242,4 @@ export class ScheduleView extends React.Component {
 
 
 
-
 }

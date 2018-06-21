@@ -9,12 +9,12 @@ import UserSettings from './UserSettings';
 
 const Title = styled.h1`
     display: inline-block;
-    top: 10px;
+    top: 14px;
     bottom: 0;
     left: 35%;
-    right: 0;
+    right: 50%;
     width: 200px;
-    height: 100px;
+    position: absolute;
 `;
 
 
@@ -27,13 +27,11 @@ class Header extends React.Component {
     render() {
         return (
             <div>
-
-
+                <Title>CampusCourseScheduler</Title>
             <Toolbar
-                nav={<Button onClick={() => this.props.history.push('/test')} icon>home</Button>}
                 title={this.props.title}
                 actions={<UserSettings id="toolbar-colored-kebab-menu" />}>
-                <Title>CampusCourseScheduler</Title>
+
             </Toolbar>
 
 
@@ -41,5 +39,6 @@ class Header extends React.Component {
         );
     }
 };
+
 
 export default withRouter(Header);

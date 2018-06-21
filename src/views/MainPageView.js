@@ -1,6 +1,7 @@
 "use strict";
 import React from 'react';
 import PropTypes from 'prop-types';
+import './../App.css';
 import Page from '../components/Page';
 import {AddCourseView} from './AddCourseView';
 import {ScheduleView} from './ScheduleView';
@@ -28,7 +29,6 @@ export class MainPageView extends React.Component {
 
 
 
-
     render() {
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
@@ -42,12 +42,12 @@ export class MainPageView extends React.Component {
                 <Card className="md-cell md-cell--6 md-cell--8-tablet">
                     <CardTitle title="Schedule"/>
                     <CardText>
-                        <TabsContainer panelClassName="md-grid" colored>
+                        <TabsContainer classname="md-tabs" panelClassName="md-grid">
                             <Tabs tabId="simple-tab" >
-                                <Tab  md-tab-height = '10px' colored="false" label="Scheduler">
+                                <Tab md-tab-height ={'50px'} label="Scheduler">
                                     <ScheduleView/>
                                 </Tab>
-                                <Tab label="Curriculum Overview">
+                                <Tab md-tab-height ={'49px'}  label="Curriculum Overview">
                                     <CurriculumView/>
                                 </Tab>
                             </Tabs>
@@ -71,4 +71,6 @@ export class MainPageView extends React.Component {
 
         );
     }
+
+
 }

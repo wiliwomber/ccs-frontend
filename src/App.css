@@ -26,3 +26,40 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+  color: green !important;
+  background-color:green !important;
+}
+
+.md-tab--inactive {
+  color: #222222;
+}
+
+.md-card-text {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.md-card-title {
+  padding-bottom: 0 !important;
+}
+
+.md-tab-indicator {
+  color: #006ECC !important;
+  background: #006ECC;
+}
+
+.fc-event {
+  border: white;
+  background: #006ECC !important;
+
+}
+
+.fc-time-grid-event:hover{
+  background: dodgerblue !important;
+  border: dodgerblue !important;
+  cursor: pointer;
+}
+
+

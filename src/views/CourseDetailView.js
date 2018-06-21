@@ -11,6 +11,7 @@ export class CourseDetailView extends React.Component {
 
     constructor(props) {
         super(props);
+
     }
 
 
@@ -18,7 +19,7 @@ export class CourseDetailView extends React.Component {
     render() {
 
         return (<div>
-            <CourseDetail/>
+            <CourseDetail course={this.props.course}/>
         </div>);
     }
 }
