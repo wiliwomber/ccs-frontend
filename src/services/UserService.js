@@ -126,7 +126,7 @@ export default class UserService {
               if (tempUser.selectedCourses.hasOwnProperty(key)) {
                   if(tempUser.selectedCourses[key] == id){
                       console.log("Course already existing");
-                      courseNotExisting = true;
+                      courseNotExisting = false;
                   }
               }
           }

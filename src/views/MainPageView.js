@@ -42,7 +42,7 @@ export class MainPageView extends React.Component {
                 <Card className="md-cell md-cell--6 md-cell--8-tablet">
                     <CardTitle title="Schedule"/>
                     <CardText>
-                        <TabsContainer classname="md-tabs" panelClassName="md-grid">
+                        <TabsContainer  panelClassName="md-grid">
                             <Tabs tabId="simple-tab" >
                                 <Tab md-tab-height ={'50px'} label="Scheduler">
                                     <ScheduleView/>

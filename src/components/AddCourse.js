@@ -13,32 +13,6 @@ class AddCourse extends React.Component{
 
     constructor(props) {
         super(props);
-        /*if(this.props.course != undefined) {
-
-            this.state = {
-                title : props.course.title,
-                credits : props.course.credits,
-                description : props.course.description,
-                titlelong: props.course.titlelong,
-                semester : props.course.semester,
-                lecturer : props.course.lecturer,
-                chair : props.course.chair,
-                registrationstart : props.course.registrationstart,
-                registrationend: props.course.registrationend,
-                exam : props.course.exam,
-                repeatexam : props.course.repeatexam,
-                practicecourse : props.course.practicecourse,
-                semesterperiodsperweek: props.course.semesterperiodsperweek,
-                start : props.course.start,
-                end : props.course.end,
-                dow : props.course.dow,
-                roomnumber : props.course.roomnumber,
-                comment : props.course.comment,
-                tag : props.course.tag,
-                open : false
-
-            };
-        } else {*/
             this.state = {
                 title :'test',
                 titlelong : undefined,
@@ -62,9 +36,6 @@ class AddCourse extends React.Component{
                 dow : undefined,
 
             };
-        //}
-
-
 
 
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
@@ -95,7 +66,6 @@ class AddCourse extends React.Component{
     }
     handleChangeTitle(value) {
         this.setState(Object.assign({}, this.state, {title: value}));
-        console.log(this.state.title);
     }
     handleChangeCredits(value) {
         this.setState(Object.assign({}, this.state, {credits: value}));
@@ -134,7 +104,6 @@ class AddCourse extends React.Component{
         this.setState(Object.assign({}, this.state, {semesterperiodsperweek: value}));
     }
     handleChangeStart(value) {
-        console.log(value);
         this.setState(Object.assign({}, this.state, {start: value}));
     }
     handleChangeEnd(value) {
@@ -177,10 +146,7 @@ class AddCourse extends React.Component{
 
     handleSubmit(event) {
         event.preventDefault();
-
-        console.log(this.state.dow);
-
-        let course = this.props.course;
+                let course = this.props.course;
         if(course == undefined) {
             course = {};
         }
@@ -208,6 +174,7 @@ class AddCourse extends React.Component{
         course.public = this.state.public;
 
         this.props.onSubmit(course);
+        this.closeForm();
     }
 
 
