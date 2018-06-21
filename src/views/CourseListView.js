@@ -20,6 +20,7 @@ export class CourseListView extends React.Component {
             loading: false,
             data: []
         };
+        UserService.registerListener("newCourse", this.componentWillMount.bind(this));
     }
 
     componentWillMount() {
@@ -37,6 +38,10 @@ export class CourseListView extends React.Component {
         });
     }
 
+
+
+
+    /*
     deleteCourse(id) {
         this.setState({
             data: [...this.state.data],
@@ -55,6 +60,7 @@ export class CourseListView extends React.Component {
             console.error(e);
         });
     }
+    */
 
     chooseCourse(id) {
         UserService.selectCourse(id);
