@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"coursedb.users"},{"v":2,"unique":true,"key":{"password":1},"name":"password_1","ns":"coursedb.users","background":true}],"uuid":"b08c4b51f16b4bd29583937e7fe402fd"}
