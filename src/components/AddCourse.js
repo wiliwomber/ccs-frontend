@@ -468,7 +468,7 @@ class AddCourse extends React.Component{
                         <TextField
                             label="Room number"
                             id="TextField"
-                            type="number"
+                            type="text"
                             className="md-row"
                             required={false}
                             value={this.state.roomnumber}
