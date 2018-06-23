@@ -5,12 +5,13 @@ import { AlertMessage } from './AlertMessage';
 import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
 import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
-import {MDCSnackbar} from '@material/snackbar';
+import { Snackbar } from 'rmwc/Snackbar';
+import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 
-const Snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+var SnackMessage = "Course successfully created";
+var SnackTimeout = '3000';
 
 class AddCourse extends React.Component{
-
     constructor(props) {
         super(props);
             this.state = {
@@ -150,7 +151,6 @@ class AddCourse extends React.Component{
         if(course == undefined) {
             course = {};
         }
-
         course.title = this.state.title;
         course.credits = this.state.credits;
         course.description = this.state.description;
@@ -175,6 +175,9 @@ class AddCourse extends React.Component{
 
         this.props.onSubmit(course);
         this.closeForm();
+        SnackMessage = "Course created successfully";
+        this.state.snackbarIsOpen = !this.state.snackbarIsOpen;
+        window.setTimeout(evt => this.setState({snackbarIsOpen: !this.state.snackbarIsOpen}), 700);
     }
 
 
@@ -183,6 +186,7 @@ class AddCourse extends React.Component{
             open: true
         });
     }
+
     closeForm() {
         this.setState({
             title : undefined,
@@ -208,11 +212,16 @@ class AddCourse extends React.Component{
             day: undefined,
             open : false
         });
+        SnackMessage = "Dismissed.";
+        this.state.snackbarIsOpen = !this.state.snackbarIsOpen;
+        setTimeout(() => {snackbarIsOpen: false}, 3000);
+        // setTimeout(function(this.state.snackbarIsOpen){this.state.snackbarIsOpen = !this.state.snackbarIsOpen}, 3000);
     }
 
 
-    render() {
 
+    render() {
+//TODO schön machen
         return (
             <div>
                 <Button raised onClick={this.openForm}>AddCourse</Button>
@@ -333,6 +342,7 @@ class AddCourse extends React.Component{
                                         position={SelectField.Positions.BELOW}/>
                                 </Cell>
                                 <Cell size={4}>
+                                    {/*TODO title sichtbar nach Auswahl*/}
                                     <SelectField
                                         id="select-field-1"
                                         lable="Semester"
@@ -391,7 +401,6 @@ class AddCourse extends React.Component{
                                         onChange={this.handleChangeEnd}/>
                                 </Cell>
                                 <Cell size={4}>
-
                                     <SelectField
                                         id="select-field-1"
                                         lable="Day of the Course"
@@ -406,7 +415,6 @@ class AddCourse extends React.Component{
                                         onChange={this.handleChangeDow}/>
 
                                 </Cell>
-
                             </Grid>
                         </div>
                         <TextField
@@ -427,7 +435,6 @@ class AddCourse extends React.Component{
                             value={this.state.chair}
                             onChange={this.handleChangeChair}
                             errorText="Chair is required"/>
-
                         <Checkbox
                             label="Practicecourse"
                             name="Practicecourse"
@@ -447,7 +454,6 @@ class AddCourse extends React.Component{
                             value={this.state.semesterperiodsperweek}
                             onChange={this.handleChangeSemesterperiodsperweek}
                             errorText="Semesterperiodsperweek is required"/>
-
                         <TextField
                             label="Room number"
                             id="TextField"
@@ -493,25 +499,41 @@ class AddCourse extends React.Component{
                             value={this.state.tag}
                             onChange={this.handleChangeTag}
                             errorText="Tag is required"/>
-
-                        <Button id="submit" type="submit"
-                                raised primary className="md-cell md-cell--2">Save</Button>
-                        <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
+                        <Button id="submit"
+                                type="submit"
+                                raised
+                                primary
+                                className="md-cell md-cell--2"
+                        >
+                            Save
+                        </Button>
+                        <Button id="reset"
+                                type="reset"
+                                raised
+                                secondary
+                                className="md-cell md-cell--2"
+                        >
+                            Dismiss
+                        </Button>
                         <AlertMessage className="md-row md-full-width">{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
                 </DialogContainer>
-                <div className = "mdc-snackbar"
-                     aria-live = "assertive"
-                     aria-atomic = "true"
-                     aria-hidden = "true">
-                    <div className = "mdc-snackbar__text" > </div>
-                    <div className="mdc-snackbar__action-wrapper">
-                        <button type="button" className="mdc-snackbar__action-button"></button>
-                    </div>
-                </div>
+                <Snackbar
+                    show={this.state.snackbarIsOpen}
+                    onHide={evt => this.setState({snackbarIsOpen: false})}
+                    message={SnackMessage}
+                    timeout={SnackTimeout}
+                    actionText=""
+                    actionHandler={() => alert('Action clicked')}
+                />
             </div>
         );
     }
+
+}
+
+function closeSnackbar() {
+    this.state.snackbarIsOpen = !this.state.snackbarIsOpen
 }
 
 export default withRouter(AddCourse);

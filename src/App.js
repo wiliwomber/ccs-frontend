@@ -12,7 +12,6 @@ import { AddCourseView } from "./views/AddCourseView";
 import UserService from "./services/UserService";
 import {MainPageView} from "./views/MainPageView";
 
-
 export default class App extends React.Component {
 
     constructor(props) {

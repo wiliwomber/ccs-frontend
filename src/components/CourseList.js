@@ -6,13 +6,13 @@ import { DataTable, TableHeader, TableBody, TableRow, TableColumn, TextField, Fo
 import Filter from './Filter'
 
 import { CourseListRow } from './CourseListRow';
-import page from './Page'
+import Page from './Page'
 
 
 
 
 export const CourseList = ({data, onAdd}) => (
-   <page>
+   <div>
     <div><Filter/> </div>
     <div>
         <TextField
@@ -36,7 +36,7 @@ export const CourseList = ({data, onAdd}) => (
                 {data.map((course, i) => <CourseListRow key={i} course={course} onAdd={(id) => onAdd(id)} />)}
             </TableBody>
         </DataTable>
-</page>
+</div>
 
 );
 
