@@ -20,6 +20,8 @@ export class CourseListView extends React.Component {
             loading: false,
             data: []
         };
+
+        //in case a new course is created, the component is updated so that the new course is displayed in the list
         UserService.registerListener("newCourse", this.componentWillMount.bind(this));
     }
 
@@ -38,30 +40,7 @@ export class CourseListView extends React.Component {
         });
     }
 
-
-
-
-    /*
-    deleteCourse(id) {
-        this.setState({
-            data: [...this.state.data],
-            loading: true
-        });
-        CourseService.deleteCourse(id).then((message) => {
-
-            let courseIndex = this.state.data.map(course => course['_id']).indexOf(id);
-            let courses = this.state.data;
-            courses.splice(courseIndex, 1);
-            this.setState({
-                data: [...courses],
-                loading: false
-            });
-        }).catch((e) => {
-            console.error(e);
-        });
-    }
-    */
-
+    //adds course to schedule
     chooseCourse(id) {
         UserService.selectCourse(id);
     }
