@@ -1,10 +1,9 @@
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { TextField, Checkbox, DatePicker, Button, DialogContainer,SelectField, Grid, Cell} from 'react-md';
 import { AlertMessage } from './AlertMessage';
-import styled from 'styled-components';
-import {withRouter} from "react-router-dom";
 import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
+import {withRouter} from "react-router-dom";
 
 
 
@@ -14,10 +13,10 @@ class AddCourse extends React.Component{
     constructor(props) {
         super(props);
             this.state = {
-                title :'test',
+                title :undefined,
                 titlelong : undefined,
-                credits :6,
-                description : 'test',
+                credits :undefined,
+                description : undefined,
                 semester : undefined,
                 lecturer : undefined,
                 chair : undefined,
@@ -237,7 +236,7 @@ class AddCourse extends React.Component{
                                         id="TextField"
                                         type="text"
                                         className="md-row"
-                                        required={false}
+                                        required={true}
                                         value={this.state.titlelong}
                                         onChange={this.handleChangeTitlelong}
                                         errorText="Title long is required"/>
@@ -247,7 +246,7 @@ class AddCourse extends React.Component{
                                         id="TextField"
                                         type="text"
                                         className="md-row"
-                                        required={false}
+                                        required={true}
                                         value={this.state.title}
                                         onChange={this.handleChangeTitle}
                                         errorText="Title is required"/>
@@ -260,7 +259,7 @@ class AddCourse extends React.Component{
                                         type="text"
                                         className="md-row"
                                         rows={5}
-                                        required={false}
+                                        required={true}
                                         value={this.state.description}
                                         onChange={this.handleChangeDescription}
                                         errorText="Synopsis is required"/>
@@ -277,7 +276,7 @@ class AddCourse extends React.Component{
                                         lastChild
                                         renderNode={null}
                                         disableScrollLocking
-                                        required={false}
+                                        required={true}
                                         //value={this.state.registrationstart}
                                         onChange={this.handleChangeRegistrationstart}
                                         errorText="Registrationstart is required"/>
@@ -290,7 +289,7 @@ class AddCourse extends React.Component{
                                         fullWidth={false}
                                         className="md-cell"
                                         displayMode="landscape"
-                                        required={false}
+                                        required={true}
                                         portal
                                         lastChild
                                         renderNode={null}
@@ -311,7 +310,7 @@ class AddCourse extends React.Component{
                                         disableScrollLocking
                                         className="md-cell"
                                         displayMode="portrait"
-                                        required={false}
+                                        required={true}
                                         //value={this.state.exam}
                                         onChange={this.handleChangeExam}
                                         errorText="Exam is required"/>
@@ -326,7 +325,7 @@ class AddCourse extends React.Component{
                                         placeholder="Credits"
                                         className="md-cell"
                                         menuItems={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14,15]}
-                                        required={false}
+                                        required={true}
                                         value={this.state.credits}
                                         onChange={this.handleChangeCredits}
                                         simplifiedMenu = {true}
@@ -341,7 +340,7 @@ class AddCourse extends React.Component{
                                         lable="Semester"
                                         placeholder="Semester"
                                         className="md-cell"
-                                        required={false}
+                                        required={true}
                                         value={this.state.semester}
                                         onChange={this.handleChangeSemester}
                                         errorText="Semester is required"
@@ -359,7 +358,7 @@ class AddCourse extends React.Component{
                                         placeholder="Repeat Exam"
                                         className="md-cell"
                                         menuItems={['Winterterm','Summerterm']}
-                                        required={false}
+                                        required={true}
                                         value={this.state.repeatexam}
                                         onChange={this.handleChangeRepeatexam}
                                         simplifiedMenu = {true}
@@ -377,7 +376,7 @@ class AddCourse extends React.Component{
                                         renderNode={null}
                                         disableScrollLocking
                                         displayMode="portrait"
-                                        required={false}
+                                        required={true}
                                         //value={this.state.start}
                                         onChange={this.handleChangeStart}
                                         errorText="Start is required" />
@@ -393,7 +392,7 @@ class AddCourse extends React.Component{
                                         renderNode={null}
                                         disableScrollLocking
                                         displayMode="portrait"
-                                        required={false}
+                                        required={true}
                                         //value={this.state.end}
                                         onChange={this.handleChangeEnd}/>
                                 </Cell>
@@ -405,7 +404,7 @@ class AddCourse extends React.Component{
                                         placeholder="Day"
                                         className="md-cell"
                                         menuItems={['Monday','Tuesday','Wednesday','Thursday','Friday']}
-                                        required={false}
+                                        required={true}
                                         value={this.state.day}
                                         simplifiedMenu = {true}
                                         errorText="Please choose a term"
@@ -422,7 +421,7 @@ class AddCourse extends React.Component{
                                             id="TextField"
                                             type="text"
                                             className="md-row"
-                                            required={false}
+                                            required={true}
                                             value={this.state.lecturer}
                                             onChange={this.handleChangeLecturer}
                                             errorText="Lecturer is required"/>
@@ -435,7 +434,7 @@ class AddCourse extends React.Component{
                                             id="TextField"
                                             type="text"
                                             className="md-row"
-                                            required={false}
+                                            required={true}
                                             value={this.state.chair}
                                             onChange={this.handleChangeChair}
                                             errorText="Chair is required"/>
@@ -449,7 +448,7 @@ class AddCourse extends React.Component{
                                             placeholder="Course Type"
                                             menuItems={['Lecture','Exercise','Seminar']}
                                             className="md-row"
-                                            required={false}
+                                            required={true}
                                             simplifiedMenu = {true}
                                             value={this.state.courseType}
                                             position={SelectField.Positions.BELOW}
@@ -465,7 +464,7 @@ class AddCourse extends React.Component{
                                         id="TextField"
                                         type="number"
                                         className="md-row"
-                                        required={false}
+                                        required={true}
                                         value={this.state.semesterperiodsperweek}
                                         onChange={this.handleChangeSemesterperiodsperweek}
                                         errorText="Semesterperiodsperweek is required"/>
@@ -478,7 +477,7 @@ class AddCourse extends React.Component{
                                         id="TextField"
                                         type="text"
                                         className="md-row"
-                                        required={false}
+                                        required={true}
                                         value={this.state.roomnumber}
                                         onChange={this.handleChangeRoomnumber}
                                         errorText="Roomnumber is required"/>
@@ -491,7 +490,7 @@ class AddCourse extends React.Component{
                                         id="TextField"
                                         type="text"
                                         className="md-row"
-                                        required={false}
+                                        required={true}
                                         value={this.state.comment}
                                         onChange={this.handleChangeComment}
                                         errorText="Comment is required"/>
@@ -504,7 +503,7 @@ class AddCourse extends React.Component{
                                         style={styles.container}
                                         label='Publication'
                                         className="md-row"
-                                        required={false}
+                                        required={true}
                                         onChange={this.handleChangePublic}/>
                                 </Cell>
                             </Grid>
@@ -531,12 +530,10 @@ export default withRouter(AddCourse);
 let styles = {
     float: 'right',
     container: {
-        marginLeft: '0px',
+        marginLeft: '1px',
     },
     p: {
         color: 'grey',
-        marginTop: '0px',
-        marginLeft: '0px',
     }, cell : {
         padding: '30px',
     }
