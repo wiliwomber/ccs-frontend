@@ -5,6 +5,9 @@ import React from 'react';
 import { CourseList } from '../components/CourseList';
 
 import CourseService from '../services/CourseService';
+import UserService from "../services/UserService";
+import MovieService from "../services/MovieService";
+import HttpService from "../services/HttpService";
 
 
 export class CourseListView extends React.Component {
@@ -17,9 +20,10 @@ export class CourseListView extends React.Component {
             loading: false,
             data: []
         };
+        UserService.registerListener("newCourse", this.componentWillMount.bind(this));
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.setState({
             loading: true
         });
@@ -34,6 +38,10 @@ export class CourseListView extends React.Component {
         });
     }
 
+
+
+
+    /*
     deleteCourse(id) {
         this.setState({
             data: [...this.state.data],
@@ -52,13 +60,12 @@ export class CourseListView extends React.Component {
             console.error(e);
         });
     }
+    */
 
     chooseCourse(id) {
-        this.setState({
-            data: [...this.state.data]
-        });
-        console.log("choose course");
+        UserService.selectCourse(id);
     }
+
 
     render() {
         if (this.state.loading) {
@@ -68,5 +75,9 @@ export class CourseListView extends React.Component {
         return (
             <CourseList data={this.state.data} onAdd={(id) => this.chooseCourse(id)}/>
         );
+
     }
+
 }
+
+

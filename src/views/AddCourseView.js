@@ -6,6 +6,8 @@ import AddCourse from '../components/AddCourse';
 import CourseService from "../services/CourseService";
 import {CourseList} from "../components/CourseList";
 import {MDCSnackbar} from '@material/snackbar';
+import {CourseListView} from "./CourseListView";
+import UserService from "../services/UserService";
 
 const Snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
 
@@ -22,7 +24,7 @@ export class AddCourseView extends React.Component {
     createCourse(course) {
             console.log(course);
             CourseService.createCourse(course).then((data) => {
-               // this.props.history.push('/');
+                UserService.notifyListeners("newCourse");
             }).catch((e) => {
                 console.error(e);
                 this.setState(Object.assign({}, this.state, {error: 'Error while creating course'}));

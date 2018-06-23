@@ -19,21 +19,21 @@ export default class CourseService {
         });
     }
 
-    // static getMovie(id) {
-    //     return new Promise((resolve, reject) => {
-    //         HttpService.get(`${MovieService.baseURL()}/${id}`, function(data) {
-    //             if(data != undefined || Object.keys(data).length !== 0) {
-    //                 resolve(data);
-    //             }
-    //             else {
-    //                 reject('Error while retrieving movie');
-    //             }
-    //         }, function(textStatus) {
-    //             reject(textStatus);
-    //         });
-    //     });
-    // }
-    //
+    static getCourse(id) {
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${CourseService.baseURL()}/${id}`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving movie');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
     // static deleteMovie(id) {
     //     return new Promise((resolve, reject) => {
     //         HttpService.remove(`${MovieService.baseURL()}/${id}`, function(data) {
@@ -60,13 +60,18 @@ export default class CourseService {
     // }
 
     static createCourse(course) {
+        console.log(course);
         course.id = Math.floor((Math.random() * 100000000) + 1).toString();
         return new Promise((resolve, reject) => {
-            HttpService.post(CourseService.baseURL(), course, function(data) {
-                resolve(data);
-            }, function(textStatus) {
-                reject(textStatus);
-            });
+            HttpService.post(
+                CourseService.baseURL(),
+                course,
+                function(data) {
+                    resolve(data);
+                },
+                function(textStatus) {
+                    reject(textStatus);
+                });
         });
     }
 }
