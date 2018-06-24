@@ -10,6 +10,7 @@ import UserService from "../services/UserService";
 import CourseService from "../services/CourseService";
 import CourseDetail from "./../components/CourseDetail";
 
+// this.state.selectedCourses,
 
 export class ScheduleView extends React.Component {
 
@@ -77,6 +78,7 @@ export class ScheduleView extends React.Component {
                         text: 'Remove',
                         className: 'remove',
                         action: function () {
+                            UserService.deSelectCourse(data._id);
 
                             UserService.deSelectCourse(data._id);
 

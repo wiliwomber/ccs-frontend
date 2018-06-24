@@ -5,7 +5,9 @@ import React from 'react';
 import UserLogin from '../components/UserLogin';
 
 import UserService from '../services/UserService';
+import { Snackbar } from 'rmwc/Snackbar';
 
+var SnackMessage = "";
 
 export class UserLoginView extends React.Component {
 
@@ -23,11 +25,22 @@ export class UserLoginView extends React.Component {
                 error: e
             });
         });
+        SnackMessage = "User logged in";
+        this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
     render() {
         return (
-          <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}></UserLogin>
+            <div>
+                <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}></UserLogin>
+                <Snackbar
+                    show={this.state.snackbarIsOpen}
+                    onHide={evt => this.setState({snackbarIsOpen: false})}
+                    message={SnackMessage}
+                    actionText=""
+                    actionHandler={() => alert('Action clicked')}
+                />
+            </div>
         );
     }
 }

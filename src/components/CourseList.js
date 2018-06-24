@@ -6,6 +6,7 @@ import { DataTable, TableHeader, TableBody, TableRow, TableColumn, TextField, Fo
 import Filter from './Filter'
 
 import { CourseListRow } from './CourseListRow';
+import Page from './Page'
 
 
 
@@ -32,7 +33,7 @@ export const CourseList = ({data, onAdd}) => (
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {data.map((course, i) => <CourseListRow key={i} course={course} onAdd={(id) => onAdd(id)} />)}
+                {data.map((course, i) => <CourseListRow key={i} course={course} onAdd={(id, title) => onAdd(id, title)} />)}
             </TableBody>
         </DataTable>
     </div>

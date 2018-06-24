@@ -3,11 +3,10 @@
 import React from 'react';
 import { TableRow, TableColumn, FontIcon, Button } from 'react-md';
 import { Link } from 'react-router-dom';
-
 import { SimpleLink } from './SimpleLink';
-
 import UserService from '../services/UserService';
 import {CourseDetailView} from "../views/CourseDetailView";
+
 
 
 export class CourseListRow extends React.Component {
