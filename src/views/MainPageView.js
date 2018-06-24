@@ -9,11 +9,7 @@ import {Card, CardTitle, CardText,TabsContainer, Tabs, Tab} from 'react-md';
 import {CourseListView} from "./CourseListView";
 import {CurriculumView} from "./CurriculumView";
 import Popup from 'react-popup';
-
-
-
-
-
+import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 
 export class MainPageView extends React.Component {
 
@@ -25,9 +21,6 @@ export class MainPageView extends React.Component {
             data: []
         };
     }
-
-
-
 
     render() {
         if (this.state.loading) {

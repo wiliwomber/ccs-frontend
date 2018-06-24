@@ -5,11 +5,6 @@ import { AlertMessage } from './AlertMessage';
 import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
 import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
-import { Snackbar } from 'rmwc/Snackbar';
-import './../../node_modules/material-components-web/dist/material-components-web.min.css';
-
-var SnackMessage = "Course successfully created";
-var SnackTimeout = '3000';
 
 class AddCourse extends React.Component{
     constructor(props) {
@@ -175,9 +170,6 @@ class AddCourse extends React.Component{
 
         this.props.onSubmit(course);
         this.closeForm();
-        SnackMessage = "Course created successfully";
-        this.state.snackbarIsOpen = !this.state.snackbarIsOpen;
-        window.setTimeout(evt => this.setState({snackbarIsOpen: !this.state.snackbarIsOpen}), 700);
     }
 
 
@@ -212,10 +204,6 @@ class AddCourse extends React.Component{
             day: undefined,
             open : false
         });
-        SnackMessage = "Dismissed.";
-        this.state.snackbarIsOpen = !this.state.snackbarIsOpen;
-        setTimeout(() => {snackbarIsOpen: false}, 3000);
-        // setTimeout(function(this.state.snackbarIsOpen){this.state.snackbarIsOpen = !this.state.snackbarIsOpen}, 3000);
     }
 
 
@@ -518,22 +506,10 @@ class AddCourse extends React.Component{
                         <AlertMessage className="md-row md-full-width">{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
                 </DialogContainer>
-                <Snackbar
-                    show={this.state.snackbarIsOpen}
-                    onHide={evt => this.setState({snackbarIsOpen: false})}
-                    message={SnackMessage}
-                    timeout={SnackTimeout}
-                    actionText=""
-                    actionHandler={() => alert('Action clicked')}
-                />
             </div>
         );
     }
 
-}
-
-function closeSnackbar() {
-    this.state.snackbarIsOpen = !this.state.snackbarIsOpen
 }
 
 export default withRouter(AddCourse);

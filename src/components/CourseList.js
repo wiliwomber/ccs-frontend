@@ -33,7 +33,7 @@ export const CourseList = ({data, onAdd}) => (
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {data.map((course, i) => <CourseListRow key={i} course={course} onAdd={(id) => onAdd(id)} />)}
+                {data.map((course, i) => <CourseListRow key={i} course={course} onAdd={(id, title) => onAdd(id, title)} />)}
             </TableBody>
         </DataTable>
 </div>

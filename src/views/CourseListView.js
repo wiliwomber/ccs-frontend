@@ -8,7 +8,9 @@ import CourseService from '../services/CourseService';
 import UserService from "../services/UserService";
 import MovieService from "../services/MovieService";
 import HttpService from "../services/HttpService";
+import { Snackbar } from 'rmwc/Snackbar';
 
+var SnackMessage = "Test";
 
 export class CourseListView extends React.Component {
 
@@ -62,8 +64,10 @@ export class CourseListView extends React.Component {
     }
     */
 
-    chooseCourse(id) {
+    chooseCourse(id, title) {
         UserService.selectCourse(id);
+        SnackMessage = title + " added to calendar";
+        this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
 
@@ -73,7 +77,16 @@ export class CourseListView extends React.Component {
         }
 
         return (
-            <CourseList data={this.state.data} onAdd={(id) => this.chooseCourse(id)}/>
+            <div>
+                <CourseList data={this.state.data} onAdd={(id, title) => this.chooseCourse(id, title)}></CourseList>
+                <Snackbar
+                    show={this.state.snackbarIsOpen}
+                    onHide={evt => this.setState({snackbarIsOpen: false})}
+                    message={SnackMessage}
+                    actionText=""
+                    actionHandler={() => alert('Action clicked')}
+                />
+            </div>
         );
 
     }
