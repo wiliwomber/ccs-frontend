@@ -43,7 +43,7 @@ export class CourseListView extends React.Component {
     }
 
     //adds course to schedule
-    chooseCourse(id) {
+    chooseCourse(id, title) {
         UserService.selectCourse(id);
         SnackMessage = title + " added to calendar";
         this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})

@@ -2,7 +2,7 @@ import React from 'react';
 import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 import { Snackbar } from 'rmwc/Snackbar';
 
-class SnackbarX extends React.Component {
+export class SnackbarX extends React.Component {
 
     constructor(props) {
         super(props);
@@ -13,10 +13,13 @@ class SnackbarX extends React.Component {
         };
     }
 
-    Show (message, timeout) {
+    static Show (message, timeout) {
         this.snackMessage = message;
         this.snackTimeout = timeout;
-        this.state.snackbarIsOpen = true;
+        this.setState({
+            snackbarIsOpen: true
+        });
+        // () => this.setState({snackbarIsOpen: !this.state.snackbarIsOpen});
     }
 
     Hide () {
