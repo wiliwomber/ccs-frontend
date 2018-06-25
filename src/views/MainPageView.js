@@ -1,6 +1,5 @@
 "use strict";
 import React from 'react';
-import PropTypes from 'prop-types';
 import './../App.css';
 import Page from '../components/Page';
 import {AddCourseView} from './AddCourseView';
@@ -9,7 +8,9 @@ import {Card, CardTitle, CardText,TabsContainer, Tabs, Tab} from 'react-md';
 import {CourseListView} from "./CourseListView";
 import {CurriculumView} from "./CurriculumView";
 import Popup from 'react-popup';
+import $ from "jquery";
 import './../../node_modules/material-components-web/dist/material-components-web.min.css';
+
 
 export class MainPageView extends React.Component {
 
@@ -29,10 +30,8 @@ export class MainPageView extends React.Component {
 
         return (
             <Page>
-
                 <div className="md-grid">
-
-                <Card className="md-cell md-cell--6 md-cell--8-tablet">
+                <Card id="schedule-card" className="md-cell md-cell--6 md-cell--8-tablet">
                     <CardTitle title="Schedule"/>
                     <CardText>
                         <TabsContainer  panelClassName="md-grid">
@@ -45,19 +44,15 @@ export class MainPageView extends React.Component {
                                 </Tab>
                             </Tabs>
                         </TabsContainer>
-
-
-
                     </CardText>
-
                 </Card>
-                <Card className="md-cell md-cell--6 md-cell--8-tablet">
-                <CardTitle title="Modules"/>
-                <CardText>
-                    <AddCourseView/>
-                    <CourseListView/>
-                </CardText>
-            </Card>
+                <Card id='module-card' className="md-cell md-cell--6 md-cell--8-tablet">
+                  <CardTitle title="Modules"/>
+                        <CardText>
+                          <AddCourseView/>
+                         <CourseListView/>
+                        </CardText>
+                </Card>
                 </div>
                 <Popup/>
             </Page>

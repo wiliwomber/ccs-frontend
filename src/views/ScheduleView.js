@@ -48,7 +48,10 @@ export class ScheduleView extends React.Component {
                     if (user.selectedCourses.hasOwnProperty(key)) {
                         CourseService.getCourse(user.selectedCourses[key])
                             .then(course => {
-                                $('#calendar').fullCalendar('renderEvent', course);
+                                //Print only courses from the users current semester
+                                if(course.selectedSemester == user.semester){
+                                    $('#calendar').fullCalendar('renderEvent', course);
+                                }
                             })
                             .catch(error => {
                                 console.log(error);
@@ -152,8 +155,7 @@ export class ScheduleView extends React.Component {
 
             // page is now ready, initialize the calendar...
 
-            let height = ($(window).height())*0.53;
-
+            let height = Math.min(($(window).height())*0.55,439);
 
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
@@ -177,7 +179,6 @@ export class ScheduleView extends React.Component {
                     let target = event.target;
                     _this.setPopUp(data,target,position);
                 },
-                //events: _this.state.selectedCourses,
                 events: _this.state.selectedCourses,
 
             });

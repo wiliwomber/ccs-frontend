@@ -1,8 +1,6 @@
 "use strict";
 
 import HttpService from "./HttpService";
-import MovieService from "./MovieService";
-import CourseService from "./CourseService";
 
 export default class UserService {
 
@@ -127,6 +125,7 @@ export default class UserService {
                       //@TODO add course exist snackbar
                       console.log("Course already existing");
                       courseNotExisting = false;
+                      UserService.notifyListeners("courseChanged");
                   }
               }
           }
