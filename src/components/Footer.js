@@ -11,7 +11,7 @@ import {Button} from 'react-md';
 const StyleFooter = Styled.div`
     list-style-type: none;
     margin: 0;
-    background-color: red;
+    background-color: grey;
     padding: 0;
 `;
 

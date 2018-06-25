@@ -5,11 +5,7 @@ import { AlertMessage } from './AlertMessage';
 import TimePicker from 'react-md/lib/Pickers/TimePickerContainer';
 import {withRouter} from "react-router-dom";
 
-
-
 class AddCourse extends React.Component{
-
-
     constructor(props) {
         super(props);
             this.state = {
@@ -148,7 +144,6 @@ class AddCourse extends React.Component{
         if(course == undefined) {
             course = {};
         }
-
         course.title = this.state.title;
         course.credits = this.state.credits;
         course.description = this.state.description;
@@ -182,6 +177,7 @@ class AddCourse extends React.Component{
             open: true
         });
     }
+
     closeForm() {
         this.setState({
             title : undefined,
@@ -210,8 +206,9 @@ class AddCourse extends React.Component{
     }
 
 
-    render() {
 
+    render() {
+//TODO schön machen
         return (
             <div>
                 <Button raised onClick={this.openForm}>AddCourse</Button>
@@ -517,12 +514,7 @@ class AddCourse extends React.Component{
         );
     }
 
-
-
 }
-
-
-
 
 export default withRouter(AddCourse);
 

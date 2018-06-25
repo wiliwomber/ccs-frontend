@@ -9,10 +9,7 @@ import {CourseListView} from "./CourseListView";
 import {CurriculumView} from "./CurriculumView";
 import Popup from 'react-popup';
 import $ from "jquery";
-
-
-
-
+import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 
 
 export class MainPageView extends React.Component {
@@ -25,9 +22,6 @@ export class MainPageView extends React.Component {
             data: []
         };
     }
-
-
-
 
     render() {
         if (this.state.loading) {

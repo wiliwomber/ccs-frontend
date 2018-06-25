@@ -3,6 +3,7 @@
 import React from 'react';
 import { DataTable, TableHeader, TableBody, TableRow, TableColumn} from 'react-md';
 import { CourseListRow } from './CourseListRow';
+import Page from './Page'
 
 
 

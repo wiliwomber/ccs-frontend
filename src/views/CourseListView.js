@@ -10,7 +10,10 @@ import {DialogContainer, Grid, Cell, Button, SelectField,TextField, FontIcon} fr
 import './../App.css';
 import $ from "jquery";
 import Filter from './../components/Filter'
+import { Snackbar } from 'rmwc/Snackbar';
 
+
+var SnackMessage = "Test";
 
 export class CourseListView extends React.Component {
 
@@ -55,7 +58,7 @@ export class CourseListView extends React.Component {
     }
 
     //adds course to schedule
-    chooseCourse(id) {
+    chooseCourse(id, title) {
         UserService.getUser()
             .then(user => {
                 this.setState({selectedSemester: user.semester});
@@ -72,10 +75,13 @@ export class CourseListView extends React.Component {
             }).catch(error => {
             console.log(error);
         });
+    SnackMessage = title + " added to calendar";
+    this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
     handleChangeSelectedSemester(value){
             this.setState({selectedSemester: value});
+
     }
     handleChangeSearchTerm(value){
         console.log(value);
@@ -101,6 +107,7 @@ export class CourseListView extends React.Component {
         }
 
         return (
+
 
         <div>
             <div><Filter/> </div>
@@ -156,13 +163,19 @@ export class CourseListView extends React.Component {
                     </Grid>
                 </form>
             </DialogContainer>
+            <Snackbar
+                show={this.state.snackbarIsOpen}
+                onHide={evt => this.setState({snackbarIsOpen: false})}
+                message={SnackMessage}
+                actionText=""
+                actionHandler={() => alert('Action clicked')}
+            />
         </div>
         );
 
     }
 
 }
-
 
 let styles = {
     float: 'right',

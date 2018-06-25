@@ -6,7 +6,9 @@ import { MenuButton, ListItem, Avatar, FontIcon } from 'react-md';
 import { withRouter } from 'react-router-dom'
 
 import UserService from  '../services/UserService';
+import { Snackbar } from 'rmwc/Snackbar';
 
+var SnackMessage = "";
 
 class UserSettings extends React.Component {
 
@@ -28,21 +30,32 @@ class UserSettings extends React.Component {
         else {
             window.location.reload();
         }
+        SnackMessage = "User logged out";
+        this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
     render() {
         return (
-            <MenuButton
-                id={this.props.id}
-                icon
-                className={this.props.className}
-                menuItems={this.state.user ? [
-                    <ListItem key={1} leftAvatar={<Avatar icon={<FontIcon>account_circle</FontIcon>}/>} primaryText={this.state.user.username}/>,
-                    <ListItem key={3} primaryText="Logout" onClick={() => this.logout()}/>
-                ]: [<ListItem key={1} primaryText="Login" onClick={() => this.props.history.push('/login')}/>]}
-            >
-                account_circle
-            </MenuButton>
+            <div>
+                <MenuButton
+                    id={this.props.id}
+                    icon
+                    className={this.props.className}
+                    menuItems={this.state.user ? [
+                        <ListItem key={1} leftAvatar={<Avatar icon={<FontIcon>account_circle</FontIcon>}/>} primaryText={this.state.user.username}/>,
+                        <ListItem key={3} primaryText="Logout" onClick={() => this.logout()}/>
+                    ]: [<ListItem key={1} primaryText="Login" onClick={() => this.props.history.push('/login')}/>]}
+                >
+                    account_circle
+                </MenuButton>
+                <Snackbar
+                    show={this.state.snackbarIsOpen}
+                    onHide={evt => this.setState({snackbarIsOpen: false})}
+                    message={SnackMessage}
+                    actionText=""
+                    actionHandler={() => alert('Action clicked')}
+                />
+            </div>
         );
     }
 }
