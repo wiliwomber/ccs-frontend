@@ -1,8 +1,9 @@
 import React from 'react';
 import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 import { Snackbar } from 'rmwc/Snackbar';
+import UserService from "../services/UserService";
 
-export class SnackbarX extends React.Component {
+export class SnackbarService extends React.Component {
 
     constructor(props) {
         super(props);
@@ -13,26 +14,26 @@ export class SnackbarX extends React.Component {
         };
     }
 
-    static Show (message, timeout) {
-        this.snackMessage = message;
-        this.snackTimeout = timeout;
-        this.setState({
-            snackbarIsOpen: true
-        });
-        // () => this.setState({snackbarIsOpen: !this.state.snackbarIsOpen});
+    componentDidMount(){
+        UserService.registerListener("test", this.testSnack.bind(this));
     }
 
-    Hide () {
-        this.state.snackbarIsOpen = false;
+    testSnack(){
+        this.setState({
+            snackbarIsOpen: true,
+            snackMessage: 'Hurra',
+        });
     }
+
+
 
     render() {
         return (
                 <Snackbar
                     show={this.state.snackbarIsOpen}
                     onHide={evt => this.setState({snackbarIsOpen: false})}
-                    message={this.snackMessage}
-                    timeout={this.snackTimeout}
+                    message={this.state.snackMessage}
+                    timeout={this.state.snackTimeout}
                     actionText=""
                     actionHandler={() => alert('Action clicked')}
                 />
@@ -41,4 +42,4 @@ export class SnackbarX extends React.Component {
 
 }
 
-export default SnackbarX;
+export default SnackbarService;

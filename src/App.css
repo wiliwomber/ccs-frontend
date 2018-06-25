@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: skyblue;
 }
 
 .App-logo {
@@ -60,6 +61,26 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
   background: dodgerblue !important;
   border: dodgerblue !important;
   cursor: pointer;
+}
+
+#schedule-card {
+  height: 80vh;
+}
+
+#curriculum-progress {
+  overflow: auto;
+}
+
+#curriculum-semesters {
+ overflow: auto;
+}
+
+#module-card {
+  height: 80vh;
+}
+
+#courseList {
+  overflow-y: scroll;
 }
 
 

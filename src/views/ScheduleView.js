@@ -9,10 +9,7 @@ import './../components/Popup.css';
 import UserService from "../services/UserService";
 import CourseService from "../services/CourseService";
 import CourseDetail from "./../components/CourseDetail";
-// import { Snackbar } from 'rmwc/Snackbar';
-import Snackbar from "../components/Snackbar";
 
-var SnackMessage = "";
 
 // this.state.selectedCourses,
 
@@ -48,7 +45,10 @@ export class ScheduleView extends React.Component {
                     if (user.selectedCourses.hasOwnProperty(key)) {
                         CourseService.getCourse(user.selectedCourses[key])
                             .then(course => {
-                                $('#calendar').fullCalendar('renderEvent', course);
+                                //Print only courses from the users current semester
+                                if(course.selectedSemester == user.semester){
+                                    $('#calendar').fullCalendar('renderEvent', course);
+                                }
                             })
                             .catch(error => {
                                 console.log(error);
@@ -85,10 +85,9 @@ export class ScheduleView extends React.Component {
 
                             // UserService.deSelectCourse(data._id);
 
-                            //an dieser stelle snackbar meldung
-                            SnackMessage = "Course " + data.title + " was removed";
-                            this.setState({snackbarIsOpen: !this.state.snackbarIsOpen});
-                            // Snackbar.Show("Test",2750);
+
+
+
 
                             /** Close this popup. Close will always close the current visible one, if one is visible */
                             Popup.close();
@@ -152,8 +151,7 @@ export class ScheduleView extends React.Component {
 
             // page is now ready, initialize the calendar...
 
-            let height = ($(window).height())*0.53;
-
+            let height = Math.min(($(window).height())*0.55,439);
 
             $('#calendar').fullCalendar({
                 // put your options and callbacks here
@@ -177,7 +175,6 @@ export class ScheduleView extends React.Component {
                     let target = event.target;
                     _this.setPopUp(data,target,position);
                 },
-                //events: _this.state.selectedCourses,
                 events: _this.state.selectedCourses,
 
             });
@@ -193,8 +190,6 @@ export class ScheduleView extends React.Component {
             <div>
                 <div> <CourseDetail course={this.state.course} open={this.state.open} close={this.closeDetail}/></div>
                 <div id='calendar'></div>
-                <Snackbar></Snackbar>
-
             </div>
 
         )
