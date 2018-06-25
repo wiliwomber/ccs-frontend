@@ -5,6 +5,8 @@ import {Grid, Cell, LinearProgress} from 'react-md';
 import { CurriculumListRow } from './../components/CurriculumListRow';
 import UserService from "../services/UserService";
 import CourseService from "../services/CourseService";
+import Snackbar from "../components/Snackbar";
+
 
 
 export class CurriculumView extends React.Component {

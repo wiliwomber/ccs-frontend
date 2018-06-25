@@ -10,7 +10,13 @@ import {CurriculumView} from "./CurriculumView";
 import Popup from 'react-popup';
 import $ from "jquery";
 import './../../node_modules/material-components-web/dist/material-components-web.min.css';
+import SnackbarService from './../components/Snackbar';
+import UserService from "../services/UserService";
 
+let snack = {
+    snackbarIsOpen: false,
+    snackbarMessage: 'test',
+};
 
 export class MainPageView extends React.Component {
 
@@ -19,9 +25,14 @@ export class MainPageView extends React.Component {
 
         this.state = {
             loading: false,
-            data: []
+            data: [],
+
         };
     }
+
+    componentDidMount(){
+
+}
 
     render() {
         if (this.state.loading) {
@@ -55,6 +66,7 @@ export class MainPageView extends React.Component {
                 </Card>
                 </div>
                 <Popup/>
+                <SnackbarService/>
             </Page>
 
         );
