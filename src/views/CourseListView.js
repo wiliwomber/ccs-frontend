@@ -20,12 +20,13 @@ export class CourseListView extends React.Component {
 
         this.state = {
             loading: false,
-            data: []
+            data: [],
         };
 
         //in case a new course is created, the component is updated so that the new course is displayed in the list
         UserService.registerListener("newCourse", this.componentWillMount.bind(this));
     }
+
 
     componentWillMount() {
         this.setState({
