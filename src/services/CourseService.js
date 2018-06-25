@@ -68,4 +68,35 @@ export default class CourseService {
                 });
         });
     }
+
+    static getCourseByTag(tag){
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${CourseService.baseURL(tag)}/`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving movie');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+    static getCourseByTitle (title){
+        return new Promise((resolve, reject) => {
+            HttpService.get(`${CourseService.baseURL(title)}/`, function(data) {
+                if(data != undefined || Object.keys(data).length !== 0) {
+                    resolve(data);
+                }
+                else {
+                    reject('Error while retrieving movie');
+                }
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
+
+
 }

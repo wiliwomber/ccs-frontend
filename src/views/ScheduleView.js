@@ -61,7 +61,12 @@ export class ScheduleView extends React.Component {
             });
     }
 
-    //defines the popup when clicked on an event in the calendar
+showTimeCollision() {
+        UserService.getUser()
+            .then (user => {
+
+            })
+}
     setPopUp(data,target,position){
         let _this = this;
         Popup.registerPlugin('popover', function (content, target) {

@@ -49,6 +49,27 @@ export class CourseListView extends React.Component {
         this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
+    FilterCourseTag(tag){
+        this.setState({
+            data: [...this.state.data],
+            loading: true
+        });
+        CourseService.getCourseByTag(tag). then((message) => {
+
+            let courseIndex = this.state.data.map(course => course['tag']).indexOf(tag);
+            let courses = this.state.data;
+            this.setState({
+                data: [...courses],
+                loading:true
+            });
+            }).catch((e) => {
+                console.error(e);
+            });
+    };
+
+    FilterCourseTitle(title){
+        UserService.getCourseByTitle(title);
+    };
 
     render() {
         if (this.state.loading) {

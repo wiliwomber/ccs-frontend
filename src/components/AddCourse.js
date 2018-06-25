@@ -519,6 +519,8 @@ class AddCourse extends React.Component{
 
 export default withRouter(AddCourse);
 
+
+
 let styles = {
     float: 'right',
     container: {
