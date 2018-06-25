@@ -1,11 +1,8 @@
 "use strict";
 
 import React from 'react';
-import { TableRow, TableColumn, FontIcon, Button } from 'react-md';
+import { TableRow, TableColumn, FontIcon, Button} from 'react-md';
 import { Link } from 'react-router-dom';
-
-import { SimpleLink } from './SimpleLink';
-
 import UserService from '../services/UserService';
 import {CourseDetailView} from "../views/CourseDetailView";
 
@@ -45,7 +42,7 @@ export class CourseListRow extends React.Component {
 
                 {UserService.isAuthenticated() ?
                     <TableColumn>
-                        <Button raised onClick={this.openDetail}><FontIcon>visibility</FontIcon></Button>
+                        <Button onClick={this.openDetail} icon>visibility</Button>
                         <CourseDetailView course={this.props.course} open={this.state.open} close={this.closeDetail}/>
                     </TableColumn>
 
