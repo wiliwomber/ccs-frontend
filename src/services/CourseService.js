@@ -65,6 +65,7 @@ export default class CourseService {
     static createCourse(course) {
         console.log(course);
         course.id = Math.floor((Math.random() * 100000000) + 1).toString();
+        UserService.notifyListeners("courseCreated");
         return new Promise((resolve, reject) => {
             HttpService.post(
                 CourseService.baseURL(),

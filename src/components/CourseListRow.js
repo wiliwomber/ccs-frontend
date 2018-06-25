@@ -55,7 +55,7 @@ export class CourseListRow extends React.Component {
 
                 {UserService.isAuthenticated() ?
                     <TableColumn>
-                        <Button onClick={() => this.props.onAdd(this.props.course._id, this.props.course.title)} icon>add</Button>
+                        <Button onClick={() => this.props.onAdd(this.props.course._id)} icon>add</Button>
                     </TableColumn>
 
                     : <TableColumn>

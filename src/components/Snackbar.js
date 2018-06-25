@@ -17,7 +17,7 @@ export class SnackbarService extends React.Component {
     componentDidMount(){
         UserService.registerListener("Snack_CourseRemoved", this.courseRemoved.bind(this));
         UserService.registerListener("Snack_CourseAdded", this.courseAdded.bind(this));
-
+        UserService.registerListener("Snack_CourseCreated", this.courseCreated.bind(this));
     }
 
     courseRemoved(){
@@ -37,10 +37,9 @@ export class SnackbarService extends React.Component {
     courseCreated(){
         this.setState({
             snackbarIsOpen: true,
-            snackMessage: 'Course created',
+            snackMessage: 'Course successfully created',
         });
     }
-
 
     render() {
         return (

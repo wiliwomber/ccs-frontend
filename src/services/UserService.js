@@ -132,12 +132,12 @@ export default class UserService {
               }
           }
       if(courseNotExisting) {
-          UserService.notifyListeners("Snack_CourseAdded");
           return new Promise((resolve, reject) => {
                   HttpService.put(`${UserService.baseURL()}/selectCourse`, {
                       courseId: id,
                   }, function (data) {
                       resolve(data);
+                      // UserService.notifyListeners("Snack_CourseAdded");
                       UserService.notifyListeners("courseChanged");
                   }, function (textStatus) {
                       reject(textStatus);

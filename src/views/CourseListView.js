@@ -58,16 +58,13 @@ export class CourseListView extends React.Component {
     }
 
     //adds course to schedule
-    chooseCourse(id, title) {
-        UserService.getUser()
-            .then(user => {
+    chooseCourse(id) {UserService.getUser().then(user => {
                 this.setState({selectedSemester: user.semester});
                 console.log(this.state.selectedSemester);
             }).catch(error => {
             console.log(error);
         });
-        CourseService.getCourse(id)
-            .then(course => {
+        CourseService.getCourse(id).then(course => {
                 this.setState({
                     open: true,
                     course: course,
@@ -75,8 +72,6 @@ export class CourseListView extends React.Component {
             }).catch(error => {
             console.log(error);
         });
-    SnackMessage = title + " added to calendar";
-    this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
     handleChangeSelectedSemester(value){
@@ -158,9 +153,7 @@ export class CourseListView extends React.Component {
             </DialogContainer>
         </div>
         );
-
     }
-
 }
 
 let styles = {
