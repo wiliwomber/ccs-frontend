@@ -101,7 +101,8 @@ export default class UserService {
                 UserService.updateSelectedCourses(currentUser)
                     .then( user => {
                         UserService.notifyListeners("courseChanged");
-                        UserService.notifyListeners("test");
+                        // Snackbar
+                        UserService.notifyListeners("Snack_CourseRemoved");
                     })
                     .catch(error =>
                     {
@@ -131,7 +132,8 @@ export default class UserService {
               }
           }
       if(courseNotExisting) {
-              return new Promise((resolve, reject) => {
+          UserService.notifyListeners("Snack_CourseAdded");
+          return new Promise((resolve, reject) => {
                   HttpService.put(`${UserService.baseURL()}/selectCourse`, {
                       courseId: id,
                   }, function (data) {
@@ -141,8 +143,8 @@ export default class UserService {
                       reject(textStatus);
                   });
               });
-          }
 
+          }
          })
           .catch( error => {
               console.log(error);

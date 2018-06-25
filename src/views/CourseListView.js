@@ -94,7 +94,6 @@ export class CourseListView extends React.Component {
             UserService.selectCourse(this.state.course._id)
             );
         this.closeForm();
-
     }
 
     closeForm(){
@@ -107,8 +106,6 @@ export class CourseListView extends React.Component {
         }
 
         return (
-
-
         <div>
             <div><Filter/> </div>
             <div>
@@ -123,9 +120,7 @@ export class CourseListView extends React.Component {
                     onChange={this.handleChangeSearchTerm}
                 />
             </div>
-
             <CourseList data={this.state.data} searchTerm={this.state.searchTerm} height={$(window).height()} onAdd={(id) => this.chooseCourse(id)}/>
-
             <DialogContainer
                 component={'MainPageView'}
                 id="detail-course"
@@ -137,7 +132,6 @@ export class CourseListView extends React.Component {
                 width={600}
             >
                 <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.setState({open:false})}>
-
                     <Grid>
                         <Cell size={12}> <h4><b>Choose the semester in which you want to take {this.state.course.title}</b></h4></Cell>
                         <Cell size={12}> <p>Default is the current semester</p></Cell>
@@ -156,20 +150,12 @@ export class CourseListView extends React.Component {
                             position={SelectField.Positions.BELOW}/>
                         </Cell>
                         <Cell size={12}>
-                            <Button id="submit" type="submit"
-                                                  raised primary className="md-cell md-cell--2">Save</Button>
+                            <Button id="submit" type="submit" raised primary className="md-cell md-cell--2">Save</Button>
                             <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
                         </Cell>
                     </Grid>
                 </form>
             </DialogContainer>
-            <Snackbar
-                show={this.state.snackbarIsOpen}
-                onHide={evt => this.setState({snackbarIsOpen: false})}
-                message={SnackMessage}
-                actionText=""
-                actionHandler={() => alert('Action clicked')}
-            />
         </div>
         );
 
