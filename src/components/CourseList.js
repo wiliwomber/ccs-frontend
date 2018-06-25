@@ -10,8 +10,8 @@ import Page from './Page'
 
 
 
-
 export const CourseList = ({data, onAdd}) => (
+
     <div>
     <div><Filter/> </div>
     <div>
