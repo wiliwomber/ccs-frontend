@@ -9,10 +9,7 @@ import './../components/Popup.css';
 import UserService from "../services/UserService";
 import CourseService from "../services/CourseService";
 import CourseDetail from "./../components/CourseDetail";
-// import { Snackbar } from 'rmwc/Snackbar';
-import Snackbar from "../components/Snackbar";
 
-var SnackMessage = "";
 
 // this.state.selectedCourses,
 
@@ -88,10 +85,9 @@ export class ScheduleView extends React.Component {
 
                             // UserService.deSelectCourse(data._id);
 
-                            //an dieser stelle snackbar meldung
-                            SnackMessage = "Course " + data.title + " was removed";
-                            this.setState({snackbarIsOpen: !this.state.snackbarIsOpen});
-                            // Snackbar.Show("Test",2750);
+
+
+
 
                             /** Close this popup. Close will always close the current visible one, if one is visible */
                             Popup.close();
@@ -194,8 +190,6 @@ export class ScheduleView extends React.Component {
             <div>
                 <div> <CourseDetail course={this.state.course} open={this.state.open} close={this.closeDetail}/></div>
                 <div id='calendar'></div>
-                <Snackbar></Snackbar>
-
             </div>
 
         )

@@ -60,7 +60,7 @@ let styles = {
 
     title: {
         alignItems: 'center !important',
-        width : '40%',
+        width : '50%',
         display : 'inline!important',
         float : 'left',
         lineHeight: '40px',
@@ -69,9 +69,9 @@ let styles = {
     },
     credits:{
         alignItems: 'center !important',
-        width : '30%!important',
+        width : '20%!important',
         display : 'inline!important',
-        float : 'left',
+        float : 'right',
         lineHeight: '40px',
         paddingRight: '5px',
 

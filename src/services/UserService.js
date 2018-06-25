@@ -101,6 +101,7 @@ export default class UserService {
                 UserService.updateSelectedCourses(currentUser)
                     .then( user => {
                         UserService.notifyListeners("courseChanged");
+                        UserService.notifyListeners("test");
                     })
                     .catch(error =>
                     {
