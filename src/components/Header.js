@@ -14,7 +14,7 @@ const StyledHeader = styled.div`
 
 const Title = styled.h1`
     display: inline-block;
-    top: 14px;
+    top: 18px;
     bottom: 0;
     left: 35%;
     right: 50%;

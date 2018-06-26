@@ -56,7 +56,7 @@ export class MainPageView extends React.Component {
                 <Card id='module-card' className="md-cell md-cell--6 md-cell--8-tablet">
                   <CardTitle title="Modules"/>
                         <CardText>
-                          <AddCourseView/>
+                          {/*<AddCourseView/>*/}
                          <CourseListView/>
                         </CardText>
                 </Card>
