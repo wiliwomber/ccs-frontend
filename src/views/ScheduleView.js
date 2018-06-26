@@ -85,10 +85,6 @@ export class ScheduleView extends React.Component {
 
                             // UserService.deSelectCourse(data._id);
 
-
-
-
-
                             /** Close this popup. Close will always close the current visible one, if one is visible */
                             Popup.close();
                         }
