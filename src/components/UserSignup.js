@@ -3,12 +3,15 @@
 import React from 'react';
 import {Button, Card, TextField} from 'react-md';
 import {withRouter} from 'react-router-dom';
-
 import {AlertMessage} from './AlertMessage';
 import Page from './Page';
+import styled from "styled-components";
 
-
-const style = { maxWidth: 500 };
+const StyledCard = styled(Card)`
+    max-width: 500px;
+    background: rgba(255,255,255,0.7);
+    margin-top: 80px;
+`;
 
 
 class UserSignup extends React.Component {
@@ -55,7 +58,7 @@ class UserSignup extends React.Component {
     render() {
         return (
             <Page>
-                <Card style={style} className="md-block-centered">
+                <StyledCard className="md-block-centered">
                     <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
                         <TextField
                             label="Username"
@@ -90,7 +93,7 @@ class UserSignup extends React.Component {
                         <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
                         <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
-                </Card>
+                </StyledCard>
             </Page>
         );
     }

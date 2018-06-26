@@ -87,9 +87,6 @@ showTimeCollision() {
                         className: 'remove',
                         action: function () {
                             UserService.deSelectCourse(data._id);
-
-                            // UserService.deSelectCourse(data._id);
-
                             /** Close this popup. Close will always close the current visible one, if one is visible */
                             Popup.close();
                         }
