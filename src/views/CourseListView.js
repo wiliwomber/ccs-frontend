@@ -151,21 +151,23 @@ export class CourseListView extends React.Component {
 
         return (
             <div>
+                {/* TODO grid Zellen anpassen, da nicht alle zentriert/lesbar*/}
                 <Grid>
-                    <StyledCell><AddCourseView/></StyledCell>
-                    <StyledCell>
+                    <StyledCell size={3}><AddCourseView/></StyledCell>
+                    <StyledCell >
+                        {/*TODO size anpassen, derzeit nicht sichtbar*/}
                         <StyledTestField
                             id="search_field"
                             label="Type your Search here"
                             placeholder="Search for ..."
-                            resize={{min:20}}
+                            resize={{min:40}}
                             value={this.state.searchTerm.toLocaleLowerCase()}
                             className="md-cell md-cell--right"
                             leftIcon={<FontIcon>search</FontIcon>}
                             onChange={this.handleChangeSearchTerm}
                         />
                     </StyledCell>
-                    <StyledCell>
+                    <StyledCell >
                         <StyledSlider
                             id="semester_slider"
                             label="Semester"
@@ -176,8 +178,8 @@ export class CourseListView extends React.Component {
                             discrete
                         />
                     </StyledCell>
-                    <StyledCell>
-                        <Button onClick={this.handleResetFilters}>
+                    <StyledCell size={3}>
+                        <Button flat onClick={this.handleResetFilters}>
                             Reset all filters
                         </Button>
                     </StyledCell>
