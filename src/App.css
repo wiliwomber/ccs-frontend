@@ -1,6 +1,10 @@
 .App {
   text-align: center;
-  background-color: skyblue;
+
+}
+
+#app{
+
 }
 
 .App-logo {
@@ -28,7 +32,7 @@
   to { transform: rotate(360deg); }
 }
 
-md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+.md-tabs.md-default-theme .md-ink-bar, .md-tabs .md-ink-bar {
   color: green !important;
   background-color:green !important;
 }
@@ -57,6 +61,14 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
 
 }
 
+#simple-tab-panel-1 {
+  padding: 0px !important;
+}
+
+#simple-tab-panel-1 .md-grid {
+  padding: 0px !important;
+}
+
 .fc-time-grid-event:hover{
   background: dodgerblue !important;
   border: dodgerblue !important;
@@ -69,10 +81,12 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
 
 #curriculum-progress {
   overflow: auto;
+  height: 59vh;
 }
 
 #curriculum-semesters {
  overflow: auto;
+  height: 59vh;
 }
 
 #module-card {
@@ -80,7 +94,13 @@ md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
 }
 
 #courseList {
-  overflow-y: scroll;
+  height: 45vh;
+  overflow-y: auto;
+}
+#courseListContainer {
+  overflow-y: auto;
 }
 
-
+.md-card-text{
+  overflow-y: auto;
+}

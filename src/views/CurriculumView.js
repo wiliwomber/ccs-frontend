@@ -5,7 +5,7 @@ import {Grid, Cell, LinearProgress} from 'react-md';
 import { CurriculumListRow } from './../components/CurriculumListRow';
 import UserService from "../services/UserService";
 import CourseService from "../services/CourseService";
-import Snackbar from "../components/Snackbar";
+import './../App.css';
 
 
 
@@ -21,7 +21,9 @@ export class CurriculumView extends React.Component {
         };
     }
 
-    componentDidMount () {
+
+
+    componentWillMount () {
         this.getData();
         UserService.registerListener("courseChanged", this.getData.bind(this));
     }
@@ -76,7 +78,7 @@ export class CurriculumView extends React.Component {
                                         <div style={styles.numberCircle}><b>{semester}</b></div>
                                         <div style={styles.ceditsHeadline}><h4>Credits: {this.state.creditsAccumulated[semester]}/180</h4> </div>
                                         <div style={styles.overviewContainer}>
-                                           <LinearProgress color='green' style={styles.progressBar} id="query-indeterminate-progress" query value={(this.state.creditsAccumulated[semester]/1.8)} />
+                                           <LinearProgress color='green' style={styles.progressBar} id="query-indeterminate-progress" query value={this.state.creditsAccumulated[semester]/1.8}/>
                                          </div>
                                 </div>
                             )}
@@ -136,6 +138,7 @@ let styles = {
     },
     grid:{
         margin: '0px !important',
+        padding: '0px !important',
         width: '100%',
         height: '70vh',
     },
