@@ -11,15 +11,15 @@ export class CourseDetailView extends React.Component {
 
     constructor(props) {
         super(props);
-
     }
+
 
 
 
     render() {
 
         return (<div>
-            <CourseDetail course={this.props.course}/>
+            <CourseDetail open={this.props.open} course={this.props.course} close={this.props.close}/>
         </div>);
     }
 }

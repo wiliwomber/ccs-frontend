@@ -1,10 +1,26 @@
 "use strict";
 
 import HttpService from './HttpService';
+import UserService from "./UserService";
 
 export default class CourseService {
-
+    static listeners ={};
     constructor(){
+    }
+
+
+
+    static registerListener(event, fn) {
+        if (!UserService.listeners.hasOwnProperty(event)) {
+            UserService.listeners[event] = [];
+        }
+        UserService.listeners[event].push(fn);
+    }
+
+    static notifyListeners(event) {
+        if (UserService.listeners.hasOwnProperty(event)) {
+            UserService.listeners[event].forEach(fn => fn());
+        }
     }
 
     static baseURL() {return "http://localhost:3000/courses" }
@@ -34,30 +50,15 @@ export default class CourseService {
         });
     }
 
-    // static deleteMovie(id) {
-    //     return new Promise((resolve, reject) => {
-    //         HttpService.remove(`${MovieService.baseURL()}/${id}`, function(data) {
-    //             if(data.message != undefined) {
-    //                 resolve(data.message);
-    //             }
-    //             else {
-    //                 reject('Error while deleting');
-    //             }
-    //         }, function(textStatus) {
-    //             reject(textStatus);
-    //         });
-    //     });
-    // }
-    //
-    // static updateMovie(movie) {
-    //     return new Promise((resolve, reject) => {
-    //         HttpService.put(`${this.baseURL()}/${movie._id}`, movie, function(data) {
-    //             resolve(data);
-    //         }, function(textStatus) {
-    //             reject(textStatus);
-    //         });
-    //     });
-    // }
+    static updateCourse(course) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${this.baseURL()}/${course._id}`, course, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
 
     static createCourse(course) {
         console.log(course);
@@ -72,6 +73,17 @@ export default class CourseService {
                 function(textStatus) {
                     reject(textStatus);
                 });
+        });
+    }
+
+
+    static updateCourse(course) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${this.baseURL()}/${course._id}`, course, function (data) {
+                resolve(data);
+            }, function (textStatus) {
+                reject(textStatus);
+            });
         });
     }
 }

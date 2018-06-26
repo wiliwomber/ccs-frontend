@@ -1,8 +1,6 @@
 "use strict";
 
 import HttpService from "./HttpService";
-import MovieService from "./MovieService";
-import CourseService from "./CourseService";
 
 export default class UserService {
 
@@ -103,7 +101,7 @@ export default class UserService {
                 UserService.updateSelectedCourses(currentUser)
                     .then( user => {
                         UserService.notifyListeners("courseChanged");
-                        console.log('calendar should be updated');
+                        UserService.notifyListeners("test");
                     })
                     .catch(error =>
                     {
@@ -125,8 +123,10 @@ export default class UserService {
           for (var key in tempUser.selectedCourses) {
               if (tempUser.selectedCourses.hasOwnProperty(key)) {
                   if(tempUser.selectedCourses[key] == id){
+                      //@TODO add course exist snackbar
                       console.log("Course already existing");
                       courseNotExisting = false;
+                      UserService.notifyListeners("courseChanged");
                   }
               }
           }
