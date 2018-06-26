@@ -12,6 +12,7 @@ import $ from "jquery";
 import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 import SnackbarService from './../components/Snackbar';
 
+
 let snack = {
     snackbarIsOpen: false,
     snackbarMessage: 'test',
