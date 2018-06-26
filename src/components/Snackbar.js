@@ -15,17 +15,31 @@ export class SnackbarService extends React.Component {
     }
 
     componentDidMount(){
-        UserService.registerListener("test", this.testSnack.bind(this));
+        UserService.registerListener("Snack_CourseRemoved", this.courseRemoved.bind(this));
+        UserService.registerListener("Snack_CourseAdded", this.courseAdded.bind(this));
+        UserService.registerListener("Snack_CourseCreated", this.courseCreated.bind(this));
     }
 
-    testSnack(){
+    courseRemoved(){
         this.setState({
             snackbarIsOpen: true,
-            snackMessage: 'Hurra',
+            snackMessage: 'Course removed from calendar',
         });
     }
 
+    courseAdded(){
+        this.setState({
+            snackbarIsOpen: true,
+            snackMessage: 'Course added to calendar',
+        });
+    }
 
+    courseCreated(){
+        this.setState({
+            snackbarIsOpen: true,
+            snackMessage: 'Course successfully created',
+        });
+    }
 
     render() {
         return (

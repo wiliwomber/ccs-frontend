@@ -109,7 +109,8 @@ export default class UserService {
                 UserService.updateSelectedCourses(currentUser)
                     .then( user => {
                         UserService.notifyListeners("courseChanged");
-                        UserService.notifyListeners("test");
+                        // Snackbar
+                        UserService.notifyListeners("Snack_CourseRemoved");
                     })
                     .catch(error =>
                     {
