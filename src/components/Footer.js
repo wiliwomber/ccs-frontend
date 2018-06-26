@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import {SimpleLink} from "./SimpleLink";
 import { withRouter } from 'react-router-dom';
 import {Button} from 'react-md';
+import UserService from "../services/UserService";
 
 
 const StyleFooter = Styled.div`
@@ -28,7 +29,7 @@ class PlainFooter extends React.Component {
                         <tbody>
                         <tr>
                             <td>© {new Date().getFullYear()} CampusCourseScheduler All rights reserved.</td>
-                            <td><Button onClick={() => this.props.history.push('/test')} icon>Test</Button></td>
+                            <td><Button onClick={""} icon>Test</Button></td>
 
                             <td>Datenschutz</td>
 

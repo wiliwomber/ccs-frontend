@@ -12,6 +12,11 @@ import './../../node_modules/material-components-web/dist/material-components-we
 import SnackbarService from './../components/Snackbar';
 
 
+let snack = {
+    snackbarIsOpen: false,
+    snackbarMessage: 'test',
+};
+
 
 export class MainPageView extends React.Component {
 
@@ -24,10 +29,6 @@ export class MainPageView extends React.Component {
 
         };
     }
-
-    componentDidMount(){
-
-}
 
     render() {
         if (this.state.loading) {
