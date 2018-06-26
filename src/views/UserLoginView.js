@@ -29,27 +29,21 @@ export class UserLoginView extends React.Component {
     login(user) {
         UserService.login(user.username, user.password).then((data) => {
             this.props.history.push('/');
+            UserService.notifyListeners("Snack_LogIn");
         }).catch((e) => {
             console.error(e);
             this.setState({
                 error: e
             });
         });
-        SnackMessage = "User logged in";
-        this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
+        // SnackMessage = "User logged in";
+        // this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
     render() {
         return (
             <Content>
                 <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}></UserLogin>
-                <Snackbar
-                    show={this.state.snackbarIsOpen}
-                    onHide={evt => this.setState({snackbarIsOpen: false})}
-                    message={SnackMessage}
-                    actionText=""
-                    actionHandler={() => alert('Action clicked')}
-                />
             </Content>
         );
     }

@@ -46,7 +46,6 @@ export default class UserService {
             HttpService.post(`${UserService.baseURL()}/login`, {
                 username: user,
                 password: pass,
-
             }, function (data) {
                 resolve(data);
             }, function (textStatus) {
