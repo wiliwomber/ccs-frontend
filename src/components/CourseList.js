@@ -9,7 +9,6 @@ import Page from './Page'
 
 
 export const CourseList = ({data, searchTerm, height, onAdd}) => (
-    <div>
         <div style={styles.list} id='courseList'>
             <DataTable plain>
                 <TableHeader>
@@ -26,8 +25,6 @@ export const CourseList = ({data, searchTerm, height, onAdd}) => (
                 </TableBody>
             </DataTable>
         </div>
-    </div>
-
 );
 
 const styles = {

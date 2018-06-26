@@ -126,6 +126,7 @@ export default class UserService {
                       //@TODO add course exist snackbar
                       console.log("Course already existing");
                       courseNotExisting = false;
+                      UserService.notifyListeners("test");
                       UserService.notifyListeners("courseChanged");
                   }
               }
@@ -136,6 +137,7 @@ export default class UserService {
                       courseId: id,
                   }, function (data) {
                       resolve(data);
+                      UserService.notifyListeners("test");
                       UserService.notifyListeners("courseChanged");
                   }, function (textStatus) {
                       reject(textStatus);
