@@ -5,7 +5,7 @@ import { Toolbar, Button} from 'react-md';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import UserSettings from './UserSettings';
-import img from "./../img/logo.png";
+import img from "../img/logo.png";
 
 const StyledHeader = styled.div`
     background: rgba(255,255,255,0.9);
