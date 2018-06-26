@@ -9,7 +9,6 @@ export default class CourseService {
     }
 
 
-/*
 
     static registerListener(event, fn) {
         if (!UserService.listeners.hasOwnProperty(event)) {
@@ -23,7 +22,6 @@ export default class CourseService {
             UserService.listeners[event].forEach(fn => fn());
         }
     }
-*/
 
     static baseURL() {return "http://localhost:3000/courses" }
 
@@ -52,6 +50,15 @@ export default class CourseService {
         });
     }
 
+    static updateCourse(course) {
+        return new Promise((resolve, reject) => {
+            HttpService.put(`${this.baseURL()}/${course._id}`, course, function(data) {
+                resolve(data);
+            }, function(textStatus) {
+                reject(textStatus);
+            });
+        });
+    }
 
     static createCourse(course) {
         console.log(course);
@@ -69,34 +76,14 @@ export default class CourseService {
         });
     }
 
-    static getCourseByTag(tag){
+
+    static updateCourse(course) {
         return new Promise((resolve, reject) => {
-            HttpService.get(`${CourseService.baseURL(tag)}/`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
-                    resolve(data);
-                }
-                else {
-                    reject('Error while retrieving movie');
-                }
-            }, function(textStatus) {
+            HttpService.put(`${this.baseURL()}/${course._id}`, course, function (data) {
+                resolve(data);
+            }, function (textStatus) {
                 reject(textStatus);
             });
         });
     }
-    static getCourseByTitle (title){
-        return new Promise((resolve, reject) => {
-            HttpService.get(`${CourseService.baseURL(title)}/`, function(data) {
-                if(data != undefined || Object.keys(data).length !== 0) {
-                    resolve(data);
-                }
-                else {
-                    reject('Error while retrieving movie');
-                }
-            }, function(textStatus) {
-                reject(textStatus);
-            });
-        });
-    }
-
-
 }
