@@ -3,12 +3,20 @@
 import React from 'react';
 import { Card, Button, TextField } from 'react-md';
 import { withRouter, Link } from 'react-router-dom';
-
 import { AlertMessage } from './AlertMessage';
 import Page from './Page';
+import styled from 'styled-components';
 
 
-const style = { maxWidth: 500 };
+const StyledCard = styled(Card)`
+    max-width: 500px;
+    background: rgba(255,255,255,0.7);
+    margin-top: 80px;
+`;
+
+const StyledTextField = styled(TextField)`
+    background: rgba(255,255,255,0);
+`;
 
 
 class UserLogin extends React.Component {
@@ -49,9 +57,9 @@ class UserLogin extends React.Component {
     render() {
         return (
             <Page>
-                <Card style={style} className="md-block-centered">
+                <StyledCard className="md-block-centered">
                     <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
-                        <TextField
+                        <StyledTextField
                             label="Login"
                             id="LoginField"
                             type="text"
@@ -60,7 +68,7 @@ class UserLogin extends React.Component {
                             value={this.state.username}
                             onChange={this.handleChangeUsername}
                             errorText="Login is required"/>
-                        <TextField
+                        <StyledTextField
                             label="Password"
                             id="PasswordField"
                             type="password"
@@ -77,7 +85,7 @@ class UserLogin extends React.Component {
                         <Link to={'/register'} className="md-cell">Not registered yet?</Link>
                         <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
-                </Card>
+                </StyledCard>
             </Page>
         );
     }

@@ -66,16 +66,13 @@ export class CourseListView extends React.Component {
     }
 
     //adds course to schedule
-    chooseCourse(id) {
-        UserService.getUser()
-            .then(user => {
+    chooseCourse(id) {UserService.getUser().then(user => {
                 this.setState({selectedSemester: user.semester});
                 console.log(this.state.selectedSemester);
             }).catch(error => {
             console.log(error);
         });
-        CourseService.getCourse(id)
-            .then(course => {
+        CourseService.getCourse(id).then(course => {
                 this.setState({
                     open: true,
                     course: course,
@@ -120,7 +117,6 @@ export class CourseListView extends React.Component {
             UserService.selectCourse(this.state.course._id)
             );
         this.closeForm();
-
     }
 
     closeForm(){
@@ -215,7 +211,6 @@ export class CourseListView extends React.Component {
                 width={600}
             >
                 <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.setState({open:false})}>
-
                     <Grid>
                         <Cell size={12}> <h4><b>Choose the semester in which you want to take {this.state.course.title}</b></h4></Cell>
                         <Cell size={12}> <p>Default is the current semester</p></Cell>
@@ -234,8 +229,7 @@ export class CourseListView extends React.Component {
                             position={SelectField.Positions.BELOW}/>
                         </Cell>
                         <Cell size={12}>
-                            <Button id="submit" type="submit"
-                                                  raised primary className="md-cell md-cell--2">Save</Button>
+                            <Button id="submit" type="submit" raised primary className="md-cell md-cell--2">Save</Button>
                             <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
                         </Cell>
                     </Grid>
@@ -243,9 +237,7 @@ export class CourseListView extends React.Component {
             </DialogContainer>
         </div>
         );
-
     }
-
 }
 
 let styles = {
