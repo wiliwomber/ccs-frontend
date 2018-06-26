@@ -46,7 +46,6 @@ export default class UserService {
             HttpService.post(`${UserService.baseURL()}/login`, {
                 username: user,
                 password: pass,
-
             }, function (data) {
                 resolve(data);
             }, function (textStatus) {
@@ -96,8 +95,16 @@ export default class UserService {
             .then(user => {
                 currentUser = user;
                 //index of course to deselect
-                let index = currentUser.selectedCourses.indexOf(id);
-                currentUser.selectedCourses.splice(index, 1);
+                console.log(currentUser.chosenCourses);
+                console.log('i was here');
+                for (let index in currentUser.chosenCourses){
+                    if(currentUser.chosenCourses.hasOwnProperty(index)){
+                        if(currentUser.chosenCourses[index].course == id){
+                            currentUser.chosenCourses.splice(index, 1);
+                            break;
+                        }
+                    }
+                }
                 UserService.updateSelectedCourses(currentUser)
                     .then( user => {
                         UserService.notifyListeners("courseChanged");
@@ -115,44 +122,43 @@ export default class UserService {
             });
     }
 
-    static selectCourse(id){
+
+    static selectCourse(id,semester){
+        console.log(semester + 'sem');
         let tempUser = undefined;
-      UserService.getUser().
+        let selectedCourse = {course: id, semester: semester};
+        UserService.getUser().
         then(user => {
-          tempUser = user;
-        let courseNotExisting = true;
-          for (var key in tempUser.selectedCourses) {
-              if (tempUser.selectedCourses.hasOwnProperty(key)) {
-                  if(tempUser.selectedCourses[key] == id){
-                      //@TODO add course exist snackbar
-                      console.log("Course already existing");
-                      courseNotExisting = false;
-                      UserService.notifyListeners("test");
-                      UserService.notifyListeners("courseChanged");
-                  }
-              }
-          }
-      if(courseNotExisting) {
-          return new Promise((resolve, reject) => {
-                  HttpService.put(`${UserService.baseURL()}/selectCourse`, {
-                      courseId: id,
-                  }, function (data) {
-                      resolve(data);
-                      // UserService.notifyListeners("Snack_CourseAdded");
-                      UserService.notifyListeners("courseChanged");
-                  }, function (textStatus) {
-                      reject(textStatus);
-                  });
-              });
+            tempUser = user;
+            let courseNotExisting = true;
+            for (var key in tempUser.chosenCourses) {
+                if (tempUser.chosenCourses.hasOwnProperty(key)) {
+                    if(tempUser.chosenCourses[key].course == id){
+                        //@TODO add course exist snackbar
+                        console.log("Course already existing");
+                        courseNotExisting = false;
+                        //in case the semester was changed, the course stillneeds to be updated
+                        if(tempUser.chosenCourses[key].semester != semester){
+                            tempUser.chosenCourses[key].semester = semester;
+                            this.updateSelectedCourses(tempUser)
+                                .then(()=>{ UserService.notifyListeners("courseChanged");})
+                                .catch(error => {console.log(error)});
+                        }
+                    }
+                }
+            }
+            if(courseNotExisting) {
+                tempUser.chosenCourses.push(selectedCourse);
+                this.updateSelectedCourses(tempUser)
+                    .then(()=>{ UserService.notifyListeners("courseChanged");})
+                    .catch(error => {console.log(error)});
+            }
 
-          }
-         })
-          .catch( error => {
-              console.log(error);
-          })
+        })
+            .catch( error => {
+                console.log(error);
+            })
     }
-
-
 
 
     static getUser() {

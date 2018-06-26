@@ -1,27 +1,38 @@
 "use strict";
 
 import React from 'react';
-
 import { CourseList } from '../components/CourseList';
-
 import CourseService from '../services/CourseService';
 import UserService from "../services/UserService";
+import {AddCourseView}from "./AddCourseView"
 import {DialogContainer, Grid, Cell, Button, SelectField,TextField, FontIcon, Slider} from 'react-md';
 import './../App.css';
 import $ from "jquery";
-
+import styled from "styled-components";
 // list of icons that can be used: https://material.io/tools/icons/?icon=android&style=baseline
 
 const NUMBER_ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
+const StyledCell = styled(Cell)`
+    margin: 0px;
+`;
+const StyledTestField = styled(TextField)`
+    font-size: 10px;
+`;
 
+const StyledSelectField = styled(SelectField)`
+    font-size: 10px;
+`;
+
+const StyledSlider  = styled(Slider)`
+    font-size: 10px;
+`;
 
 export class CourseListView extends React.Component {
 
     constructor(props) {
         super(props);
-
 
         this.state = {
             loading: false,
@@ -112,10 +123,7 @@ export class CourseListView extends React.Component {
     }
 
     handleSubmit(){
-        this.state.course.selectedSemester = this.state.selectedSemester;
-        CourseService.updateCourse(this.state.course).then(
-            UserService.selectCourse(this.state.course._id)
-            );
+        UserService.selectCourse(this.state.course._id, this.state.selectedSemester);
         this.closeForm();
     }
 
@@ -140,68 +148,65 @@ export class CourseListView extends React.Component {
 
         return (
             <div>
-            <div>
-                <Button raised secondary onClick={this.show}>
-                    Set Filters
-                </Button>
+                {/* TODO grid Zellen anpassen, da nicht alle zentriert/lesbar*/}
+                <Grid>
+                    <StyledCell size={3}><AddCourseView/></StyledCell>
+                    <StyledCell >
+                        {/*TODO size anpassen, derzeit nicht sichtbar*/}
+                        <StyledTestField
+                            id="search_field"
+                            label="Type your Search here"
+                            placeholder="Search for ..."
+                            resize={{min:40}}
+                            value={this.state.searchTerm.toLocaleLowerCase()}
+                            className="md-cell md-cell--right"
+                            leftIcon={<FontIcon>search</FontIcon>}
+                            onChange={this.handleChangeSearchTerm}
+                        />
+                    </StyledCell>
+                    <StyledCell >
+                        <StyledSlider
+                            id="semester_slider"
+                            label="Semester"
+                            leftIcon={<FontIcon>hourglass_empty</FontIcon>}
+                            onChange={this.handleChangeSearchSemester}
+                            defaultValue={5}
+                            max={10}
+                            discrete
+                        />
+                    </StyledCell>
+                    <StyledCell size={3}>
+                        <Button flat onClick={this.handleResetFilters}>
+                            Reset all filters
+                        </Button>
+                    </StyledCell>
+                    <StyledCell>
+                        <StyledSelectField
+                            id="select-field-1"
+                            lable="Day"
+                            placeholder="Day"
+                            className="md-cell"
+                            menuItems={DAYS}
+                            onChange={this.handleChangeSearchDay}
+                            position={SelectField.Positions.TOP_RIGHT}
+                            leftIcon={<FontIcon>calendar_today</FontIcon>}/>
+                    </StyledCell>
+                    <StyledCell>
+                        <StyledSlider
+                            id="credit_slider"
+                            label="Credits"
+                            leftIcon={<FontIcon>school</FontIcon>}
+                            onChange={this.handleChangeSearchCredits}
+                            defaultValue={5}
+                            max={10}
+                            discrete
+                        />
+                    </StyledCell>
+
+                </Grid>
+                <CourseList data={this.state.data} searchTerm={this.state.searchTerm} searchCredits={this.state.searchCredits} searchSemester={this.state.searchSemester} searchDay={this.state.searchDay} height={$(window).height()} onAdd={(id) => this.chooseCourse(id)}/>
+
                 <DialogContainer
-                    id="course-list-filter"
-                    visible={visible}
-                    onHide={this.hide}
-                    title="Filters"
-
-                >
-                    <SelectField
-                        id="select-field-1"
-                        lable="Day"
-                        placeholder=""
-                        className="md-cell"
-                        menuItems={DAYS}
-                        onChange={this.handleChangeSearchDay}
-                        position={SelectField.Positions.TOP_RIGHT}
-                        leftIcon={<FontIcon>calendar_today</FontIcon>}/>
-                    <Slider
-                        id="semester_slider"
-                        label="Semester"
-                        leftIcon={<FontIcon>hourglass_empty</FontIcon>}
-                        onChange={this.handleChangeSearchSemester}
-                        defaultValue={5}
-                        max={10}
-                        discrete
-                    />
-                    <Slider
-                        id="credit_slider"
-                        label="Credits"
-                        leftIcon={<FontIcon>school</FontIcon>}
-                        onChange={this.handleChangeSearchCredits}
-                        defaultValue={5}
-                        max={10}
-                        discrete
-                    />
-
-                </DialogContainer>
-            </div>
-            <div>
-                <Button onClick={this.handleResetFilters}>
-                    Reset all filters
-                </Button>
-            </div>
-            <div>
-                <TextField
-                    id="search_field"
-                    label="Type your Search here"
-                    placeholder="Search for ..."
-                    maxLength={20}
-                    value={this.state.searchTerm.toLocaleLowerCase()}
-                    className="md-cell md-cell--right"
-                    leftIcon={<FontIcon>search</FontIcon>}
-                    onChange={this.handleChangeSearchTerm}
-                />
-            </div>
-
-            <CourseList data={this.state.data} searchTerm={this.state.searchTerm} searchCredits={this.state.searchCredits} searchSemester={this.state.searchSemester} searchDay={this.state.searchDay} height={$(window).height()} onAdd={(id) => this.chooseCourse(id)}/>
-
-            <DialogContainer
                 id="detail-course"
                 modal={true}
                 portal={true}
@@ -209,33 +214,33 @@ export class CourseListView extends React.Component {
                 title= {<span>Add course to schedule <Button style = {styles} icon primary onClick={this.closeForm}>close</Button></span>}
                 onHide={this.closeForm}
                 width={600}
-            >
-                <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.setState({open:false})}>
-                    <Grid>
-                        <Cell size={12}> <h4><b>Choose the semester in which you want to take {this.state.course.title}</b></h4></Cell>
-                        <Cell size={12}> <p>Default is the current semester</p></Cell>
-                        <Cell size={12}>
+                >
+                    <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.setState({open:false})}>
+                        <Grid>
+                            <Cell size={12}> <h4><b>Choose the semester in which you want to take {this.state.course.title}</b></h4></Cell>
+                            <Cell size={12}> <p>Default is the current semester</p></Cell>
+                            <Cell size={12}>
                             <SelectField
-                            id="select-field-1"
-                            lable="Choose Semester"
-                            placeholder="Repeat Exam"
-                            className="md-cell"
-                            menuItems={['1','2','3','4','5','6']}
-                            required={true}
-                            value={this.state.selectedSemester}
-                            onChange={this.handleChangeSelectedSemester}
-                            simplifiedMenu = {true}
-                            errorText="Please choose a semester"
-                            position={SelectField.Positions.BELOW}/>
-                        </Cell>
-                        <Cell size={12}>
-                            <Button id="submit" type="submit" raised primary className="md-cell md-cell--2">Save</Button>
-                            <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
-                        </Cell>
-                    </Grid>
-                </form>
-            </DialogContainer>
-        </div>
+                                id="select-field-1"
+                                lable="Choose Semester"
+                                placeholder="Repeat Exam"
+                                className="md-cell"
+                                menuItems={['1','2','3','4','5','6']}
+                                required={true}
+                                value={this.state.selectedSemester}
+                                onChange={this.handleChangeSelectedSemester}
+                                simplifiedMenu = {true}
+                                errorText="Please choose a semester"
+                                position={SelectField.Positions.BELOW}/>
+                            </Cell>
+                            <Cell size={12}>
+                                <Button id="submit" type="submit" raised primary className="md-cell md-cell--2">Save</Button>
+                                <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
+                            </Cell>
+                        </Grid>
+                    </form>
+                </DialogContainer>
+            </div>
         );
     }
 }

@@ -8,7 +8,7 @@ export class SnackbarService extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            snackTimeout: 2750,
+            snackTimeout: 2000,
             snackMessage: 'Default message',
             snackbarIsOpen: false,
         };
@@ -18,6 +18,7 @@ export class SnackbarService extends React.Component {
         UserService.registerListener("Snack_CourseRemoved", this.courseRemoved.bind(this));
         UserService.registerListener("Snack_CourseAdded", this.courseAdded.bind(this));
         UserService.registerListener("Snack_CourseCreated", this.courseCreated.bind(this));
+        UserService.registerListener("Snack_LogIn", this.userLoggedIn.bind(this));
     }
 
     courseRemoved(){
@@ -38,6 +39,13 @@ export class SnackbarService extends React.Component {
         this.setState({
             snackbarIsOpen: true,
             snackMessage: 'Course successfully created',
+        });
+    }
+
+    userLoggedIn(){
+        this.setState({
+            snackbarIsOpen: true,
+            snackMessage: 'User logged in',
         });
     }
 
