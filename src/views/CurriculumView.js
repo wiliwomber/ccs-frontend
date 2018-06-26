@@ -8,7 +8,6 @@ import CourseService from "../services/CourseService";
 import './../App.css';
 
 
-
 export class CurriculumView extends React.Component {
 
     constructor(props) {
@@ -38,18 +37,20 @@ export class CurriculumView extends React.Component {
         }
         UserService.getUser()
             .then(user => {
-                for (let key in user.selectedCourses) {
-                    if (user.selectedCourses.hasOwnProperty(key)) {
-                        CourseService.getCourse(user.selectedCourses[key])
+                for (let key in user.chosenCourses) {
+                    if (user.chosenCourses.hasOwnProperty(key)) {
+                        CourseService.getCourse(user.chosenCourses[key].course)
                             .then(course => {
                                 //in case the user is above the 6th semester, a new semester is added to the list
+                                //add the selected semester to the course
+                                course.chosenSemester = user.chosenCourses[key].semester;
                                 courses.push(course);
-                                this.state.credits[course.selectedSemester] += course.credits;
-                                for (let i = course.selectedSemester; i<= this.state.semesters.length; i++) {
+                                this.state.credits[course.chosenSemester] += course.credits;
+                                for (let i = course.chosenSemester; i<= this.state.semesters.length; i++) {
                                     this.state.creditsAccumulated[i] += course.credits;
                                 }
-                                if(!this.state.semesters.includes(course.selectedSemester)){
-                                    this.state.semesters.push(course.selectedSemester);
+                                if(!this.state.semesters.includes(course.chosenSemester)){
+                                    this.state.semesters.push(course.chosenSemester);
                                 }
                                 this.setState({
                                     courses: courses
@@ -93,7 +94,7 @@ export class CurriculumView extends React.Component {
                                 <Cell key={i} size={12}>
                                     <h4 ><b>{semester}. Semester - Credits: {this.state.credits[semester]}</b> </h4>
                                     {this.state.courses.filter(function (course) {
-                                        return (course.selectedSemester === semester);
+                                        return (course.chosenSemester === semester);
                                     }).map((course, i) => <CurriculumListRow key={i} course={course} />)}
                                     </Cell>
                                 <Cell size={12} style={styles.margin}></Cell>

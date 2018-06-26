@@ -28,7 +28,6 @@ class CourseDetail extends React.Component{
         return (
             <div style={styles.container}>
                 <DialogContainer
-                    component={'MainPageView'}
                     id="detail-course"
                     modal={true}
                     portal={true}

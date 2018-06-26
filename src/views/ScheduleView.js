@@ -41,12 +41,12 @@ export class ScheduleView extends React.Component {
         $('#calendar').fullCalendar('removeEvents');
         UserService.getUser()
             .then(user => {
-                for (var key in user.selectedCourses) {
-                    if (user.selectedCourses.hasOwnProperty(key)) {
-                        CourseService.getCourse(user.selectedCourses[key])
+                for (let key in user.chosenCourses) {
+                    if (user.chosenCourses.hasOwnProperty(key)) {
+                        CourseService.getCourse(user.chosenCourses[key].course)
                             .then(course => {
                                 //Print only courses from the users current semester
-                                if(course.selectedSemester == user.semester){
+                                if(user.chosenCourses[key].semester == user.semester){
                                     $('#calendar').fullCalendar('renderEvent', course);
                                 }
                             })
