@@ -10,7 +10,12 @@ import {CurriculumView} from "./CurriculumView";
 import Popup from 'react-popup';
 import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 import SnackbarService from './../components/Snackbar';
+import styled from 'styled-components';
 
+
+const StyledCard = styled(Card)`
+    background: rgba(255,255,255,0.9);
+`;
 
 let snack = {
     snackbarIsOpen: false,
@@ -38,7 +43,7 @@ export class MainPageView extends React.Component {
         return (
             <Page id="main-page">
                 <div className="md-grid">
-                <Card id="schedule-card" className="md-cell md-cell--6 md-cell--8-tablet">
+                <StyledCard id="schedule-card" className="md-cell md-cell--6 md-cell--8-tablet">
                     <CardTitle title="Schedule"/>
                     <CardText>
                         <TabsContainer  panelClassName="md-grid">
@@ -52,14 +57,13 @@ export class MainPageView extends React.Component {
                             </Tabs>
                         </TabsContainer>
                     </CardText>
-                </Card>
-                <Card id='module-card' className="md-cell md-cell--6 md-cell--8-tablet">
+                </StyledCard>
+                <StyledCard id='module-card' className="md-cell md-cell--6 md-cell--8-tablet">
                   <CardTitle title="Modules"/>
                         <CardText>
-                          {/*<AddCourseView/>*/}
                          <CourseListView/>
                         </CardText>
-                </Card>
+                </StyledCard>
                 </div>
                 <Popup/>
                 <SnackbarService/>
