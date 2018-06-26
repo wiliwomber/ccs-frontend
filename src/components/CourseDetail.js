@@ -2,13 +2,14 @@ import React from 'react';
 import { Grid, Cell,  Button, DialogContainer} from 'react-md';
 import {withRouter} from "react-router-dom";
 import {MainPageView} from "./../views/MainPageView";
+import { updateCourse } from "../services/CourseService"
 
-
-class AddCourse extends React.Component{
+class CourseDetail extends React.Component{
 
 
     constructor(props) {
         super(props);
+
 
         this.closeForm = this.closeForm.bind(this);
     }
@@ -19,7 +20,9 @@ class AddCourse extends React.Component{
         this.props.close();
     }
 
+    changeLikes (){
 
+}
 
     render() {
         return (
@@ -106,6 +109,15 @@ class AddCourse extends React.Component{
                             <h4 style={styles.container.p}><b>Comments</b></h4>
                             <p style={styles.container.p}>{this.props.course.comment}</p>
                         </Cell>
+                        <Cell size={6}>
+                            <h4 style={styles.container.p}><b>Like this course? Give it a heart! </b></h4>
+                            <Button icon primary onSubmit = {this.changeLikes()}>favorite</Button>
+                        </Cell>
+                        <Cell size={6}>
+                            <h4 style={styles.container.p}><b>Likes</b></h4>
+                            <p style={styles.container.p}>{this.props.course.likes}</p>
+                        </Cell>
+
                     </Grid>
 
 
@@ -131,4 +143,4 @@ let styles = {
 
 };
 
-export default withRouter(AddCourse);
+export default withRouter(CourseDetail);
