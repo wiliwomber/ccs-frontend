@@ -37,13 +37,13 @@ export class AddCourseView extends React.Component {
 
         return (<div>
             <AddCourse course={this.state.course} onSubmit={(course) => this.createCourse(course)} error={this.state.error} />
-            <Snackbar
-                show={this.state.snackbarIsOpen}
-                onHide={evt => this.setState({snackbarIsOpen: false})}
-                message={SnackMessage}
-                actionText=""
-                actionHandler={() => alert('Action clicked')}
-            />
+            {/*<Snackbar*/}
+                {/*show={this.state.snackbarIsOpen}*/}
+                {/*onHide={evt => this.setState({snackbarIsOpen: false})}*/}
+                {/*message={SnackMessage}*/}
+                {/*actionText=""*/}
+                {/*actionHandler={() => alert('Action clicked')}*/}
+            {/*/>*/}
         </div>);
     }
 }
