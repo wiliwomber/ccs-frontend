@@ -9,7 +9,6 @@ import UserService from "../services/UserService";
 import {DialogContainer, Grid, Cell, Button, SelectField,TextField, FontIcon, Slider} from 'react-md';
 import './../App.css';
 import $ from "jquery";
-import { Snackbar } from 'rmwc/Snackbar';
 
 // list of icons that can be used: https://material.io/tools/icons/?icon=android&style=baseline
 
@@ -17,7 +16,6 @@ const NUMBER_ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
 
-var SnackMessage = "Test";
 
 export class CourseListView extends React.Component {
 
@@ -47,6 +45,7 @@ export class CourseListView extends React.Component {
         this.handleChangeSearchDay = this.handleChangeSearchDay.bind(this);
         this.handleResetFilters = this.handleResetFilters.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.chooseCourse=this.chooseCourse.bind(this)
         this.closeForm = this.closeForm.bind(this);
 
     }
@@ -64,13 +63,10 @@ export class CourseListView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
-
-        console.log($(window).height());
-
     }
 
     //adds course to schedule
-    chooseCourse(id, title) {
+    chooseCourse(id) {
         UserService.getUser()
             .then(user => {
                 this.setState({selectedSemester: user.semester});
@@ -87,8 +83,6 @@ export class CourseListView extends React.Component {
             }).catch(error => {
             console.log(error);
         });
-    SnackMessage = title + " added to calendar";
-    this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
     handleChangeSelectedSemester(value){
@@ -149,9 +143,7 @@ export class CourseListView extends React.Component {
         }
 
         return (
-
-
-        <div>
+            <div>
             <div>
                 <Button raised secondary onClick={this.show}>
                     Set Filters
@@ -214,7 +206,6 @@ export class CourseListView extends React.Component {
             <CourseList data={this.state.data} searchTerm={this.state.searchTerm} searchCredits={this.state.searchCredits} searchSemester={this.state.searchSemester} searchDay={this.state.searchDay} height={$(window).height()} onAdd={(id) => this.chooseCourse(id)}/>
 
             <DialogContainer
-                component={'MainPageView'}
                 id="detail-course"
                 modal={true}
                 portal={true}
@@ -250,13 +241,6 @@ export class CourseListView extends React.Component {
                     </Grid>
                 </form>
             </DialogContainer>
-            <Snackbar
-                show={this.state.snackbarIsOpen}
-                onHide={evt => this.setState({snackbarIsOpen: false})}
-                message={SnackMessage}
-                actionText=""
-                actionHandler={() => alert('Action clicked')}
-            />
         </div>
         );
 
