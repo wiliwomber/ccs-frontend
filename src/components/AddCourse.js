@@ -9,26 +9,27 @@ class AddCourse extends React.Component{
     constructor(props) {
         super(props);
             this.state = {
-                title :undefined,
-                titlelong : undefined,
-                credits :undefined,
-                description : undefined,
-                semester : undefined,
-                lecturer : undefined,
-                chair : undefined,
-                registrationstart :undefined,
-                registrationend : undefined,
-                exam : undefined,
-                repeatexam : undefined,
-                courseType :undefined,
-                semesterperiodsperweek:undefined,
-                start: undefined,
-                end: undefined,
-                roomnumber:undefined,
-                comment: undefined,
+                title :'',
+                titlelong : '',
+                credits :'',
+                description : '',
+                semester : '',
+                lecturer : '',
+                chair : '',
+                registrationstart :'',
+                registrationend : '',
+                exam : '',
+                repeatexam : '',
+                courseType :'',
+                semesterperiodsperweek:'',
+                start: '',
+                end: '',
+                roomnumber:'',
+                comment: '',
                 public: false,
                 open : false,
-                dow : undefined,
+                dow : '',
+                type: '',
             };
 
 
@@ -167,6 +168,7 @@ class AddCourse extends React.Component{
         course.public = this.state.public;
         course.day = this.state.day;
 
+
         this.props.onSubmit(course);
         this.closeForm();
     }
@@ -180,27 +182,27 @@ class AddCourse extends React.Component{
 
     closeForm() {
         this.setState({
-            title : undefined,
-            titlelong : undefined,
-            credits : undefined,
-            description : undefined,
-            semester : undefined,
-            lecturer : undefined,
-            chair : undefined,
-            registrationstart :undefined,
-            registrationend : undefined,
-            exam : undefined,
-            repeatexam : undefined,
-            courseType :undefined,
-            semesterperiodsperweek:undefined,
-            start:undefined,
-            end:undefined,
-            dow:undefined,
-            roomnumber:undefined,
-            comment:undefined,
-            tag:undefined,
-            public:undefined,
-            day: undefined,
+            title : '',
+            titlelong : '',
+            credits : '',
+            description : '',
+            semester : '',
+            lecturer : '',
+            chair : '',
+            registrationstart :'',
+            registrationend : '',
+            exam : '',
+            repeatexam : '',
+            courseType :'',
+            semesterperiodsperweek:'',
+            start:'',
+            end:'',
+            dow:'',
+            roomnumber:'',
+            comment:'',
+            tag:'',
+            public: false,
+            day: '',
             open : false
         });
     }
@@ -505,6 +507,9 @@ class AddCourse extends React.Component{
                             </Grid>
 
                         <Button id="submit" type="submit"
+                                disabled={this.state.credits.toString().length > 2 || this.state.title === ''||
+                                this.state.semester.toString().length > 2 || this.state.description === '' ||
+                                this.state.start > this.state.end || this.state.registrationstart > this.state.registrationend}
                                 raised primary className="md-cell md-cell--2">Save</Button>
                         <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
                         <AlertMessage className="md-row md-full-width">{this.props.error ? `${this.props.error}` : ''}</AlertMessage>

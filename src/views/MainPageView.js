@@ -8,15 +8,10 @@ import {Card, CardTitle, CardText,TabsContainer, Tabs, Tab} from 'react-md';
 import {CourseListView} from "./CourseListView";
 import {CurriculumView} from "./CurriculumView";
 import Popup from 'react-popup';
-import $ from "jquery";
 import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 import SnackbarService from './../components/Snackbar';
-import UserService from "../services/UserService";
 
-let snack = {
-    snackbarIsOpen: false,
-    snackbarMessage: 'test',
-};
+
 
 export class MainPageView extends React.Component {
 
@@ -40,7 +35,7 @@ export class MainPageView extends React.Component {
         }
 
         return (
-            <Page>
+            <Page id="main-page">
                 <div className="md-grid">
                 <Card id="schedule-card" className="md-cell md-cell--6 md-cell--8-tablet">
                     <CardTitle title="Schedule"/>

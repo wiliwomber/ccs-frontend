@@ -6,8 +6,9 @@ import { CourseListRow } from './CourseListRow';
 
 
 
+
 export const CourseList = ({data, searchTerm, searchCredits, searchSemester, searchDay, height, onAdd}) => (
-    <div>
+
         <div style={styles.list} id='courseList'>
             <DataTable plain>
                 <TableHeader>
@@ -30,7 +31,6 @@ export const CourseList = ({data, searchTerm, searchCredits, searchSemester, sea
                 </TableBody>
             </DataTable>
         </div>
-    </div>
 
 );
 

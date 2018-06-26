@@ -10,10 +10,7 @@ import {DialogContainer, Grid, Cell, Button, SelectField,TextField, FontIcon} fr
 import './../App.css';
 import $ from "jquery";
 import Filter from './../components/Filter'
-import { Snackbar } from 'rmwc/Snackbar';
 
-
-var SnackMessage = "Test";
 
 export class CourseListView extends React.Component {
 
@@ -36,6 +33,7 @@ export class CourseListView extends React.Component {
         this.handleChangeSearchTerm = this.handleChangeSearchTerm.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.closeForm = this.closeForm.bind(this);
+        this.chooseCourse = this.chooseCourse.bind(this);
 
     }
 
@@ -52,31 +50,26 @@ export class CourseListView extends React.Component {
         }).catch((e) => {
             console.error(e);
         });
-
-        console.log($(window).height());
-
     }
 
     //adds course to schedule
-    chooseCourse(id, title) {
+    chooseCourse(id) {
         UserService.getUser()
             .then(user => {
                 this.setState({selectedSemester: user.semester});
                 console.log(this.state.selectedSemester);
-            }).catch(error => {
-            console.log(error);
-        });
-        CourseService.getCourse(id)
-            .then(course => {
-                this.setState({
-                    open: true,
-                    course: course,
+                CourseService.getCourse(id)
+                    .then(course => {
+                        this.setState({
+                            open: true,
+                            course: course,
+                        });
+                    }).catch(error => {
+                    console.log(error);
                 });
             }).catch(error => {
             console.log(error);
         });
-    SnackMessage = title + " added to calendar";
-    this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
     }
 
     handleChangeSelectedSemester(value){
@@ -95,6 +88,7 @@ export class CourseListView extends React.Component {
             );
         this.closeForm();
 
+
     }
 
     closeForm(){
@@ -109,7 +103,7 @@ export class CourseListView extends React.Component {
         return (
 
 
-        <div>
+        <div id='courseListContainer'>
             <div><Filter/> </div>
             <div>
                 <TextField
@@ -127,7 +121,6 @@ export class CourseListView extends React.Component {
             <CourseList data={this.state.data} searchTerm={this.state.searchTerm} height={$(window).height()} onAdd={(id) => this.chooseCourse(id)}/>
 
             <DialogContainer
-                component={'MainPageView'}
                 id="detail-course"
                 modal={true}
                 portal={true}
@@ -163,13 +156,6 @@ export class CourseListView extends React.Component {
                     </Grid>
                 </form>
             </DialogContainer>
-            <Snackbar
-                show={this.state.snackbarIsOpen}
-                onHide={evt => this.setState({snackbarIsOpen: false})}
-                message={SnackMessage}
-                actionText=""
-                actionHandler={() => alert('Action clicked')}
-            />
         </div>
         );
 
