@@ -123,10 +123,7 @@ export class CourseListView extends React.Component {
     }
 
     handleSubmit(){
-        this.state.course.selectedSemester = this.state.selectedSemester;
-        CourseService.updateCourse(this.state.course).then(
-            UserService.selectCourse(this.state.course._id)
-            );
+        UserService.selectCourse(this.state.course._id, this.state.selectedSemester);
         this.closeForm();
     }
 
