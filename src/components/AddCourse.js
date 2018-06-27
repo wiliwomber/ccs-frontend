@@ -162,11 +162,14 @@ class AddCourse extends React.Component{
         course.end = this.state.end;
         course.dow = this.state.dow;
         course.roomnumber= this.state.roomnumber;
-        course.comment = this.state.comment;
+        console.log(this.state.comment);
+        course.comment = [];
+        course.comment.push(this.state.comment);
         course.credits = this.state.credits;
         course.tag = this.state.tag;
-        course.public = this.state.public;
+        course.public = false;
         course.day = this.state.day;
+        course.likes = 0;
 
 
         this.props.onSubmit(course);

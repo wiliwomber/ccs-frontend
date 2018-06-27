@@ -1,16 +1,18 @@
 import React from 'react';
-import { Grid, Cell,  Button, DialogContainer} from 'react-md';
+import { Grid, Cell,  Button, DialogContainer, TextField} from 'react-md';
 import {withRouter} from "react-router-dom";
-import {MainPageView} from "./../views/MainPageView";
 import { updateCourse } from "../services/CourseService"
+import CourseService from "../services/CourseService";
 
 class CourseDetail extends React.Component{
 
 
     constructor(props) {
         super(props);
-
-
+        this.state = {
+            likes : 0,
+            comment: '',
+        };
         this.closeForm = this.closeForm.bind(this);
     }
 
@@ -20,9 +22,33 @@ class CourseDetail extends React.Component{
         this.props.close();
     }
 
-    changeLikes (){
+    handleChangeComment(value){
+        console.log(value);
+        this.setState({comment: value});
+    }
 
-}
+    handleChangeLikes (){
+        if(this.state.likes == 0){
+            this.setState({likes : 1});
+        } else{
+            this.setState({likes: 0});
+        }
+    }
+
+    handleSubmit(){
+        let course = this.props.course;
+        course.likes += this.state.likes;
+        if(this.state.comment.length > 1){
+            course.comment.push(this.state.comment);
+        }
+        CourseService.updateCourse(course)
+            .then(course=>{
+                console.log(course.comment);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     render() {
         return (
@@ -101,24 +127,40 @@ class CourseDetail extends React.Component{
 
                     <Grid>
                         <Cell size={6}>
-                            <h4 style={styles.container.p}><b>Roomnumber</b></h4>
+                            <h4 style={styles.container.p}><b>Room number</b></h4>
                             <p style={styles.container.p}>{this.props.course.roomnumber}</p>
                         </Cell>
+
                         <Cell size={6}>
+                            <h4 style={styles.container.p}><b>Like this course? Give it a heart! </b></h4>
+                            <Cell size={6}>
+                            <Button icon primary onSubmit = {this.handleChangeLikes}>favorite</Button>
+                            </Cell>
+                            <Cell size={6}>
+                                <p>{this.props.course.likes}</p>
+                            </Cell>
+                        </Cell>
+                        <Cell size={12}>
                             <h4 style={styles.container.p}><b>Comments</b></h4>
                             <p style={styles.container.p}>{this.props.course.comment}</p>
                         </Cell>
-                        <Cell size={6}>
-                            <h4 style={styles.container.p}><b>Like this course? Give it a heart! </b></h4>
-                            <Button icon primary onSubmit = {this.changeLikes()}>favorite</Button>
+                        <Cell size={12}>
+                            <h4 style={styles.container.p}><b>Leave your own comment</b></h4>
+                            <TextField
+                                style={styles.container}
+                                label="Comment"
+                                id="TextField"
+                                type="text"
+                                className="md-row"
+                                required={false}
+                                value={this.state.comment}
+                                onChange={this.handleChangeComment}
+                                errorText="Comment is required"/>
                         </Cell>
-                        <Cell size={6}>
-                            <h4 style={styles.container.p}><b>Likes</b></h4>
-                            <p style={styles.container.p}>{this.props.course.likes}</p>
-                        </Cell>
+
 
                     </Grid>
-
+                    <Button id="submit" type="submit" disabled={this.state.comment.length<2} raised primary className="md-cell md-cell--4" onSubmit = {this.handleSubmit}>Leave feedback</Button>
 
                 </DialogContainer>
             </div>
