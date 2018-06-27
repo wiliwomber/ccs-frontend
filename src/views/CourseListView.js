@@ -6,6 +6,7 @@ import CourseService from '../services/CourseService';
 import UserService from "../services/UserService";
 import {AddCourseView}from "./AddCourseView"
 import {DialogContainer, Grid, Cell, Button, SelectField,TextField, FontIcon, Slider} from 'react-md';
+import {Filter} from "../components/Filter";
 import './../App.css';
 import $ from "jquery";
 import styled from "styled-components";
@@ -40,24 +41,22 @@ export class CourseListView extends React.Component {
             open: false,
             selectedSemester: 'Current Semester',
             course: '',
-            searchTerm : '',
-            searchCredits: '',
-            searchSemester: '',
-            searchDay: '',
+            filter: {
+                searchTerm : '',
+                searchCredits: '',
+                searchSemester: '',
+                searchDay: '',
+            },
             visible : false
         };
 
         //in case a new course is created, the component is updated so that the new course is displayed in the list
         UserService.registerListener("newCourse", this.componentWillMount.bind(this));
         this.handleChangeSelectedSemester = this.handleChangeSelectedSemester.bind(this);
-        this.handleChangeSearchTerm = this.handleChangeSearchTerm.bind(this);
-        this.handleChangeSearchCredits = this.handleChangeSearchCredits.bind(this);
-        this.handleChangeSearchSemester = this.handleChangeSearchSemester.bind(this);
-        this.handleChangeSearchDay = this.handleChangeSearchDay.bind(this);
-        this.handleResetFilters = this.handleResetFilters.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.chooseCourse=this.chooseCourse.bind(this)
         this.closeForm = this.closeForm.bind(this);
+        this.updateFilter = this.updateFilter.bind(this);
 
     }
 
@@ -97,29 +96,8 @@ export class CourseListView extends React.Component {
             this.setState({selectedSemester: value});
 
     }
-    handleChangeSearchTerm(value){
-        console.log(value);
-        this.setState({searchTerm : value});
-    }
-
-    handleChangeSearchCredits(value){
-        console.log(value);
-        this.setState({searchCredits : value});
-    }
-
-    handleChangeSearchSemester(value){
-        console.log(value);
-        this.setState({searchSemester : value});
-    }
-
-    handleChangeSearchDay(value){
-        console.log(value);
-        this.setState({searchDay : value});
-    }
-    handleResetFilters(){
-        this.setState({searchDay : ''});
-        this.setState({searchSemester : ''});
-        this.setState({searchCredits : ''});
+    updateFilter(filter){
+        this.setState({filter:filter});
     }
 
     handleSubmit(){
@@ -148,63 +126,8 @@ export class CourseListView extends React.Component {
 
         return (
             <div>
-                {/* TODO grid Zellen anpassen, da nicht alle zentriert/lesbar*/}
-                <Grid>
-                    <StyledCell size={3}><AddCourseView/></StyledCell>
-                    <StyledCell >
-                        {/*TODO size anpassen, derzeit nicht sichtbar*/}
-                        <StyledTestField
-                            id="search_field"
-                            label="Type your Search here"
-                            placeholder="Search for ..."
-                            resize={{min:40}}
-                            value={this.state.searchTerm.toLocaleLowerCase()}
-                            className="md-cell md-cell--right"
-                            leftIcon={<FontIcon>search</FontIcon>}
-                            onChange={this.handleChangeSearchTerm}
-                        />
-                    </StyledCell>
-                    <StyledCell >
-                        <StyledSlider
-                            id="semester_slider"
-                            label="Semester"
-                            leftIcon={<FontIcon>hourglass_empty</FontIcon>}
-                            onChange={this.handleChangeSearchSemester}
-                            defaultValue={5}
-                            max={10}
-                            discrete
-                        />
-                    </StyledCell>
-                    <StyledCell size={3}>
-                        <Button flat onClick={this.handleResetFilters}>
-                            Reset all filters
-                        </Button>
-                    </StyledCell>
-                    <StyledCell>
-                        <StyledSelectField
-                            id="select-field-1"
-                            lable="Day"
-                            placeholder="Day"
-                            className="md-cell"
-                            menuItems={DAYS}
-                            onChange={this.handleChangeSearchDay}
-                            position={SelectField.Positions.TOP_RIGHT}
-                            leftIcon={<FontIcon>calendar_today</FontIcon>}/>
-                    </StyledCell>
-                    <StyledCell>
-                        <StyledSlider
-                            id="credit_slider"
-                            label="Credits"
-                            leftIcon={<FontIcon>school</FontIcon>}
-                            onChange={this.handleChangeSearchCredits}
-                            defaultValue={5}
-                            max={10}
-                            discrete
-                        />
-                    </StyledCell>
-
-                </Grid>
-                <CourseList data={this.state.data} searchTerm={this.state.searchTerm} searchCredits={this.state.searchCredits} searchSemester={this.state.searchSemester} searchDay={this.state.searchDay} height={$(window).height()} onAdd={(id) => this.chooseCourse(id)}/>
+                <Filter filter={this.state.filter} updateFilter={this.updateFilter}/>
+                <CourseList data={this.state.data} filter={this.state.filter} onAdd={(id) => this.chooseCourse(id)}/>
 
                 <DialogContainer
                 id="detail-course"

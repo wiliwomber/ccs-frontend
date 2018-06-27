@@ -52,15 +52,7 @@ export default class CourseService {
         });
     }
 
-    static updateCourse(course) {
-        return new Promise((resolve, reject) => {
-            HttpService.put(`${this.baseURL()}/${course._id}`, course, function(data) {
-                resolve(data);
-            }, function(textStatus) {
-                reject(textStatus);
-            });
-        });
-    }
+
 
     static createCourse(course) {
         console.log(course);
