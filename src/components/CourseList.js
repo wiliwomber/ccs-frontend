@@ -19,7 +19,15 @@ export const CourseList = ({data, searchTerm, searchCredits, searchSemester, sea
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {data.map((course, i) => <CourseListRow key={i} course={course} onAdd={(id) => onAdd(id)} />)}
+                    {data.filter(function (course) {
+                        return (course.title.toLocaleLowerCase().includes(searchTerm));
+                    }).filter(function (course) {
+                        return (course.credits.toString().includes(searchCredits));
+                    }).filter(function (course) {
+                        return (course.semester.includes(searchSemester));
+                    }).filter(function (course) {
+                        return (course.day.includes(searchDay));
+                    }).map((course, i) => <CourseListRow key={i} course={course} onAdd={(id) => onAdd(id)} />)}
                 </TableBody>
             </DataTable>
         </div>
