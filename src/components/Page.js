@@ -27,19 +27,19 @@ export default class Page extends React.Component {
         }
     }
 
-    componentDidMount(){
-       this.setState({
-           title: document.title
-       });
+    componentDidMount() {
+        this.setState({
+            title: document.title
+        });
     }
 
     render() {
         return (
             <StyledSection>
-                <Header title={this.state.title} />
+                <Header title={this.state.title}/>
                 {this.props.children}
-
+                <Footer/>
             </StyledSection>
         );
     }
-}//<Footer />
+}
