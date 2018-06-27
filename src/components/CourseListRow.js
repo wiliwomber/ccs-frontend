@@ -41,6 +41,9 @@ export class CourseListRow extends React.Component {
                 <TableColumn>
                     {this.props.course.title}
                 </TableColumn>
+                <TableColumn>
+                    {this.props.course.credits}
+                </TableColumn>
 
                 {UserService.isAuthenticated() ?
                     <TableColumn>

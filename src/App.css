@@ -115,3 +115,41 @@ body{
 .md-card-text{
   overflow-y: auto;
 }
+
+#searchField{
+  margin-top: 0px;
+}
+
+#resetFilter {
+  height:42px;
+  background-color: #006ECC;
+  font-weight: 200;
+}
+
+#dayFilter{
+  width: 200px;
+
+}
+#dayFilter-menu{
+  width: 210px;
+  padding-left: 7px;
+}
+#createCourseButton{
+  background-color: #006ECC;
+  height:42px;
+  padding-bottom: 5px;
+  margin-top: 15px;
+  font-weight: 200;
+}
+
+#createCourseCell{
+  float: right;
+}
+
+.md-slider-thumb .md-slider-thumb--mask{
+
+}
+
+.md-fake-btn .md-pointer--hover .md-fake-btn--no-outline .md-slider-thumb .md-slider-thumb--on .md-slider-thumb--discrete{
+  background-color: #006ECC;
+}

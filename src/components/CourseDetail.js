@@ -167,7 +167,7 @@ class CourseDetail extends React.Component{
                         <Cell size={12}>
                             <h4 style={styles.container.p}><b>Comments</b></h4>
                             {this.state.existingComments.map(comment => {
-                                return (<p>{comment}</p>);})
+                                return (<p key={comment}>{comment}</p>);})
                             }
                         </Cell>
                         <Cell size={12}>
