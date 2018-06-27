@@ -9,12 +9,13 @@ import {Button, Card} from 'react-md';
 import UserService from "../services/UserService";
 
 
-const StyleFooter = Styled(Card)`
+const StyleFooter = Styled.div`
     list-style-type: none;
     margin-top: 0;
-    background-color: rgba(245,245,245,0.9)
-    padding: 0;
-    height: 50;
+    background-color: rgba(245,245,245,0.9);
+    padding: 20px;
+    height: 100%;
+    display: flex;
 `;
 
 class PlainFooter extends React.Component {
@@ -24,7 +25,6 @@ class PlainFooter extends React.Component {
     }
     render() {
         return (
-            <div className={this.props.className}>
                 <StyleFooter>
                     <table>
                         <tbody>
@@ -37,7 +37,6 @@ class PlainFooter extends React.Component {
                         </tbody>
                     </table>
                 </StyleFooter>
-            </div>
         );
     }
 }
