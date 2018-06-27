@@ -31,15 +31,3 @@ const styles = {
 
   }
 };
-/*
-
-
-.filter(function (course) {
-    return (course.title.toLocaleLowerCase().includes(searchTerm));
-}).filter(function (course) {
-    return (course.credits.toString().includes(searchCredits));
-}).filter(function (course) {
-    return (course.semester.includes(searchSemester));
-}).filter(function (course) {
-    return (course.day.includes(searchDay));
-}).*/

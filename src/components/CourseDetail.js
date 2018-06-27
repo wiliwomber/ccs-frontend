@@ -10,12 +10,24 @@ class CourseDetail extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            likes : 0,
+            likesGiven : false,
+            likes: this.props.course.likes,
             comment: '',
+            test: '',
         };
         this.closeForm = this.closeForm.bind(this);
+        this.handleChangeComment = this.handleChangeComment.bind(this);
+        this.handleChangeLikes = this.handleChangeLikes.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentWillMount(){
+        if(this.props.course.comment!=undefined){
+            this.setState({existingComments: this.props.course.comment});
+        } else {
+            this.setState({existingComments: ['']});
+        }
+    }
 
     //closes the popup
     closeForm() {
@@ -28,18 +40,28 @@ class CourseDetail extends React.Component{
     }
 
     handleChangeLikes (){
-        if(this.state.likes == 0){
-            this.setState({likes : 1});
+        console.log('handle');
+        if(this.state.likesGiven == false){
+            this.setState({
+                likesGiven:true,
+                likes:(this.state.likes+1)});
         } else{
-            this.setState({likes: 0});
+            this.setState({
+                likesGiven:false,
+                likes:(this.state.likes-1)});
         }
     }
 
     handleSubmit(){
+        console.log('submit');
         let course = this.props.course;
-        course.likes += this.state.likes;
+        course.likes = this.state.likes;
         if(this.state.comment.length > 1){
             course.comment.push(this.state.comment);
+            this.setState({
+                existingComments:course.comment,
+                comment: '',
+            });
         }
         CourseService.updateCourse(course)
             .then(course=>{
@@ -133,16 +155,20 @@ class CourseDetail extends React.Component{
 
                         <Cell size={6}>
                             <h4 style={styles.container.p}><b>Like this course? Give it a heart! </b></h4>
-                            <Cell size={6}>
-                            <Button icon primary onSubmit = {this.handleChangeLikes}>favorite</Button>
+                            <Grid>
+                            <Cell size={3}>
+                            <Button icon primary onClick = {this.handleChangeLikes}>favorite</Button>
                             </Cell>
-                            <Cell size={6}>
-                                <p>{this.props.course.likes}</p>
+                            <Cell size={2}>
+                                <p style={styles.likes}>{this.state.likes}</p>
                             </Cell>
+                            </Grid>
                         </Cell>
                         <Cell size={12}>
                             <h4 style={styles.container.p}><b>Comments</b></h4>
-                            <p style={styles.container.p}>{this.props.course.comment}</p>
+                            {this.state.existingComments.map(comment => {
+                                return (<p>{comment}</p>);})
+                            }
                         </Cell>
                         <Cell size={12}>
                             <h4 style={styles.container.p}><b>Leave your own comment</b></h4>
@@ -160,7 +186,7 @@ class CourseDetail extends React.Component{
 
 
                     </Grid>
-                    <Button id="submit" type="submit" disabled={this.state.comment.length<2} raised primary className="md-cell md-cell--4" onSubmit = {this.handleSubmit}>Leave feedback</Button>
+                    <Button id="submit" type="submit" disabled={this.state.comment.length<2} raised primary className="md-cell md-cell--4" onClick = {this.handleSubmit}>Leave feedback</Button>
 
                 </DialogContainer>
             </div>
@@ -180,6 +206,9 @@ let styles = {
         h4 : {
             float: 'top',
         }
+    },
+    likes : {
+        lineHeight: '40px',
     }
 
 };
