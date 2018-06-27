@@ -17,12 +17,6 @@ const StyledCard = styled(Card)`
     background: rgba(255,255,255,0.9);
 `;
 
-let snack = {
-    snackbarIsOpen: false,
-    snackbarMessage: 'test',
-};
-
-
 export class MainPageView extends React.Component {
 
     constructor(props) {
@@ -61,7 +55,7 @@ export class MainPageView extends React.Component {
                 <StyledCard id='module-card' className="md-cell md-cell--6 md-cell--8-tablet">
                   <CardTitle title="Modules"/>
                         <CardText>
-                         <CourseListView/>
+                            <CourseListView/>
                         </CardText>
                 </StyledCard>
                 </div>

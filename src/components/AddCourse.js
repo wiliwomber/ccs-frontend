@@ -142,7 +142,7 @@ class AddCourse extends React.Component{
     handleSubmit(event) {
         event.preventDefault();
                 let course = this.props.course;
-        if(course == undefined) {
+        if(course === undefined) {
             course = {};
         }
         course.title = this.state.title;
