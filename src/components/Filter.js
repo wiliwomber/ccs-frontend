@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import {Grid, Cell, Button, SelectField,TextField, FontIcon, Slider} from 'react-md';
+import {Grid, Cell, Button, SelectField, TextField, FontIcon, Slider} from 'react-md';
 import './../App.css';
 import styled from "styled-components";
 import {AddCourseView} from "../views/AddCourseView";
@@ -16,7 +16,7 @@ const StyledCell = styled(Cell)`
     padding-left: 9px;
     padding-right: 9px;
 `;
-const StyledTestField = styled(TextField)`
+const StyledTextField = styled(TextField)`
     font-size: 10px;
 `;
 
@@ -80,15 +80,9 @@ export class Filter extends React.Component {
         this.props.updateFilter(filter);
     }
 
-
-
-
     render() {
 
         return (
-
-
-
                 <Grid>
                     <StyledCell size={5}>
                         <StyledSlider
@@ -118,21 +112,17 @@ export class Filter extends React.Component {
                         <AddCourseView/>
                     </StyledCell>
 
-
                     <StyledCell size={5} >
-                        {/*TODO size anpassen, derzeit nicht sichtbar*/}
-                        <StyledTestField
+                        <StyledTextField
                             id="searchField"
                             placeholder="Search for ..."
-                            resize={{min:200}}
+                            resize={{min:200, max:800}}
                             value={this.props.filter.searchTerm.toLocaleLowerCase()}
                             className="md-cell md-cell--right"
                             leftIcon={<FontIcon>search</FontIcon>}
                             onChange={this.handleChangeSearchTerm}
                         />
                     </StyledCell>
-
-
                     <StyledCell size={5}>
                         <StyledSelectField
                             id="dayFilter"
@@ -141,25 +131,17 @@ export class Filter extends React.Component {
                             menuItems={DAYS}
                             onChange={this.handleChangeSearchDay}
                             position={SelectField.Positions.TOP_RIGHT}
-                            leftIcon={<FontIcon>calendar_today</FontIcon>}/>
+                        />
                     </StyledCell>
-
 
                     <StyledCell size={2}>
                         <Button id="resetFilter" type="submit" raised primary className="md-cell md-cell--3" onClick = {this.handleResetFilters}>
                         Reset Filters
                         </Button>
                     </StyledCell>
-
-
-
                 </Grid>
-
         );
     }
 }
 
-let styles = {
-    float: 'right',
-};
 

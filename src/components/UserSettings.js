@@ -41,7 +41,6 @@ class UserSettings extends React.Component {
                     className={this.props.className}
                     menuItems={this.state.user ? [
                         <ListItem key={1} leftAvatar={<Avatar icon={<FontIcon>account_circle</FontIcon>}/>} primaryText={this.state.user.username}/>,
-                        <ListItem key={4} primaryText="Hide Snacks" onClick={UserService.notifyListeners("Snack_Hide")}/>,
                         <ListItem key={3} primaryText="Logout" onClick={() => this.logout()}/>
                     ]: [<ListItem key={1} primaryText="Login" onClick={() => this.props.history.push('/login')}/>]}
                 >

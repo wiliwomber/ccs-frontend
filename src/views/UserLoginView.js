@@ -3,21 +3,6 @@
 import React from 'react';
 import UserLogin from '../components/UserLogin';
 import UserService from '../services/UserService';
-import { Snackbar } from 'rmwc/Snackbar';
-import styled from 'styled-components';
-import img from '../img/background.jpg';
-
-var SnackMessage = "";
-
-const Content = styled.div`
-    background-image: url(${img});
-    background-repeat: no-repeat;
-    width: auto;
-    height: auto;
-    min-height: 1000px;
-    background-size: contain;
-    margin: 0px;
-`;
 
 export class UserLoginView extends React.Component {
 
@@ -42,9 +27,9 @@ export class UserLoginView extends React.Component {
 
     render() {
         return (
-            <Content>
+            <div>
                 <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}></UserLogin>
-            </Content>
+            </div>
         );
     }
 }
