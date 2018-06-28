@@ -3,6 +3,7 @@ import { Grid, Cell,  Button, DialogContainer, TextField} from 'react-md';
 import {withRouter} from "react-router-dom";
 import { updateCourse } from "../services/CourseService"
 import CourseService from "../services/CourseService";
+import UserService from "./../services/UserService"
 
 class CourseDetail extends React.Component{
 
@@ -57,19 +58,34 @@ class CourseDetail extends React.Component{
         let course = this.props.course;
         course.likes = this.state.likes;
         if(this.state.comment.length > 1){
-            course.comment.push(this.state.comment);
-            this.setState({
-                existingComments:course.comment,
-                comment: '',
-            });
-        }
-        CourseService.updateCourse(course)
-            .then(course=>{
-                console.log(course.comment);
-            })
-            .catch(error => {
+            UserService.getUser().then(user => {
+                course.comment.push(user.username +": "+this.state.comment);
+                this.setState({
+                    existingComments:course.comment,
+                    comment: '',
+                });
+                CourseService.updateCourse(course)
+                    .then(course=>{
+                        console.log(course.comment);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }).catch(error => {
                 console.log(error);
             });
+
+
+        } else {
+            CourseService.updateCourse(course)
+                .then(course=>{
+                    console.log(course.comment);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
     }
 
     render() {

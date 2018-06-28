@@ -471,17 +471,17 @@ class AddCourse extends React.Component{
                                         errorText="Semesterperiodsperweek is required"/>
                                 </Cell>
                                 <Cell style={styles.cell} size={4}>
-                                    <p style={styles.p}>Room number</p>
+                                    <p style={styles.p}>Room of the course</p>
                                     <TextField
                                         style={styles.container}
-                                        label="Room number"
+                                        label="Room"
                                         id="TextField"
                                         type="text"
                                         className="md-row"
                                         required={true}
                                         value={this.state.roomnumber}
                                         onChange={this.handleChangeRoomnumber}
-                                        errorText="Roomnumber is required"/>
+                                        errorText="Room of the course is required"/>
                                 </Cell>
                                 <Cell style={styles.cell} size={4}>
                                     <p style={styles.p}>Comment</p>
