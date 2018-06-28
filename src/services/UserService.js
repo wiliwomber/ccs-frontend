@@ -27,12 +27,14 @@ export default class UserService {
         }
     }
 
-    static register(user, pass, sem) {
+    static register(user, pass, sem, cos) {
+        console.log(cos);
         return new Promise((resolve, reject) => {
             HttpService.post(`${UserService.baseURL()}/register`, {
                 username: user,
                 password: pass,
                 semester: sem,
+                courseOfStudies: cos,
             }, function (data) {
                 resolve(data);
             }, function (textStatus) {

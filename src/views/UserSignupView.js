@@ -24,7 +24,7 @@ export class UserSignupView extends React.Component {
     }
 
     signup(user) {
-        UserService.register(user.username, user.password, user.semester).then((data) => {
+        UserService.register(user.username, user.password, user.semester, user.courseOfStudies).then((data) => {
             this.props.history.push('/');
             UserService.notifyListeners("Snack_LogIn");
         }).catch((e) => {
