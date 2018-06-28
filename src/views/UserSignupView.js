@@ -5,13 +5,13 @@ import UserSignup from '../components/UserSignup';
 import UserService from '../services/UserService';
 import styled from "styled-components/";
 import img from "./../img/background.jpg";
+import './../App.css';
 
 const Content = styled.div`
     background-image: url(${img});
     background-repeat: no-repeat;
     width: auto;
-    height: auto;
-    min-height: 1000px;
+    height: 100vh;
     background-size: contain;
     margin: 0px;
 `;

@@ -38,9 +38,8 @@ export class CurriculumListRow extends React.Component {
                 <div style={styles.title}>
                     <div style={styles.p}>{this.props.course.title}</div>
                 </div>
-
-                <div style={styles.credits}>
-                    <div style={styles.p}>Credits: {this.props.course.credits}</div>
+                <div style={styles.button}>
+                    <Button style={styles} onClick={() => UserService.deSelectCourse(this.props.course._id)} icon>clear</Button>
                 </div>
 
                 <div style={styles.button}>
@@ -48,9 +47,13 @@ export class CurriculumListRow extends React.Component {
                     <CourseDetailView course={this.props.course} open={this.state.open} close={this.closeDetail}/>
                 </div>
 
-                <div style={styles.button}>
-                    <Button style={styles} onClick={() => UserService.deSelectCourse(this.props.course._id)} icon>clear</Button>
+                <div style={styles.credits}>
+                    <div style={styles.p}>Credits: {this.props.course.credits}</div>
                 </div>
+
+
+
+
             </div>
         );
     }

@@ -94,14 +94,14 @@
     background: #fff;
     box-shadow: 0px 5px 20px 0px rgba(126,137,140,0.20);
     border-radius: 5px;
-    border: 1px solid dodgerblue;
+    border: 1px solid #448aff;
     overflow: hidden;
     z-index: 1001;
 }
 
 .mm-popup__box__header {
     padding: 0px 15px;
-    background: dodgerblue;
+    background: #448aff;
     color: dodgerblue;
 }
 

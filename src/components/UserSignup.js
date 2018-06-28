@@ -1,17 +1,14 @@
 "use strict";
 
 import React from 'react';
-import {Button, Card, TextField} from 'react-md';
-import {withRouter} from 'react-router-dom';
-import {AlertMessage} from './AlertMessage';
-import Page from './Page';
-import styled from "styled-components";
+import { Card, Button, TextField } from 'react-md';
+import { withRouter } from 'react-router-dom';
 
-const StyledCard = styled(Card)`
-    max-width: 500px;
-    background: rgba(255,255,255,0.7);
-    margin-top: 80px;
-`;
+import { AlertMessage } from './AlertMessage';
+import Page from './Page';
+
+
+const style = { maxWidth: 500 };
 
 
 class UserSignup extends React.Component {
@@ -20,9 +17,9 @@ class UserSignup extends React.Component {
         super(props);
 
         this.state = {
-            username: '',
-            password: '',
-            semester: ''
+            username : '',
+            password : '',
+            semester : 0,
         };
 
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
@@ -32,6 +29,7 @@ class UserSignup extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
     handleChangeUsername(value) {
         this.setState(Object.assign({}, this.state, {username: value}));
     }
@@ -39,9 +37,8 @@ class UserSignup extends React.Component {
     handleChangePassword(value) {
         this.setState(Object.assign({}, this.state, {password: value}));
     }
-
     handleChangeSemester(value) {
-         this.setState(Object.assign({}, this.state, {semester: value}));
+        this.setState(Object.assign({}, this.state, {semester: value}));
     }
 
     handleSubmit(event) {
@@ -52,13 +49,14 @@ class UserSignup extends React.Component {
             password: this.state.password,
             semester: this.state.semester
         };
+
         this.props.onSubmit(user);
     }
 
     render() {
         return (
             <Page>
-                <StyledCard className="md-block-centered">
+                <Card style={style} className="md-block-centered">
                     <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.props.history.goBack()}>
                         <TextField
                             label="Username"
@@ -87,13 +85,14 @@ class UserSignup extends React.Component {
                             value={this.state.semester}
                             onChange={this.handleChangeSemester}
                             errorText="Semester is required"/>
+
                         <Button id="submit" type="submit"
-                                disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false || this.state.semester == undefined}
-                                raised primary className="md-cell md-cell--2">Register</Button>
+                                disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
+                                raised secondary className="md-cell md-cell--2">Register</Button>
                         <Button id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</Button>
                         <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>
                     </form>
-                </StyledCard>
+                </Card>
             </Page>
         );
     }

@@ -216,7 +216,7 @@ class AddCourse extends React.Component{
 //TODO schön machen
         return (
             <div>
-                <Button raised id="createCourseButton" type="submit" primary className="md-cell md-cell--3" onClick={this.openForm}>Create Course</Button>
+                <Button raised id="createCourseButton" type="submit" secondary className="md-cell md-cell--3" onClick={this.openForm}>Create Course</Button>
                 <DialogContainer
                     id="add-course"
                     visible={this.state.open}

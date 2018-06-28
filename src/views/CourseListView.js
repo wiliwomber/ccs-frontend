@@ -4,31 +4,12 @@ import React from 'react';
 import { CourseList } from '../components/CourseList';
 import CourseService from '../services/CourseService';
 import UserService from "../services/UserService";
-import {AddCourseView}from "./AddCourseView"
-import {DialogContainer, Grid, Cell, Button, SelectField,TextField, FontIcon, Slider} from 'react-md';
+import {DialogContainer, Grid, Cell, Button, SelectField,FontIcon, Slider} from 'react-md';
 import {Filter} from "../components/Filter";
 import './../App.css';
-import $ from "jquery";
 import styled from "styled-components";
 // list of icons that can be used: https://material.io/tools/icons/?icon=android&style=baseline
 
-const NUMBER_ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-
-const StyledCell = styled(Cell)`
-    margin: 0px;
-`;
-const StyledTestField = styled(TextField)`
-    font-size: 10px;
-`;
-
-const StyledSelectField = styled(SelectField)`
-    font-size: 10px;
-`;
-
-const StyledSlider  = styled(Slider)`
-    font-size: 10px;
-`;
 
 export class CourseListView extends React.Component {
 
@@ -39,7 +20,7 @@ export class CourseListView extends React.Component {
             loading: false,
             data: [],
             open: false,
-            selectedSemester: 'Current Semester',
+            selectedSemester: 1,
             course: '',
             filter: {
                 searchTerm : '',
@@ -47,7 +28,6 @@ export class CourseListView extends React.Component {
                 searchSemester: '',
                 searchDay: '',
             },
-            visible : false
         };
 
         //in case a new course is created, the component is updated so that the new course is displayed in the list
@@ -109,16 +89,9 @@ export class CourseListView extends React.Component {
         this.setState({open: false});
     }
 
-    show = () => {
-        this.setState({ visible: true });
-    };
-
-    hide = () => {
-        this.setState({ visible: false });
-    };
 
     render() {
-        const { visible } = this.state;
+
 
         if (this.state.loading) {
             return (<h2>Loading...</h2>);
@@ -142,19 +115,18 @@ export class CourseListView extends React.Component {
                         <Grid>
                             <Cell size={12}> <h4><b>Choose the semester in which you want to take {this.state.course.title}</b></h4></Cell>
                             <Cell size={12}> <p>Default is the current semester</p></Cell>
-                            <Cell size={12}>
-                            <SelectField
-                                id="select-field-1"
-                                lable="Choose Semester"
-                                placeholder="Repeat Exam"
-                                className="md-cell"
-                                menuItems={['1','2','3','4','5','6']}
-                                required={true}
-                                value={this.state.selectedSemester}
-                                onChange={this.handleChangeSelectedSemester}
-                                simplifiedMenu = {true}
-                                errorText="Please choose a semester"
-                                position={SelectField.Positions.BELOW}/>
+                            <Cell size={5}>
+                                <Slider
+                                    id="selectSemesterSlider"
+                                    lable="Choose Semester"
+                                    leftIcon={<FontIcon>hourglass_empty</FontIcon>}
+                                    required={true}
+                                    value={this.state.selectedSemester}
+                                    onChange={this.handleChangeSelectedSemester}
+                                    min={1}
+                                    max={6}
+                                    discrete
+                                />
                             </Cell>
                             <Cell size={12}>
                                 <Button id="submit" type="submit" raised primary className="md-cell md-cell--2">Save</Button>

@@ -12,7 +12,10 @@
 body{
   font-family: 'Open Sans', sans-serif;
   margin: 0px;
+  height: 100vh;
 }
+
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -39,6 +42,15 @@ body{
   to { transform: rotate(360deg); }
 }
 
+.md-background--secondary {
+  background: #006ECC;
+  color: #fff;
+}
+
+.md-background--secondary-hover:hover{
+  background: #448aff !important;
+}
+
 .md-tabs.md-default-theme .md-ink-bar, .md-tabs .md-ink-bar {
   color: green !important;
   background-color:green !important;
@@ -62,10 +74,32 @@ body{
   background: #006ECC;
 }
 
+.md-slider-track-fill{
+  background-color: #006ECC;
+}
+.md-slider-thumb {
+  background-color: #006ECC;
+}
+
+.md-slider-thumb--discrete-on::after{
+  border-top-color: #006ECC;
+}
+.md-slider-label{
+  font-size: 15px !important;
+}
+.md-text-field{
+  font-size: 15px !important;
+  font-weight: 200;
+}
+
 .fc-event {
   border: white;
   background: #006ECC !important;
 
+}
+
+.fc-event .fc-bg{
+  opacity: 0  !important;
 }
 
 #simple-tab-panel-1 {
@@ -77,19 +111,19 @@ body{
 }
 
 .fc-time-grid-event:hover{
-  background: dodgerblue !important;
-  border: dodgerblue !important;
+  background: #448aff !important;
+  border: #448aff !important;
   cursor: pointer;
 }
-
-#schedule-card {
-  height: 80vh;
-}
-
 
 .md-progress--linear-active{
   background-color: #006ECC;
 }
+
+#snackBar{
+  z-index: 100;
+}
+
 #curriculum-progress {
   overflow: auto;
   height: 59vh;
@@ -101,7 +135,11 @@ body{
 }
 
 #module-card {
-  height: 80vh;
+  height: 82vh;
+}
+
+#schedule-card {
+  height: 82vh;
 }
 
 #courseList {
@@ -120,11 +158,7 @@ body{
   margin-top: 0px;
 }
 
-#resetFilter {
-  height:42px;
-  background-color: #006ECC;
-  font-weight: 200;
-}
+
 
 #dayFilter{
   width: 200px;
@@ -135,17 +169,29 @@ body{
   padding-left: 7px;
 }
 #createCourseButton{
-  background-color: #006ECC;
   height:42px;
   padding-bottom: 5px;
   margin-top: 15px;
   font-weight: 200;
+  line-height: 14px;
+}
+
+#resetFilter {
+  height:42px;
+  font-weight: 200;
+  line-height: 14px;
 }
 
 #createCourseCell{
   float: right;
 }
 
+#detail-course{
+  overflow: hidden !important;
+}
+#select-field-semester{
+  position: absolute;
+}
 .md-slider-thumb .md-slider-thumb--mask{
 
 }

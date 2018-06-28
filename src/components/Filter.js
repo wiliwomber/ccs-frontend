@@ -90,8 +90,9 @@ export class Filter extends React.Component {
                             label="Semester"
                             leftIcon={<FontIcon>hourglass_empty</FontIcon>}
                             onChange={this.handleChangeSearchSemester}
-                            defaultValue={5}
-                            max={10}
+                            defaultValue={1}
+                            min={1}
+                            max={6}
                             discrete
                         />
                     </StyledCell>
@@ -103,6 +104,7 @@ export class Filter extends React.Component {
                             leftIcon={<FontIcon>school</FontIcon>}
                             onChange={this.handleChangeSearchCredits}
                             defaultValue={5}
+                            min={1}
                             max={10}
                             discrete
                         />
@@ -135,7 +137,7 @@ export class Filter extends React.Component {
                     </StyledCell>
 
                     <StyledCell size={2}>
-                        <Button id="resetFilter" type="submit" raised primary className="md-cell md-cell--3" onClick = {this.handleResetFilters}>
+                        <Button id="resetFilter" type="submit" raised secondary className="md-cell md-cell--3" onClick = {this.handleResetFilters}>
                         Reset Filters
                         </Button>
                     </StyledCell>

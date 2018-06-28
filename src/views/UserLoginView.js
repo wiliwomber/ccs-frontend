@@ -3,6 +3,18 @@
 import React from 'react';
 import UserLogin from '../components/UserLogin';
 import UserService from '../services/UserService';
+import styled from "styled-components/";
+import img from "./../img/background.jpg";
+import './../App.css';
+
+const Content = styled.div`
+    background-image: url(${img});
+    background-repeat: no-repeat;
+    width: auto;
+    height: 100vh;
+    background-size: contain;
+    margin: 0px;
+`;
 
 export class UserLoginView extends React.Component {
 
@@ -27,9 +39,9 @@ export class UserLoginView extends React.Component {
 
     render() {
         return (
-            <div>
-                <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}></UserLogin>
-            </div>
+            <Content>
+                <UserLogin onSubmit={(user) => this.login(user)} error={this.state.error}/>
+            </Content>
         );
     }
 }

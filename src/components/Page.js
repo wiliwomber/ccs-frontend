@@ -13,7 +13,7 @@ const StyledSection = styled.section`
     background-repeat: no-repeat;
     width: auto;
     height: 100%;
-    min-height: 900px;
+    max-height: 100vh;
     background-size:cover;
     display: flex;
     flex-direction: column;

@@ -2,13 +2,14 @@ import React from 'react';
 import './../../node_modules/material-components-web/dist/material-components-web.min.css';
 import { Snackbar } from 'rmwc/Snackbar';
 import UserService from "../services/UserService";
+import './../App.css';
 
 export class SnackbarService extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            snackTimeout: 2000,
+            snackTimeout: 3000,
             snackMessage: 'Default message',
             snackbarIsOpen: false,
         };
@@ -59,6 +60,7 @@ export class SnackbarService extends React.Component {
     render() {
         return (
                 <Snackbar
+                    id="snackBar"
                     show={this.state.snackbarIsOpen}
                     onHide={evt => this.setState({snackbarIsOpen: false})}
                     message={this.state.snackMessage}
