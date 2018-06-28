@@ -19,6 +19,7 @@ export class SnackbarService extends React.Component {
         UserService.registerListener("Snack_CourseAdded", this.courseAdded.bind(this));
         UserService.registerListener("Snack_CourseCreated", this.courseCreated.bind(this));
         UserService.registerListener("Snack_LogIn", this.userLoggedIn.bind(this));
+        UserService.registerListener("Snack_Hide", this.hideSnacks.bind(this));
     }
 
     courseRemoved(){
@@ -46,6 +47,12 @@ export class SnackbarService extends React.Component {
         this.setState({
             snackbarIsOpen: true,
             snackMessage: 'User logged in',
+        });
+    }
+
+    hideSnacks() {
+        this.setState({
+            snackbarIsOpen: false
         });
     }
 
