@@ -63,6 +63,7 @@ class CourseDetail extends React.Component{
                 this.setState({
                     existingComments:course.comment,
                     comment: '',
+                    likes : false,
                 });
                 CourseService.updateCourse(course)
                     .then(course=>{
@@ -79,6 +80,11 @@ class CourseDetail extends React.Component{
         } else {
             CourseService.updateCourse(course)
                 .then(course=>{
+                    this.setState({
+                        existingComments:course.comment,
+                        comment: '',
+                        likes : false,
+                    });
                     console.log(course.comment);
                 })
                 .catch(error => {
@@ -202,7 +208,7 @@ class CourseDetail extends React.Component{
 
 
                     </Grid>
-                    <Button id="submit" type="submit" disabled={this.state.comment.length<2} raised primary className="md-cell md-cell--4" onClick = {this.handleSubmit}>Leave feedback</Button>
+                    <Button id="submit" type="submit" disabled={this.state.comment.length<2 && this.state.likes==false} raised primary className="md-cell md-cell--4" onClick = {this.handleSubmit}>Leave feedback</Button>
 
                 </DialogContainer>
             </div>
