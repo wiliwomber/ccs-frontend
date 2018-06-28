@@ -21,7 +21,7 @@ export const CourseList = ({data,filter, onAdd}) => (
                 </TableHeader>
                 <TableBody>
                     {data.filter(function (course) {
-                        return (course.title.toLocaleLowerCase().includes(filter.searchTerm));
+                        return (course.titlelong.toLocaleLowerCase().includes(filter.searchTerm));
                     }).filter(function (course) {
                         return (course.credits.toString().includes(filter.searchCredits));
                     }).filter(function (course) {
