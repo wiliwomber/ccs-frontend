@@ -4,12 +4,9 @@ import React from 'react';
 import { CourseList } from '../components/CourseList';
 import CourseService from '../services/CourseService';
 import UserService from "../services/UserService";
-import {DialogContainer, Grid, Cell, Button, SelectField,FontIcon, Slider} from 'react-md';
+import {DialogContainer, Grid, Cell, Button,FontIcon, Slider} from 'react-md';
 import {Filter} from "../components/Filter";
 import './../App.css';
-import styled from "styled-components";
-// list of icons that can be used: https://material.io/tools/icons/?icon=android&style=baseline
-
 
 export class CourseListView extends React.Component {
 

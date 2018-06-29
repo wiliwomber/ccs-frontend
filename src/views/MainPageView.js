@@ -2,7 +2,6 @@
 import React from 'react';
 import './../App.css';
 import Page from '../components/Page';
-import {AddCourseView} from './AddCourseView';
 import {ScheduleView} from './ScheduleView';
 import {Card, CardTitle, CardText,TabsContainer, Tabs, Tab} from 'react-md';
 import {CourseListView} from "./CourseListView";

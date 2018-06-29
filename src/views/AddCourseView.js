@@ -4,8 +4,6 @@ import React from 'react';
 
 import AddCourse from '../components/AddCourse';
 import CourseService from "../services/CourseService";
-import {CourseList} from "../components/CourseList";
-import {CourseListView} from "./CourseListView";
 import UserService from "../services/UserService";
 import { Snackbar } from 'rmwc/Snackbar';
 

@@ -11,8 +11,6 @@ import CourseService from "../services/CourseService";
 import CourseDetail from "./../components/CourseDetail";
 
 
-// this.state.selectedCourses,
-
 export class ScheduleView extends React.Component {
 
     constructor(props) {

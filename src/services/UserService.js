@@ -14,6 +14,8 @@ export default class UserService {
         return "http://localhost:3000/auth";
     }
 
+    //listeners so that when a asynchronus call for changing the schedule in the database
+    // is done, the calender and the lists are updated
     static registerListener(event, fn) {
         if (!UserService.listeners.hasOwnProperty(event)) {
             UserService.listeners[event] = [];

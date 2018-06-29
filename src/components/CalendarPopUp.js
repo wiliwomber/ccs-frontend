@@ -1,4 +1,3 @@
-import Popup from 'react-popup';
 import React from 'react';
 import {DialogContainer} from 'react-md';
 
@@ -31,9 +30,6 @@ export class CalendarPopUp extends React.Component{
                 pageY={this.props.popup.yPosition}
                 focusOnMount={false}
                 fullPage={false}
-               //style = {this.customStyles}
-
-
             >
                 <div>Some Stuff</div>
             </DialogContainer>

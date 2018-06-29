@@ -3,7 +3,6 @@
 import React from 'react';
 import { Card, Button, TextField } from 'react-md';
 import { withRouter } from 'react-router-dom';
-
 import { AlertMessage } from './AlertMessage';
 import Page from './Page';
 import {SelectField} from "react-md";

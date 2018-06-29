@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import { Toolbar, Button} from 'react-md';
+import { Toolbar } from 'react-md';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import UserSettings from './UserSettings';
@@ -51,7 +51,7 @@ class Header extends React.Component {
             </StyledHeader>
         );
     }
-};
+}
 
 
 export default withRouter(Header);

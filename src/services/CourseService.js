@@ -4,26 +4,8 @@ import HttpService from './HttpService';
 import UserService from "./UserService";
 
 export default class CourseService {
-    static listeners ={};
     constructor(){
     }
-
-
-/*
-
-    static registerListener(event, fn) {
-        if (!UserService.listeners.hasOwnProperty(event)) {
-            UserService.listeners[event] = [];
-        }
-        UserService.listeners[event].push(fn);
-    }
-
-    static notifyListeners(event) {
-        if (UserService.listeners.hasOwnProperty(event)) {
-            UserService.listeners[event].forEach(fn => fn());
-        }
-    }
-*/
 
     static baseURL() {return "http://localhost:3000/courses" }
 
@@ -37,6 +19,7 @@ export default class CourseService {
         });
     }
 
+    //get the courses for course list row and schedule view
     static getCourse(id) {
         return new Promise((resolve, reject) => {
             HttpService.get(`${CourseService.baseURL()}/${id}`, function(data) {
@@ -44,7 +27,7 @@ export default class CourseService {
                     resolve(data);
                 }
                 else {
-                    reject('Error while retrieving movie');
+                    reject('Error while retrieving course');
                 }
             }, function(textStatus) {
                 reject(textStatus);

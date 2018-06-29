@@ -17,7 +17,7 @@ const Content = styled.div`
 `;
 
 export class UserLoginView extends React.Component {
-p
+
     constructor(props) {
         super(props);
         this.state = {};
@@ -33,8 +33,7 @@ p
                 error: e
             });
         });
-        // SnackMessage = "User logged in";
-        // this.setState({snackbarIsOpen: !this.state.snackbarIsOpen})
+
     }
 
     render() {

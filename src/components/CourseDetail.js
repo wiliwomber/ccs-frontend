@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Cell,  Button, DialogContainer, TextField} from 'react-md';
 import {withRouter} from "react-router-dom";
-import { updateCourse } from "../services/CourseService"
 import CourseService from "../services/CourseService";
 import UserService from "./../services/UserService"
 

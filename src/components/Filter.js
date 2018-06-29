@@ -7,8 +7,7 @@ import styled from "styled-components";
 import {AddCourseView} from "../views/AddCourseView";
 
 
-const NUMBER_ITEMS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
 const StyledCell = styled(Cell)`
     margin: 0px;
@@ -27,8 +26,6 @@ const StyledSelectField = styled(SelectField)`
 const StyledSlider  = styled(Slider)`
     font-size: 10px;
 `;
-
-
 
 
 export class Filter extends React.Component {
@@ -130,7 +127,7 @@ export class Filter extends React.Component {
                             id="dayFilter"
                             placeholder="Day of the week"
                             size="150px"
-                            menuItems={DAYS}
+                            menuItems={days}
                             onChange={this.handleChangeSearchDay}
                             position={SelectField.Positions.TOP_RIGHT}
                         />

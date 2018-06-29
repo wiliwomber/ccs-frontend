@@ -2,11 +2,7 @@
 
 import React from 'react';
 import Styled from 'styled-components';
-import {Link} from 'react-router-dom';
-import {SimpleLink} from "./SimpleLink";
 import { withRouter } from 'react-router-dom';
-import {Button, Card} from 'react-md';
-import UserService from "../services/UserService";
 
 
 const StyleFooter = Styled.div`

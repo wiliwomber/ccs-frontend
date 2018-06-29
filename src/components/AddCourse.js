@@ -213,7 +213,6 @@ class AddCourse extends React.Component{
 
 
     render() {
-//TODO schön machen
         return (
             <div>
                 <Button raised id="createCourseButton" type="submit" secondary className="md-cell md-cell--3" onClick={this.openForm}>Create Course</Button>
@@ -278,7 +277,6 @@ class AddCourse extends React.Component{
                                         renderNode={null}
                                         disableScrollLocking
                                         required={false}
-                                        //value={this.state.registrationstart}
                                         onChange={this.handleChangeRegistrationstart}
                                         errorText="Registrationstart is required"/>
                                 </Cell>
@@ -295,7 +293,6 @@ class AddCourse extends React.Component{
                                         lastChild
                                         renderNode={null}
                                         disableScrollLocking
-                                        //  value={this.state.registrationend}
                                         onChange={this.handleChangeRegistrationend}
                                         errorText="Registrationend is required"/>
                                 </Cell>
@@ -378,7 +375,6 @@ class AddCourse extends React.Component{
                                         disableScrollLocking
                                         displayMode="portrait"
                                         required={true}
-                                        //value={this.state.start}
                                         onChange={this.handleChangeStart}
                                         errorText="Start is required" />
                                 </Cell>
@@ -394,7 +390,6 @@ class AddCourse extends React.Component{
                                         disableScrollLocking
                                         displayMode="portrait"
                                         required={true}
-                                        //value={this.state.end}
                                         onChange={this.handleChangeEnd}/>
                                 </Cell>
                                 <Cell style={styles.cell} size={4}>

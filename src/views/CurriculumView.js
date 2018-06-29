@@ -92,7 +92,7 @@ export class CurriculumView extends React.Component {
                             }).map((semester, i) =>
                                 <div key={i}>
                                 <Cell key={i} size={12}>
-                                    <h4 ><b>{semester}. Semester - Credits: {this.state.credits[semester]}</b> </h4>
+                                    <h4 ><b>{semester}. Semester - Credits: {this.state.credits[semester]}/30</b> </h4>
                                     {this.state.courses.filter(function (course) {
                                         return (course.chosenSemester === semester);
                                     }).map((course, i) => <CurriculumListRow key={i} course={course} />)}
