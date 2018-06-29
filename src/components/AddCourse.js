@@ -223,7 +223,6 @@ class AddCourse extends React.Component{
                     onHide={this.openForm}
                     width={1700}
                 >
-
                     <form className="md-grid" onSubmit={this.handleSubmit} onReset={() => this.closeForm()}>
 
 
@@ -243,6 +242,7 @@ class AddCourse extends React.Component{
                                     <p style={styles.p}>Abbreviation of the course name</p>
                                     <TextField
                                         style={styles.container}
+                                        label="Title Abbreviation"
                                         id="TextField"
                                         type="text"
                                         className="md-row"
@@ -255,10 +255,11 @@ class AddCourse extends React.Component{
                                     <p style={styles.p}>Course description</p>
                                     <TextField
                                         style={styles.container}
+                                        label="Course Description"
                                         id="TextField"
                                         type="text"
                                         className="md-row"
-                                        rows={5}
+                                        rows={6}
                                         required={true}
                                         value={this.state.description}
                                         onChange={this.handleChangeDescription}
@@ -268,23 +269,25 @@ class AddCourse extends React.Component{
                                     <p style={styles.p}>Beginning of registration period</p>
                                     <DatePicker
                                         style={styles.container}
-                                        id="appointment-date-landscape"
+                                        label="Start registration period"
+                                        id="Registration start"
                                         fullWidth={false}
                                         className="md-cell"
-                                        displayMode="portrait"
+                                        displayMode="landscape"
                                         portal
                                         lastChild
                                         renderNode={null}
                                         disableScrollLocking
                                         required={false}
                                         onChange={this.handleChangeRegistrationstart}
-                                        errorText="Registrationstart is required"/>
+                                        errorText="Registration start is required"/>
                                 </Cell>
                                 <Cell style={styles.cell} size={4}>
                                     <p style={styles.p}>End of registration period</p>
                                     <DatePicker
                                         style={styles.container}
-                                        id="inline-date-picker-auto"
+                                        label="End registration period"
+                                        id="Registration end"
                                         fullWidth={false}
                                         className="md-cell"
                                         displayMode="landscape"
@@ -294,22 +297,22 @@ class AddCourse extends React.Component{
                                         renderNode={null}
                                         disableScrollLocking
                                         onChange={this.handleChangeRegistrationend}
-                                        errorText="Registrationend is required"/>
+                                        errorText="Registration end is required"/>
                                 </Cell>
                                 <Cell style={styles.cell} size={4}>
                                     <p style={styles.p}>Date of the final exam</p>
                                     <DatePicker
                                         style={styles.container}
-                                        id="inline-date-picker-auto"
+                                        id="Date of exam"
+                                        label="Date of exam"
                                         fullWidth={false}
                                         portal
                                         lastChild
                                         renderNode={null}
                                         disableScrollLocking
                                         className="md-cell"
-                                        displayMode="portrait"
+                                        displayMode="landscape"
                                         required={false}
-                                        //value={this.state.exam}
                                         onChange={this.handleChangeExam}
                                         errorText="Exam is required"/>
 
@@ -319,10 +322,10 @@ class AddCourse extends React.Component{
                                     <SelectField
                                         style={styles.container}
                                         id="select-field-1"
-                                        lable="Credits"
+                                        label="Credits"
                                         placeholder="Credits"
                                         className="md-cell"
-                                        menuItems={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14,15]}
+                                        menuItems={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14,15]}
                                         required={true}
                                         value={this.state.credits}
                                         onChange={this.handleChangeCredits}
@@ -334,16 +337,16 @@ class AddCourse extends React.Component{
                                     <p style={styles.p}>Recommended Semester</p>
                                     <SelectField
                                         style={styles.container}
-                                        id="select-field-1"
-                                        lable="Semester"
+                                        id="Recommended semester"
+                                        label="Semester"
                                         placeholder="Semester"
                                         className="md-cell"
+                                        menuItems={[1, 2, 3, 4, 5, 6, 7, 8]}
                                         required={true}
                                         value={this.state.semester}
                                         onChange={this.handleChangeSemester}
-                                        errorText="Semester is required"
-                                        menuItems={[0, 1, 2, 3, 4, 5, 6, 7, 8]}
                                         simplifiedMenu = {true}
+                                        errorText="Semester is required"
                                         position={SelectField.Positions.BELOW}/>
 
                                 </Cell>
@@ -351,15 +354,15 @@ class AddCourse extends React.Component{
                                     <p style={styles.p}>Repeat exam takes place in:</p>
                                     <SelectField
                                         style={styles.container}
-                                        id="select-field-1"
-                                        lable="Repeat Exam"
+                                        id="Repeat exam"
+                                        label="Repeat Exam"
                                         placeholder="Repeat Exam"
                                         className="md-cell"
                                         menuItems={['Winterterm','Summerterm']}
                                         required={true}
                                         value={this.state.repeatexam}
                                         onChange={this.handleChangeRepeatexam}
-                                        simplifiedMenu = {false}
+                                        simplifiedMenu = {true}
                                         errorText="Please choose a term"
                                         position={SelectField.Positions.BELOW}/>
                                 </Cell>
@@ -368,12 +371,13 @@ class AddCourse extends React.Component{
                                     <TimePicker
                                         style={styles.container}
                                         id="start"
+                                        label="Start of course"
                                         className="md-cell"
                                         portal
                                         lastChild
                                         renderNode={null}
                                         disableScrollLocking
-                                        displayMode="portrait"
+                                        displayMode="landscape"
                                         required={true}
                                         onChange={this.handleChangeStart}
                                         errorText="Start is required" />
@@ -383,30 +387,33 @@ class AddCourse extends React.Component{
                                     <TimePicker
                                         style={styles.container}
                                         id="end"
+                                        label="End of course"
+                                        displayMode="landscape"
+                                        size="50px"
                                         className="md-cell"
                                         portal
                                         lastChild
                                         renderNode={null}
                                         disableScrollLocking
-                                        displayMode="portrait"
                                         required={true}
-                                        onChange={this.handleChangeEnd}/>
+                                        onChange={this.handleChangeEnd}
+                                    />
                                 </Cell>
                                 <Cell style={styles.cell} size={4}>
                                     <p style={styles.p}>Weekday of the course</p>
                                     <SelectField
                                         style={styles.container}
-                                        id="select-field-1"
+                                        id="Weekday of course"
+                                        label="Weekday of course"
                                         placeholder="Day"
                                         className="md-cell"
                                         menuItems={['Monday','Tuesday','Wednesday','Thursday','Friday']}
                                         required={true}
                                         value={this.state.day}
-                                        simplifiedMenu = {true}
+                                        onChange={this.handleChangeDow}
+                                        simplifiedMenu ={true}
                                         errorText="Please choose a term"
-                                        position={SelectField.Positions.BELOW}
-                                        onChange={this.handleChangeDow}/>
-
+                                        position={SelectField.Positions.BELOW}/>
                                 </Cell>
 
                                     <Cell style={styles.cell} size={4}>
@@ -439,31 +446,29 @@ class AddCourse extends React.Component{
                                         <p style={styles.p}>Type of module</p>
                                         <SelectField
                                             style={styles.container}
-                                            name="CourseType"
                                             id="BooleanField"
+                                            label="Course type"
                                             placeholder="Course Type"
-                                            menuItems={['Lecture','Exercise','Seminar']}
                                             className="md-row"
+                                            menuItems={['Lecture','Exercise','Seminar']}
                                             required={true}
-                                            simplifiedMenu = {true}
                                             value={this.state.courseType}
-                                            position={SelectField.Positions.BELOW}
                                             onChange={this.handleChangeCourseType}
-                                        />
+                                            simplifiedMenu = {true}
+                                            position={SelectField.Positions.BELOW}/>
                                     </Cell>
-
                                 <Cell style={styles.cell} size={4}>
                                     <p style={styles.p}>Semester per week</p>
                                     <TextField
                                         style={styles.container}
-                                        label="Semesterperiodsperweek"
+                                        label="SemesterPeriods per week"
                                         id="TextField"
                                         type="number"
                                         className="md-row"
                                         required={true}
                                         value={this.state.semesterperiodsperweek}
                                         onChange={this.handleChangeSemesterperiodsperweek}
-                                        errorText="Semesterperiodsperweek is required"/>
+                                        errorText="Semesterperiods per week is required"/>
                                 </Cell>
                                 <Cell style={styles.cell} size={4}>
                                     <p style={styles.p}>Room of the course</p>
@@ -528,7 +533,8 @@ let styles = {
     },
     p: {
         color: 'grey',
-    }, cell : {
+    },
+    cell: {
         padding: '30px',
-    }
+    },
 };

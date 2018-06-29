@@ -31,7 +31,7 @@ export class CourseListView extends React.Component {
         UserService.registerListener("newCourse", this.componentWillMount.bind(this));
         this.handleChangeSelectedSemester = this.handleChangeSelectedSemester.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.chooseCourse=this.chooseCourse.bind(this)
+        this.chooseCourse=this.chooseCourse.bind(this);
         this.closeForm = this.closeForm.bind(this);
         this.updateFilter = this.updateFilter.bind(this);
 

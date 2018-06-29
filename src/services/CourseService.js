@@ -9,6 +9,8 @@ export default class CourseService {
 
     static baseURL() {return "http://localhost:3000/courses" }
 
+
+    //get all courses
     static getCourses(){
         return new Promise((resolve, reject) => {
             HttpService.get(this.baseURL(), function(data) {
@@ -36,7 +38,7 @@ export default class CourseService {
     }
 
 
-
+//create course
     static createCourse(course) {
         console.log(course);
         course.id = Math.floor((Math.random() * 100000000) + 1).toString();
@@ -55,6 +57,7 @@ export default class CourseService {
     }
 
 
+    //update a course
     static updateCourse(course) {
         return new Promise((resolve, reject) => {
             HttpService.put(`${this.baseURL()}/${course._id}`, course, function (data) {

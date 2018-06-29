@@ -23,6 +23,7 @@ export class UserLoginView extends React.Component {
         this.state = {};
     }
 
+    //user login
     login(user) {
         UserService.login(user.username, user.password).then((data) => {
             this.props.history.push('/');

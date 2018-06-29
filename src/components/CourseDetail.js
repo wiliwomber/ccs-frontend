@@ -34,13 +34,15 @@ class CourseDetail extends React.Component{
         this.props.close();
     }
 
+    //handles the comment that a student leaves
     handleChangeComment(value){
         console.log(value);
         this.setState({comment: value});
     }
 
+    //adds one like to the number of likes if the button is clicked one time, if it will be clicked more than one time, the like will be removed to avoid students to like one course multiple times
     handleChangeLikes (){
-        console.log('handle');
+        console.log('likes');
         if(this.state.likesGiven == false){
             this.setState({
                 likesGiven:true,
@@ -52,6 +54,8 @@ class CourseDetail extends React.Component{
         }
     }
 
+
+    //the submit hands the comment and likes to the UserService and CourseService to save the comment and like to the course and match the comment and like to the student
     handleSubmit(){
         console.log('submit');
         let course = this.props.course;
@@ -213,8 +217,9 @@ class CourseDetail extends React.Component{
             </div>
         );
     }
-
 }
+
+
 let styles = {
     button : {
     float: 'right'

@@ -19,6 +19,7 @@ export class AddCourseView extends React.Component {
         };
     }
 
+    //create course
     createCourse(course) {
             console.log(course);
             CourseService.createCourse(course).then((data) => {

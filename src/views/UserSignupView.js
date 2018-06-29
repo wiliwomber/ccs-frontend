@@ -22,7 +22,7 @@ export class UserSignupView extends React.Component {
         super(props);
         this.state = {};
     }
-
+// user signup
     signup(user) {
         UserService.register(user.username, user.password, user.semester, user.courseOfStudies).then((data) => {
             this.props.history.push('/');

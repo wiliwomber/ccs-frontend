@@ -27,6 +27,7 @@ export class CurriculumView extends React.Component {
         UserService.registerListener("courseChanged", this.getData.bind(this));
     }
 
+   // get student information and information about the courses that are selected for study plan
     getData(){
         this.setState({courses: []});
         let courses = [];

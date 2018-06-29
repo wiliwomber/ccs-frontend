@@ -14,7 +14,7 @@ export default class UserService {
         return "http://localhost:3000/auth";
     }
 
-    //listeners so that when a asynchronus call for changing the schedule in the database
+    //listeners so that when a asynchronous call for changing the schedule in the database
     // is done, the calender and the lists are updated
     static registerListener(event, fn) {
         if (!UserService.listeners.hasOwnProperty(event)) {
@@ -29,6 +29,8 @@ export default class UserService {
         }
     }
 
+
+    //user signup
     static register(user, pass, sem, cos) {
         console.log(cos);
         return new Promise((resolve, reject) => {
@@ -45,6 +47,8 @@ export default class UserService {
         });
     }
 
+
+    //user login
     static login(user, pass) {
         return new Promise((resolve, reject) => {
             HttpService.post(`${UserService.baseURL()}/login`, {
@@ -58,10 +62,14 @@ export default class UserService {
         });
     }
 
+
+    //user logout
     static logout() {
         window.localStorage.removeItem('jwtToken');
     }
 
+
+    //get user that is currently logged in
     static getCurrentUser() {
         let token = window.localStorage['jwtToken'];
         if (!token) return {};
@@ -81,6 +89,7 @@ export default class UserService {
     }
 
 
+    //update selected courses (add or remove courses to selected courses of student)
     static updateSelectedCourses(user) {
         return new Promise((resolve, reject) => {
             HttpService.put(`${this.baseURL()}/deSelectCourse`, user, function (data) {
@@ -92,7 +101,7 @@ export default class UserService {
     }
 
 
-
+//remove course from selected courses
     static deSelectCourse(id){
         let currentUser = undefined;
         UserService.getUser()
@@ -100,7 +109,6 @@ export default class UserService {
                 currentUser = user;
                 //index of course to deselect
                 console.log(currentUser.chosenCourses);
-                console.log('i was here');
                 for (let index in currentUser.chosenCourses){
                     if(currentUser.chosenCourses.hasOwnProperty(index)){
                         if(currentUser.chosenCourses[index].course == id){
@@ -127,6 +135,7 @@ export default class UserService {
     }
 
 
+    //add course to selected courses
     static selectCourse(id,semester){
         console.log(semester + 'sem');
         let tempUser = undefined;
@@ -164,7 +173,7 @@ export default class UserService {
             })
     }
 
-
+//get user that is currently logged in
     static getUser() {
         return new Promise((resolve, reject) => {
             HttpService.get(`${UserService.baseURL()}/me`, function(data) {

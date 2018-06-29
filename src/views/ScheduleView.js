@@ -18,7 +18,7 @@ export class ScheduleView extends React.Component {
         this.state = {
             popup : '',
             course: '',
-            open: false,
+          //  open: false,
         };
 
         this.setPopUp = this.setPopUp.bind(this);
