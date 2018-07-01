@@ -66,7 +66,7 @@ class CourseDetail extends React.Component{
                 this.setState({
                     existingComments:course.comment,
                     comment: '',
-                    likes : false,
+                    likesGiven : false,
                 });
                 CourseService.updateCourse(course)
                     .then(course=>{
@@ -86,7 +86,7 @@ class CourseDetail extends React.Component{
                     this.setState({
                         existingComments:course.comment,
                         comment: '',
-                        likes : false,
+                        likesGiven : false,
                     });
                     console.log(course.comment);
                 })

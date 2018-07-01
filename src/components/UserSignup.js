@@ -119,7 +119,7 @@ class UserSignup extends React.Component {
                             position={SelectField.Positions.BELOW}/>
 
                         <StyledButtonLeft id="submit" type="submit"
-                                disabled={this.state.username == undefined || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
+                                disabled={this.state.username == undefined || this.state.courseOfStudies == '' || this.state.username == '' || this.state.password == undefined || this.state.password == '' ? true : false}
                                 raised secondary className="md-row">Register</StyledButtonLeft>
                         <StyledButton id="reset" type="reset" raised secondary className="md-cell md-cell--2">Dismiss</StyledButton>
                         <AlertMessage className="md-row md-full-width" >{this.props.error ? `${this.props.error}` : ''}</AlertMessage>

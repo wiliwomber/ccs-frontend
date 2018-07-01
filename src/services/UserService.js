@@ -2,6 +2,7 @@
 
 import HttpService from "./HttpService";
 
+
 export default class UserService {
 
     static listeners ={};
@@ -147,10 +148,9 @@ export default class UserService {
             for (var key in tempUser.chosenCourses) {
                 if (tempUser.chosenCourses.hasOwnProperty(key)) {
                     if(tempUser.chosenCourses[key].course == id){
-                        //@TODO add course exist snackbar
                         console.log("Course already existing");
                         courseNotExisting = false;
-                        //in case the semester was changed, the course stillneeds to be updated
+                 //in case the semester was changed, the course still needs to be updated
                         if(tempUser.chosenCourses[key].semester != semester){
                             tempUser.chosenCourses[key].semester = semester;
                             this.updateSelectedCourses(tempUser)
@@ -166,7 +166,6 @@ export default class UserService {
                     .then(()=>{ UserService.notifyListeners("courseChanged");})
                     .catch(error => {console.log(error)});
             }
-
         })
             .catch( error => {
                 console.log(error);
